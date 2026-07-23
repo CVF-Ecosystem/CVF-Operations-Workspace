@@ -13,9 +13,9 @@
                        "FREEZE"
                    ],
     "activeHandoff":  "CVF_SESSION/handoffs/AGENT_HANDOFF_V1_2026-07-23.md",
-    "nextAllowedMove":  "COMMIT_STEWARD commits C3 review receipt and continuity closure, rehearses the full C1/C2/C3 stack in a temporary sibling worktree, and pushes main. After push, no F1+ BUILD is authorized until a new governed work order is authored and approved.",
-    "parkedOperatorCheckpoint":  "F0 REVIEW_PASS recorded after closure of F0-R1 and F0-R2. C1 8c193984c5fc158ca65ea554dd8d4934d12c28f4 and C2 39541d5e84b06f8650ce2b0f6341425c7a05d7bf passed sibling-worktree rehearsal. C3 and final push remain.",
-    "activeRole":  "COMMIT_STEWARD",
-    "roleRoute":  "IMPLEMENTATION_WORKER_THEN_INDEPENDENT_REVIEW_THEN_BOUNDED_REPAIR_THEN_RE_REVIEW_THEN_COMMIT_STEWARD",
+    "nextAllowedMove":  "F0 is closed and parked. No F1+ BUILD or upstream CVF bootstrap-learning tranche is authorized until the owner opens a new governed tranche with its own INTAKE through WORK_ORDER chain.",
+    "parkedOperatorCheckpoint":  "F0 REVIEW_PASS and FREEZE are complete. Findings F0-R1/F0-R2 are closed; commits C1 8c193984c5fc158ca65ea554dd8d4934d12c28f4, C2 39541d5e84b06f8650ce2b0f6341425c7a05d7bf, and C3 3064d4bce08d36f553516d59719358fd8788cbcf are recorded. Full-stack rehearsal and push are COMMIT_STEWARD execution receipts, not new BUILD authority.",
+    "activeRole":  "ORCHESTRATOR",
+    "roleRoute":  "IMPLEMENTATION_WORKER_THEN_INDEPENDENT_REVIEW_THEN_BOUNDED_REPAIR_THEN_RE_REVIEW_THEN_COMMIT_STEWARD_THEN_ORCHESTRATOR",
     "updatedAt":  "2026-07-23"
 }
