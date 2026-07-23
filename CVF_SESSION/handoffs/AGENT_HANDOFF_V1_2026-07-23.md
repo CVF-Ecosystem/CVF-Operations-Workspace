@@ -5,16 +5,18 @@ Status: ACTIVE
 ## Current State
 
 - Project: CVF-Operations-Workspace
-- Current mode: WORK_ORDER
-- Active phase: WORK_ORDER
-- Active role: COMMIT_STEWARD (Codex; independent authorization REVIEWER
-  completed RE_REVIEW/REVIEW_PASS and transitioned explicitly).
-- Next allowed move: Codex explicitly stages only the six C1 authorization
-  paths, commits, runs the post-commit/pre-push sibling-worktree rehearsal,
-  and pushes. Only after C1 succeeds may IMPLEMENTATION_WORKER rehydrate
-  continuity, record its role/ceiling acknowledgment, and begin bounded RM1
-  documentation BUILD. C3 remains a separate Codex-only ceiling; F1A is not
-  opened.
+- Current mode: REVIEW
+- Active phase: REVIEW
+- Active role: REVIEWER (Codex, independent from IMPLEMENTATION_WORKER; see
+  the "RM1 BUILD Complete (Self-Reported)" entry below for what it must
+  review).
+- Next allowed move: Codex acts as independent REVIEWER over
+  `docs/reviews/RM1_BUILD_EVIDENCE_2026-07-23.md` against `OW-RM1-SPEC-001`'s
+  `RM1-AC-01` through `RM1-AC-26`, including independently re-deriving the
+  symmetric input comparison and integrity facts rather than trusting this
+  BUILD's restatement of them. Only after REVIEW_PASS may Codex
+  `COMMIT_STEWARD` stage/commit/rehearse/push C2/C3 and `CLOSER`/
+  `SESSION_SYNC_STEWARD` close the tranche. F1A remains not opened.
 - Parked operator checkpoint (superseded by "G2 Final Claim Boundary" and the
   OW-RM1 entry further down; kept for history): F0 REVIEW_PASS and FREEZE are
   complete. C1 `8c193984c5fc158ca65ea554dd8d4934d12c28f4` and C2
@@ -860,3 +862,244 @@ discretion to reclassify either as non-blocking.
 - Claim boundary: this is authorization for bounded RM1 documentation BUILD
   only after C1 commit/rehearsal/push. It is not BUILD evidence, does not
   authorize F1A, and makes no runtime or provider-governance claim.
+
+## RM1 IMPLEMENTATION_WORKER Acknowledgment and BUILD Start — 2026-07-23
+
+- Role transition: `COMMIT_STEWARD` (Codex, C1) -> `IMPLEMENTATION_WORKER`
+  (Claude, provider-neutral role contract, this entry records the
+  transition).
+- Read and accepted in full: `ADR-OW-004`, `OW-RM1-SPEC-001`, and
+  `OW-RM1-WO-001` (repaired through repair round 2, `RM1-R1`/`RM1-R2`/`RM1-R3`
+  closed, independently REVIEW_PASS'd).
+- Authorization commit verified live, not assumed: target HEAD = `origin/main`
+  = `ed0d1cd7ea70a51ed8e350afed8cc3b38647ca45`, worktree clean, branch `main`;
+  `git show --stat` confirms exactly the six authorized C1 paths changed. CVF
+  core HEAD = `origin/main` = `27137db4d9aa2aea931ddd2507185d5c24943080`,
+  worktree clean. Both match the authorized targets exactly; no drift.
+- BUILD ceiling accepted exactly as listed in `OW-RM1-WO-001`'s
+  "IMPLEMENTATION_WORKER-only" ceiling section: `docs/roadmaps/CVF_OPERATIONS_WORKSPACE_ROADMAP.md`;
+  `docs/reviews/OPERATIONS_WORKSPACE_ALL_PHASES_LEARNING_ASSESSMENT_2026-07-23.md`;
+  `docs/reviews/RM1_BUILD_EVIDENCE_2026-07-23.md`; `IMPLEMENTATION_STATUS.json`;
+  `CVF_SESSION/ACTIVE_SESSION_STATE.json`;
+  `CVF_SESSION/handoffs/AGENT_HANDOFF_V1_2026-07-23.md`; and the three RM1
+  authorization documents (repair-note updates only, if genuinely required).
+  Explicitly excluded from this worker's authority, per the separate C3
+  closure ceiling: `docs/reviews/RM1_INDEPENDENT_REVIEW_2026-07-23.md` — this
+  worker will not author or modify it under any circumstance.
+- Stop conditions accepted: `BLOCKED_INPUT_DRIFT` if input content or pins
+  change; `BLOCKED_EVIDENCE_METHOD` if inclusion rules become asymmetric or
+  non-reproducible; catalog/continuity conflict; authorization ambiguity;
+  secret exposure; provider requirement/failure; runtime import/copy
+  requirement; scope expansion; roadmap or learning assessment reaching 600
+  lines; or inability to account for every one of the 161 candidates exactly
+  once.
+- Authoritative input accounting accepted for this BUILD: 26 old-baseline
+  non-cache paths, 182 full-bundle non-cache paths, 21 unchanged, 5 changed,
+  156 new, 161 disposition candidates, 0 missing old paths; 194 physical
+  files, 191 manifest entries, manifest SHA-256
+  `7e900e85460061064d56818071c31486def91ce5c84784ec92a2d194a6b86b90`, 12
+  total `.pyc` (10 manifest-listed, 2 unmanifested), `MIGRATION_MANIFEST.json`
+  not self-listed. Full failure history (25/21/4/169 → 26/21/5/168 →
+  26/21/5/156/161) will be preserved, not erased, in any document that
+  references it.
+- Codex retains independent REVIEWER and COMMIT_STEWARD authority for C2/C3.
+  This worker will not stage, commit, push, amend, self-approve REVIEW_PASS,
+  or declare FREEZE.
+- BUILD proceeds against exactly the tasks in `OW-RM1-WO-001`: rewrite the
+  canonical roadmap, author the learning assessment classifying all 161
+  non-cache candidates, and author `docs/reviews/RM1_BUILD_EVIDENCE_2026-07-23.md`.
+
+## RM1 BUILD Complete (Self-Reported) — 2026-07-23
+
+- `docs/roadmaps/CVF_OPERATIONS_WORKSPACE_ROADMAP.md` rewritten (370 lines,
+  one canonical roadmap file): current-truth section states verified
+  G0/G1/F0/G2 completion, current core pin, doctor 25/25, 116 tests, empty
+  Module Registry; dependency direction and porting vocabulary preserved
+  unweakened; F1 broken into F1A–F1E; F2 into 7 named work-order scopes; F3
+  requires an explicit `KEEP_DUAL`/`TARGET_BECOMES_CANONICAL`/`DEFER_CUTOVER`
+  choice; F4 names the full ten-item provider-failure taxonomy; F5 forbids
+  keyboard-injection-simulated approval; F6 requires a separate security ADR
+  before BUILD and view-only before input-control; F7 requires proven
+  dual-profile isolation; every tranche states dependencies, inputs,
+  deliverables, evidence/gate, stop conditions, claim boundary, and next
+  governed move; API/database ownership and compatibility-shim exit criteria
+  are stated as cross-cutting rules; F1A is named as the next candidate
+  tranche with an explicit non-authorization sentence.
+- `docs/reviews/OPERATIONS_WORKSPACE_ALL_PHASES_LEARNING_ASSESSMENT_2026-07-23.md`
+  authored (255 lines): classifies all 161 non-cache disposition candidates
+  (5 changed + 156 new) into `adopt` (0) / `adapt` (99) / `reference-only`
+  (42) / `reject` (20), by individual row (changed files, architecture docs)
+  and named group (contracts, per-phase generic filenames, per-phase domain
+  documents, templates, work orders, examples, validator scripts). Coverage
+  accounting proves 5 + 156 = 161 and 0 + 99 + 42 + 20 = 161 with no
+  candidate counted twice. Explicitly rejects rename/overlay/whole-folder
+  copy (`APPLY_TO_REPO.md`, `TREEVIEW.md`, all 8 `TARGET_FILE_MAP.md` files,
+  all 10 new validator scripts — 20 `reject` items total), pre-authorized
+  generic work orders, `DIAGNOSE` as a phase, and `__pycache__`/`.pyc` as
+  source; states structural validators prove structure only.
+- `docs/reviews/RM1_BUILD_EVIDENCE_2026-07-23.md` authored: full `RM1-AC-01`
+  through `RM1-AC-26` evidence matrix; fresh, independent re-derivation of
+  the input accounting at BUILD time (26/182/21/5/0/156/161 and
+  194/191/False/12/10/2/SHA-256) matching the Codex-accepted `RM1-R3`
+  baseline exactly; real command output for the test suite (116/116 OK),
+  Golden catalog check (PASS), workspace doctor (PASS 25/25), and
+  `git diff --check` (exit 0); protected-path checks showing empty diffs for
+  the Artifact Registry, Module Registry, `docs/INDEX.md`, and Module
+  Catalog, and an unchanged Shift-source/CVF-core status.
+- Exact BUILD changed set: `docs/roadmaps/CVF_OPERATIONS_WORKSPACE_ROADMAP.md`,
+  `docs/reviews/OPERATIONS_WORKSPACE_ALL_PHASES_LEARNING_ASSESSMENT_2026-07-23.md`,
+  `docs/reviews/RM1_BUILD_EVIDENCE_2026-07-23.md`, `IMPLEMENTATION_STATUS.json`,
+  `CVF_SESSION/ACTIVE_SESSION_STATE.json`, this handoff. No repair note was
+  genuinely required against `ADR-OW-004`, `OW-RM1-SPEC-001`, or
+  `OW-RM1-WO-001`, so none of the three was touched.
+  `docs/reviews/RM1_INDEPENDENT_REVIEW_2026-07-23.md` was **not** created —
+  it remains exclusively Codex's, under the separate C3 closure ceiling. No
+  excluded path (`.cvf/**`, `AGENTS.md`, `docs/INDEX.md`, `docs/catalog/**`,
+  `scripts/**`, `tests/**`, `provenance/**`, `apps/**`, `packages/**`,
+  `database/**`, `.github/**`, CVF core, Shift source, either review-bundle
+  folder) was touched.
+- No F1+ implementation, no import/copy/adaptation of Shift-source or
+  full-bundle content, no Module Registry/catalog/Index change, no secret
+  read, no provider/AI call, no stage/commit/push, and no self-granted
+  REVIEW_PASS or FREEZE occurred.
+- This is a **self-report by IMPLEMENTATION_WORKER, not an independent
+  review**. Next governed move: Codex acts as independent REVIEWER over the
+  BUILD evidence against `OW-RM1-SPEC-001`'s AC-01 through AC-26, including
+  independently reproducing the symmetric input comparison and integrity
+  facts.
+
+## RM1 BUILD Repair Round 1 — 2026-07-23
+
+- Role: REPAIR_WORKER (Claude, provider-neutral role contract). Codex holds
+  REVIEWER and COMMIT_STEWARD independently; this repair does not self-grant
+  REVIEW_PASS and does not stage, commit, or push.
+- Finding, repaired in this round:
+  - **RM1-BR1 — BLOCKED_CONTINUITY_DRIFT (repaired).**
+    `IMPLEMENTATION_STATUS.json` still read `currentPhase: BUILD` after the
+    RM1 documentation BUILD self-report had already transitioned
+    `CVF_SESSION/ACTIVE_SESSION_STATE.json` (`currentMode`/`activePhase`/
+    `activeRole` = `REVIEW`/`REVIEW`/`REVIEWER`) and the active handoff
+    (Current mode/Active phase/Active role = `REVIEW`/`REVIEW`/`REVIEWER`) —
+    the three continuity surfaces disagreed. **Repair:**
+    `IMPLEMENTATION_STATUS.json`'s `currentPhase` corrected to `REVIEW`; all
+    three surfaces now agree. `CVF_SESSION/ACTIVE_SESSION_STATE.json`'s own
+    `currentMode`/`activePhase`/`activeRole` fields were already correct and
+    are unchanged by this repair — only its narrative fields gained a note
+    recording the finding.
+- Repaired exactly the 3 paths authorized for this repair ceiling
+  (`IMPLEMENTATION_STATUS.json`, `CVF_SESSION/ACTIVE_SESSION_STATE.json`,
+  this handoff); no fourth path touched. The roadmap, learning assessment,
+  `docs/reviews/RM1_BUILD_EVIDENCE_2026-07-23.md`, the three RM1
+  authorization documents, catalog/Index/Module Registry, scripts, tests,
+  and both read-only input folders were **not** touched.
+  `docs/reviews/RM1_INDEPENDENT_REVIEW_2026-07-23.md` was **not** created.
+  No stage, commit, push, provider call, or secret read occurred.
+- The BUILD itself remains exactly as self-reported: not REVIEW_PASS'd, not
+  FREEZE'd. This round changed only which continuity file said so, not the
+  underlying BUILD content or its status.
+- Next governed move: unchanged — Codex acts as independent REVIEWER over
+  `docs/reviews/RM1_BUILD_EVIDENCE_2026-07-23.md` against
+  `OW-RM1-SPEC-001`'s `RM1-AC-01` through `RM1-AC-26`.
+
+## RM1 BUILD Repair Round 2 — 2026-07-23
+
+- Role: REPAIR_WORKER (Claude, provider-neutral role contract). Codex holds
+  REVIEWER and COMMIT_STEWARD independently; this repair does not self-grant
+  REVIEW_PASS and does not stage, commit, or push. `RM1-BR1` remains closed
+  and is not reopened by this round.
+- Independent Codex post-BUILD review returned five findings, all repaired
+  in this round:
+  - **RM1-BR2 — MISSING_TARGET_COMMIT_PIN (repaired).** The roadmap's
+    current-truth section named the target repository only by
+    `HEAD = origin/main`, without the actual commit. **Repair:** states both
+    the **RM1 input-verification baseline**
+    (`34519a3b17b416b11f64bae1da602c8fb9a7eb1a`, the commit against which
+    this roadmap's input truth was independently verified before
+    authorization was authored) and the **RM1 authorization/BUILD baseline
+    C1** (`ed0d1cd7ea70a51ed8e350afed8cc3b38647ca45`, the reviewed and pushed
+    authorization commit this BUILD started from), with an explicit
+    explanation that both are real, sequential commits — the second
+    supersedes the first as the live baseline, not a competing claim. Also
+    added the Shift source pin to the same section.
+  - **RM1-BR3 — F2_SUBTRANCHE_FIELDS_MISSING (repaired).** F2 was a single
+    tranche with a name-only 7-item deliverables list, not seven
+    independently structured sub-tranches. **Repair:** expanded into
+    `F2A`–`F2G` (auth/users/approval-principal; events/evidence/corrections;
+    tasks/customer requests; incidents/handover with forward migrations;
+    reporting; frontend/PWA; integration-edge/offline/degraded), each
+    stating its own dependencies, inputs, deliverables, evidence/gate, stop
+    conditions, claim boundary, and next governed move, plus program-level
+    evidence/gate and stop conditions covering all seven together. F2
+    remains explicitly a compatibility MVP, not hardening or cutover; no
+    combined mega-work-order is authorized.
+  - **RM1-BR4 — AC06_EXCLUSIONS_NOT_ALL_IN_ROADMAP (repaired).** The
+    roadmap itself named only the rename/overlay/whole-folder-copy
+    exclusion explicitly; the other three `RM1-AC-06` exclusions (generic
+    pre-authorized work orders, `DIAGNOSE` as a phase, `__pycache__`/`.pyc`
+    as source/evidence, mocks/fixtures/structural-validators as
+    runtime/governance proof) existed only in the learning assessment.
+    **Repair:** the roadmap's "Explicit non-goals" section now states all
+    six exclusions explicitly and roadmap-wide, consolidated from
+    `ADR-OW-004` and the learning assessment.
+  - **RM1-BR5 — LEARNING_COVERAGE_INTERNAL_COUNT_DRIFT (repaired).** The
+    learning assessment's phase-specific domain-document group was labeled
+    "(55)" (and its phase-2 row labeled "(3)"), but the group actually
+    contains **56** files: 55 `adapt` + 1 `reference-only`
+    (`CONTRACT_MIGRATION_MAP.md`, which was already correctly listed inside
+    the group but not counted in its own header/row). The old coverage
+    table's ten row values summed to 155, not the claimed 156 subtotal.
+    **Repair:** the section header, the phase-2 row, and the coverage-table
+    row are all corrected to 56 (phase-2 to 4); the coverage table now sums
+    to exactly 156 new + 5 changed = 161. The authoritative
+    26/21/5/156/161 delta baseline and all four disposition totals
+    (`adopt` 0 / `adapt` 99 / `reference-only` 42 / `reject` 20) are
+    **unchanged** — this was a labeling/internal-sum defect inside the
+    learning assessment, not a reopening of `RM1-R3`'s input accounting.
+  - **RM1-BR6 — FALSE_ROADMAP_DIRECTORY_FILE_COUNT (repaired).**
+    `docs/reviews/RM1_BUILD_EVIDENCE_2026-07-23.md`'s `AC-23` evidence row
+    claimed `docs/roadmaps/` "contains exactly one file" — false: it
+    contains two, `CVF_OPERATIONS_WORKSPACE_ROADMAP.md` and a pre-existing
+    `README.md` (confirmed via `git log` to date to the original bootstrap
+    commit `d096657`, a one-line folder-family index stub, untouched by
+    this BUILD or any repair round). **Repair:** Section 7 now states the
+    true two-file count and explains why `README.md` is not a competing
+    roadmap.
+- Repaired exactly the six paths in the total BUILD changed set
+  (`docs/roadmaps/CVF_OPERATIONS_WORKSPACE_ROADMAP.md`,
+  `docs/reviews/OPERATIONS_WORKSPACE_ALL_PHASES_LEARNING_ASSESSMENT_2026-07-23.md`,
+  `docs/reviews/RM1_BUILD_EVIDENCE_2026-07-23.md`, `IMPLEMENTATION_STATUS.json`,
+  `CVF_SESSION/ACTIVE_SESSION_STATE.json`, this handoff); no seventh path
+  created. `ADR-OW-004`, `OW-RM1-SPEC-001`, and `OW-RM1-WO-001` were **not**
+  touched. `docs/reviews/RM1_INDEPENDENT_REVIEW_2026-07-23.md` was **not**
+  created. No catalog/Index/Module Registry path touched. No source import,
+  provider call, secret read, stage, commit, or push occurred.
+- Post-repair validation, real output: `python -m unittest discover -s
+  tests -p "test_*.py"` → 116/116 OK; `manage_cvf_downstream_catalog.ps1
+  -Check` → PASS; project-scoped workspace doctor → PASS (25/25);
+  `git diff --check` → exit 0 (benign CRLF notices only); roadmap 509
+  lines, learning assessment 256 lines (both under 600).
+- The BUILD remains exactly as self-reported: not `REVIEW_PASS`'d, not
+  `FREEZE`'d. This round corrected content defects found by independent
+  review; it did not change that disposition.
+- Next governed move: unchanged — Codex acts as independent REVIEWER
+  performing a **re-review** of `docs/reviews/RM1_BUILD_EVIDENCE_2026-07-23.md`
+  (Section 10 records both repair rounds) against `OW-RM1-SPEC-001`'s
+  `RM1-AC-01` through `RM1-AC-26`.
+
+## RM1 BUILD Claim Boundary
+
+G0/G1/F0/G2 remain complete, independently REVIEW_PASS'd, and FREEZE'd;
+Module Registry remains empty; no runtime has been imported. RM1 authorization
+(`ADR-OW-004`, `OW-RM1-SPEC-001`, `OW-RM1-WO-001`) is REVIEW_PASS'd with
+`RM1-R1`/`RM1-R2`/`RM1-R3` closed and committed as C1
+`ed0d1cd7ea70a51ed8e350afed8cc3b38647ca45`. The RM1 documentation BUILD
+(roadmap rewrite, learning assessment, BUILD evidence) is **self-reported
+complete, not yet independently reviewed**; BUILD repair round 1 closed
+`RM1-BR1` (continuity-only), and BUILD repair round 2 closed `RM1-BR2`
+through `RM1-BR6` (target commit pins, F2 sub-tranche structure, roadmap-level
+exclusion list, learning-assessment internal count label, false
+roadmap-directory file count) — none of which reopened the authoritative
+26/21/5/156/161 delta baseline or the 0/99/42/20 disposition totals. No F1+
+capability, no imported Shift-source or full-bundle content, and no
+runtime/provider/governance claim exists as a result of this BUILD. This
+claim stands only until Codex's independent post-BUILD re-review.
