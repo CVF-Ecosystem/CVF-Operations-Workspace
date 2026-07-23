@@ -5,18 +5,14 @@ Status: ACTIVE
 ## Current State
 
 - Project: CVF-Operations-Workspace
-- Current mode: REVIEW
-- Active phase: REVIEW
-- Active role: REVIEWER (Codex, independent from IMPLEMENTATION_WORKER; see
-  the "RM1 BUILD Complete (Self-Reported)" entry below for what it must
-  review).
-- Next allowed move: Codex acts as independent REVIEWER over
-  `docs/reviews/RM1_BUILD_EVIDENCE_2026-07-23.md` against `OW-RM1-SPEC-001`'s
-  `RM1-AC-01` through `RM1-AC-26`, including independently re-deriving the
-  symmetric input comparison and integrity facts rather than trusting this
-  BUILD's restatement of them. Only after REVIEW_PASS may Codex
-  `COMMIT_STEWARD` stage/commit/rehearse/push C2/C3 and `CLOSER`/
-  `SESSION_SYNC_STEWARD` close the tranche. F1A remains not opened.
+- Current mode: FREEZE
+- Active phase: FREEZE
+- Active role: ORCHESTRATOR (parked after Codex completed independent
+  `REVIEWER -> COMMIT_STEWARD -> CLOSER -> SESSION_SYNC_STEWARD` duties).
+- Next allowed move: explicitly stage only the four C3 closure paths, commit,
+  run the post-commit/pre-push sibling-worktree rehearsal, and push. After C3
+  succeeds, RM1 is CLOSED and parked. F1A remains only the next candidate and
+  requires a new governed tranche.
 - Parked operator checkpoint (superseded by "G2 Final Claim Boundary" and the
   OW-RM1 entry further down; kept for history): F0 REVIEW_PASS and FREEZE are
   complete. C1 `8c193984c5fc158ca65ea554dd8d4934d12c28f4` and C2
@@ -1101,5 +1097,24 @@ exclusion list, learning-assessment internal count label, false
 roadmap-directory file count) — none of which reopened the authoritative
 26/21/5/156/161 delta baseline or the 0/99/42/20 disposition totals. No F1+
 capability, no imported Shift-source or full-bundle content, and no
-runtime/provider/governance claim exists as a result of this BUILD. This
-claim stands only until Codex's independent post-BUILD re-review.
+runtime/provider/governance claim exists as a result of this BUILD.
+
+## RM1 Independent BUILD Re-review and FREEZE — 2026-07-23
+
+- Independent REVIEWER reproduced the symmetric `26/21/5/156/161` delta,
+  `194/191/12/10/2` integrity facts, and 161/161 candidate coverage.
+- `RM1-AC-01` through `RM1-AC-26`: PASS.
+- `RM1-R1` through `RM1-R3` and `RM1-BR1` through `RM1-BR6`: closed without
+  waiver.
+- Repository gates: Golden catalog PASS; 116/116 tests PASS; workspace doctor
+  PASS 25/25; `git diff --check` clean; exact six-path BUILD ceiling;
+  protected catalog/Index/Module Registry and authorization diffs empty.
+- C2 `701c9e07b20b4f6362398e753669dd543cd0599c` was explicitly staged,
+  committed, rehearsed post-commit/pre-push in a sibling worktree, pushed to
+  `origin/main`, and the temporary worktree removed.
+- Independent receipt:
+  `docs/reviews/RM1_INDEPENDENT_REVIEW_2026-07-23.md`.
+- FREEZE claim boundary: RM1 freezes documentation/planning truth only. No
+  runtime source was imported, Module Registry remains empty, no provider or
+  governance behavior is claimed, and F1A is not authorized.
+- C3 closure becomes effective only after its own rehearsal and push.
