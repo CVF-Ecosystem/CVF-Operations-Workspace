@@ -1,36 +1,7 @@
 {
   "schemaVersion": "1.0",
   "projectName": "CVF-Operations-Workspace",
-  "description": "Machine source of truth for source-backed module status. Do not register roadmap-only modules.",
-  "statusLegend": {
-    "enforced": "Runtime code exists and blocking tests prove the stated enforcement.",
-    "partial": "Some runtime code exists but the intended capability or control chain is incomplete.",
-    "contract-only": "A real interface, schema or policy contract exists without runtime behavior.",
-    "stub": "A real module path exists but contains no meaningful runtime or contract implementation."
-  },
-  "cvfControlVocabulary": [
-    "identity",
-    "permission",
-    "domain_lock",
-    "data_scope",
-    "risk",
-    "approval",
-    "evidence",
-    "audit",
-    "cost",
-    "refusal",
-    "termination",
-    "freeze"
-  ],
-  "modules": [],
-  "metrics": {
-    "computedBy": "scripts/manage_catalog.py",
-    "totals": {
-      "modules": 0,
-      "codeLoc": 0,
-      "codeFiles": 0,
-      "byStatus": {}
-    }
-  },
-  "claimBoundary": "Empty source-backed registry. Roadmap entries are not modules and no runtime capability is implemented."
+  "updatedAt": "2026-07-23",
+  "claimBoundary": "Empty initial registry; add only source-verified modules with evidence. No status may represent plan-only intent.",
+  "modules": []
 }
