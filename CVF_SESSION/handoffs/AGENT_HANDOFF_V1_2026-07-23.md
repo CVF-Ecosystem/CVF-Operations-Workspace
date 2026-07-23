@@ -9,10 +9,10 @@ Status: ACTIVE
 - Active phase: FREEZE
 - Active role: ORCHESTRATOR (parked after Codex completed independent
   `REVIEWER -> COMMIT_STEWARD -> CLOSER -> SESSION_SYNC_STEWARD` duties).
-- Next allowed move: explicitly stage only the four C3 closure paths, commit,
-  run the post-commit/pre-push sibling-worktree rehearsal, and push. After C3
-  succeeds, RM1 is CLOSED and parked. F1A remains only the next candidate and
-  requires a new governed tranche.
+- Next allowed move: RM1 is CLOSED and parked. C3
+  `0f0fecd8e1a3bd462f375e97de5ea3555cbdde5d` passed its post-commit/pre-push
+  sibling-worktree rehearsal and was pushed to `origin/main`. F1A remains
+  only the next candidate and requires a new governed authorization tranche.
 - Parked operator checkpoint (superseded by "G2 Final Claim Boundary" and the
   OW-RM1 entry further down; kept for history): F0 REVIEW_PASS and FREEZE are
   complete. C1 `8c193984c5fc158ca65ea554dd8d4934d12c28f4` and C2
@@ -1117,4 +1117,18 @@ runtime/provider/governance claim exists as a result of this BUILD.
 - FREEZE claim boundary: RM1 freezes documentation/planning truth only. No
   runtime source was imported, Module Registry remains empty, no provider or
   governance behavior is claimed, and F1A is not authorized.
-- C3 closure becomes effective only after its own rehearsal and push.
+- C3 `0f0fecd8e1a3bd462f375e97de5ea3555cbdde5d` passed its own
+  post-commit/pre-push sibling-worktree rehearsal and was pushed to
+  `origin/main`; RM1 FREEZE is effective and the tranche is CLOSED.
+
+## RM1 Post-Push Closure Synchronization — 2026-07-24
+
+- Finding: `RM1-CR1 — POST_PUSH_CONTINUITY_DRIFT`. C3 had succeeded, but the
+  canonical `nextAllowedMove` still instructed the next agent to perform C3.
+- Repair: synchronized the active state, this handoff, implementation truth,
+  and the independent receipt to the already-verified repository fact:
+  `HEAD = origin/main = 0f0fecd8e1a3bd462f375e97de5ea3555cbdde5d`.
+- This is closure synchronization only. It changes no roadmap, learning
+  assessment, BUILD evidence, catalog, Module Registry, or runtime surface.
+- Next governed candidate remains F1A; no F1A work order or BUILD is opened by
+  this synchronization.
