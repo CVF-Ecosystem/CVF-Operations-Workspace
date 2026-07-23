@@ -15,8 +15,8 @@
 
 ## Artifact Registry Summary
 
-- Registered artifacts: **28**
-- By status: active=20, generated=1, historical=7
+- Registered artifacts: **31**
+- By status: active=23, generated=1, historical=7
 
 ## Catalog
 
@@ -27,6 +27,7 @@
 
 - [Greenfield Platform and Governed Profile Porting](decisions/ADR_2026-07-23_GREENFIELD_PLATFORM_AND_PROFILE_PORTING.md) — `active` — Defines platform/profile ownership and per-asset porting.
 - [Machine-Governed Documentation Index and Module Catalog](decisions/ADR_2026-07-23_INDEX_CATALOG_GOVERNANCE.md) — `active` — Separates documentation discovery from implementation claims.
+- [Golden Downstream Catalog Kit 1.1 Reconciliation](decisions/ADR_2026-07-23_GOLDEN_DOWNSTREAM_CATALOG_RECONCILIATION.md) — `active` — Decides Golden Downstream Catalog Kit 1.1 as canonical, dispositions all 28 legacy artifact paths, and reconciles the CVF core pin to 27137db4d9aa2aea931ddd2507185d5c24943080 (re-pinned per repair finding G2-R1; original target 571cb21b7026f0cd925279ba698bf30a291a4644 preserved as repair history).
 
 ## Roadmap
 
@@ -36,6 +37,7 @@
 
 - [F0 Source Intake and Compatibility Baseline Specification](specs/F0_SOURCE_INTAKE_AND_COMPATIBILITY_BASELINE_SPEC.md) — `historical` — Requirements for reproducible source intake without runtime import.
 - [G1 Index and Catalog Governance Specification](specs/G1_INDEX_CATALOG_GOVERNANCE_SPEC.md) — `historical` — Requirements for schema-backed registries and drift checks.
+- [G2 Governance Reconciliation Specification](specs/G2_GOVERNANCE_RECONCILIATION_SPEC.md) — `active` — 22 testable acceptance criteria for core-pin reconciliation, Golden Catalog Kit 1.1 migration, and workspace doctor PASS.
 
 ## Work Order
 
@@ -43,6 +45,7 @@
 - [F0 Work Order Amendment 1 — Index/Catalog Integration](work_orders/F0_SOURCE_INTAKE_AND_COMPATIBILITY_BASELINE_WORK_ORDER_AMENDMENT_1.md) — `historical` — Requires Artifact Registry updates and generated Index while excluding Module Registry.
 - [G1 Index and Catalog Governance Work Order](work_orders/G1_INDEX_CATALOG_GOVERNANCE_WORK_ORDER.md) — `historical` — Authorized R1 changed-set ceiling for Index/Catalog governance.
 - [G1 Work Order Amendment 1 — Python Generated Cache Exclusion](work_orders/G1_INDEX_CATALOG_GOVERNANCE_WORK_ORDER_AMENDMENT_1.md) — `historical` — Adds Python generated-cache exclusions to the G1 ceiling.
+- [G2 Governance Reconciliation Work Order](work_orders/G2_GOVERNANCE_RECONCILIATION_WORK_ORDER.md) — `active` — Independently REVIEW_PASS'd bounded BUILD changed-set ceiling, roles, commit plan and stop conditions for G2; BUILD starts only after C1 succeeds and the implementation worker acknowledges the transition.
 
 ## Review
 

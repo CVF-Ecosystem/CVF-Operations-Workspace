@@ -181,9 +181,204 @@ independent reviewer.
   the project-scoped doctor result above. Flagged for owner awareness, not
   treated as an F0 stop condition.
 
+## G2 Governance Reconciliation — Authorization Package Authored — 2026-07-23
+
+- Role: ORCHESTRATOR -> SPEC_AUTHOR -> WORK_ORDER_AUTHOR (Claude, provider-neutral
+  role contract, transitions recorded in this entry).
+- Trigger: `.cvf/manifest.json` pins CVF core at
+  `6ce1cf00c31a7f825d4c3fa3e66e8a3509e4a4b2`; public CVF core `origin/main` is
+  at `571cb21b7026f0cd925279ba698bf30a291a4644`, which ships Golden Downstream
+  Catalog Kit 1.1. The workspace doctor's governed-catalog check classifies
+  this project as `DAMAGED_GOVERNED_KIT`: `docs/catalog/ARTIFACT_REGISTRY.json`
+  exists but does not conform to the Golden closed schema, and
+  `scripts/manage_cvf_downstream_catalog.ps1`,
+  `scripts/lib/downstream_catalog/CvfDownstreamCatalogLib.ps1`,
+  `docs/catalog/schemas/ARTIFACT_REGISTRY.schema.json`, and
+  `docs/catalog/schemas/MODULE_REGISTRY.schema.json` are absent.
+- Pre-authoring baseline verified: branch `main`, HEAD
+  `b1d1cf8684a7da9903f682456da8ee8770f2217f`, matches `origin/main`, worktree
+  clean. CVF core HEAD `571cb21b7026f0cd925279ba698bf30a291a4644` matches its
+  `origin/main` exactly, worktree clean. No drift found.
+- Authored three artifacts: `ADR-OW-003`
+  (`docs/decisions/ADR_2026-07-23_GOLDEN_DOWNSTREAM_CATALOG_RECONCILIATION.md`)
+  decides Golden Kit 1.1 as canonical and dispositions all 28 existing
+  Artifact Registry paths (5 migrate, 2 replace, 4 retire, 17 retain — none
+  lost, each with a named alternate discovery surface); `OW-G2-SPEC-001`
+  (`docs/specs/G2_GOVERNANCE_RECONCILIATION_SPEC.md`) sets 22 acceptance
+  criteria (G2-AC-01 through G2-AC-22); `OW-G2-WO-001`
+  (`docs/work_orders/G2_GOVERNANCE_RECONCILIATION_WORK_ORDER.md`) sets the
+  BUILD changed-set ceiling, roles, three-commit plan (C1 authorization, C2
+  migration, C3 review/closure), and stop conditions.
+- Registered the three new artifacts in `docs/catalog/ARTIFACT_REGISTRY.json`
+  under the existing (pre-migration) schema and regenerated `docs/INDEX.md`
+  via `python scripts/manage_catalog.py --write`; `--check` PASS afterward.
+  `docs/catalog/MODULE_REGISTRY.json` is unchanged (still empty, verified by
+  empty `git diff`).
+- This round did not touch `.cvf/manifest.json`, any Golden schema/manager
+  file, the roadmap, or any F0 provenance/runtime path. No BUILD occurred.
+- **Not done / explicitly deferred:** actual core-pin update, catalog schema
+  migration, legacy Python writer retirement, and workspace doctor re-run are
+  all BUILD-phase work under `OW-G2-WO-001`'s ceiling and require Codex's
+  independent REVIEW_PASS on this package before they may begin. Claude does
+  not self-grant REVIEW_PASS and did not stage, commit, or push any file.
+- Next governed move (superseded by repair round 1 below): Codex acts as
+  independent REVIEWER over `ADR-OW-003`, `OW-G2-SPEC-001`, and
+  `OW-G2-WO-001`.
+
+## G2 Repair Round 1 — 2026-07-23
+
+- Role: REPAIR_WORKER (Claude, provider-neutral role contract). Codex holds
+  REVIEWER and COMMIT_STEWARD independently; this repair does not self-grant
+  REVIEW_PASS and does not stage, commit, or push.
+- Independent Codex review of the G2 authorization package above returned
+  four findings, all repaired in this round:
+  - **G2-R1 — BLOCKER_BASELINE_DRIFT (repaired).** Public CVF core
+    `origin/main` advanced from this package's original authoring target
+    `571cb21b7026f0cd925279ba698bf30a291a4644` to
+    `27137db4d9aa2aea931ddd2507185d5c24943080` (commit
+    `fix(sync): reconcile golden downstream bootstrap from provenance`) while
+    the hidden core clone remained at `571cb21…`, so the workspace doctor
+    reported `BEHIND_PUBLIC_REMOTE`. Verified independently: `git diff`
+    between the two commits for all four Golden Kit payload files
+    (`manage_cvf_downstream_catalog.ps1`, `CvfDownstreamCatalogLib.ps1`,
+    `ARTIFACT_REGISTRY.schema.json`, `MODULE_REGISTRY.schema.json`) is empty
+    — byte-identical. **Repair:** ran the official
+    `scripts/update_cvf_workspace_public_core.ps1 -WorkspaceRoot
+    "D:\UNG DUNG AI\TOOL AI 2026\CVF-Workspace"` (no
+    `-UpdateProjectManifests`, no `-OverlaySourcePath`, no
+    `-AllowPendingCoreBackup` — hidden core had no pending changes so none
+    was needed). Prior hidden core preserved (not deleted) at
+    `_cvf-core-backups/.Controlled-Vibe-Framework-CVF-20260723-200246`.
+    Post-reconciliation: hidden core HEAD = origin/main =
+    `27137db4d9aa2aea931ddd2507185d5c24943080`, worktree clean, remote
+    `https://github.com/Blackbird081/Controlled-Vibe-Framework-CVF.git`
+    unchanged. Target project HEAD/origin/main
+    (`b1d1cf8684a7da9903f682456da8ee8770f2217f`) and its 8 changed paths were
+    re-verified unchanged by the reconciler — it touches only the hidden core
+    and workspace-root artifacts, never target project files.
+    `ADR-OW-003`, `OW-G2-SPEC-001`, and `OW-G2-WO-001` are re-pinned to
+    `27137db4d9aa2aea931ddd2507185d5c24943080` throughout; the guard/doctor at
+    that commit is now the authority for re-review.
+  - **G2-R2 — CONTINUITY_PHASE_ROLE_DRIFT (repaired).**
+    `CVF_SESSION/ACTIVE_SESSION_STATE.json` incorrectly carried
+    `currentMode: FREEZE` / `activePhase: FREEZE` / `activeRole: ORCHESTRATOR`
+    left over from the closed F0 tranche, instead of reflecting that G2 is
+    presently an open WORK_ORDER-phase tranche. Corrected to
+    `currentMode: WORK_ORDER`, `activePhase: WORK_ORDER`,
+    `activeRole: WORK_ORDER_AUTHOR`, and `roleRoute` expanded to the full
+    route (see `OW-G2-WO-001`'s repaired "Role route" section).
+  - **G2-R3 — STALE_F0_CLAIM (repaired).** This handoff's own Claim Boundary
+    (below, prior version) understated F0's true status by only saying "F0
+    is authorized but not yet built." Correct F0 truth, unchanged by this
+    repair and not downgraded: **F0 BUILD is complete**, **independent
+    REVIEW_PASS is recorded** (`docs/reviews/F0_INDEPENDENT_REVIEW_2026-07-23.md`),
+    **FREEZE is complete**, and commits C1
+    `8c193984c5fc158ca65ea554dd8d4934d12c28f4`, C2
+    `39541d5e84b06f8650ce2b0f6341425c7a05d7bf`, C3
+    `3064d4bce08d36f553516d59719358fd8788cbcf` are committed. Module Registry
+    remains empty and no runtime has been imported into the target — those
+    two parts of the prior claim were accurate and are preserved.
+  - **G2-R4 — INCOMPLETE_ROLE_ROUTE (repaired).** `OW-G2-WO-001`'s role route
+    omitted `IMPLEMENTATION_WORKER` and the post-BUILD independent
+    review/repair/re-review loop. Expanded in the work order to:
+    `ORCHESTRATOR -> SPEC_AUTHOR -> WORK_ORDER_AUTHOR -> REVIEWER ->
+    COMMIT_STEWARD (C1) -> IMPLEMENTATION_WORKER -> REVIEWER -> REPAIR_WORKER
+    if needed -> RE_REVIEW -> COMMIT_STEWARD (C2/C3) -> CLOSER ->
+    SESSION_SYNC_STEWARD -> ORCHESTRATOR`.
+- Repaired exactly the 8 authorized paths; no ninth path created. No
+  `.cvf/manifest.json`, `AGENTS.md`, Golden Kit file, Module Registry, Module
+  Catalog, bootstrap log, roadmap, runtime, provenance, source-intake, or CVF
+  core content was touched. No secret was read; no provider call was made.
+- Workspace doctor was re-run against the reconciled hidden core (pre-BUILD,
+  expected-failure receipt): `CVF public core matches origin/main` PASS,
+  `CVF public core worktree clean` PASS, `BEHIND_PUBLIC_REMOTE` no longer
+  present; `CVF core commit matches manifest` FAIL (warn-only — manifest
+  still pins `6ce1cf00c31a7f825d4c3fa3e66e8a3509e4a4b2`, unchanged until
+  BUILD, against public core now at `27137db4d9aa2aea931ddd2507185d5c24943080`);
+  `Governed downstream catalog kit is complete` **FAIL**
+  (`DAMAGED_GOVERNED_KIT`, unchanged — migration is still BUILD-phase work).
+  Overall doctor result: **FAIL (24/25)**. This is the expected, disclosed
+  pre-BUILD state, not a PASS — it is not being claimed as one.
+- G2 package status after this round: **repaired, not yet independently
+  re-reviewed, not authorized for BUILD.**
+- Next governed move: Codex acts as independent REVIEWER performing
+  authorization **re-review** of `ADR-OW-003`, `OW-G2-SPEC-001`, and
+  `OW-G2-WO-001` as repaired. Only after RE_REVIEW/REVIEW_PASS may BUILD
+  (IMPLEMENTATION_WORKER role) begin against the authorized ceiling, followed
+  by Codex COMMIT_STEWARD staging/commit/push with rollback rehearsal in a
+  temporary sibling worktree for each of C1/C2/C3.
+
+## G2 Repair Round 2 — 2026-07-23
+
+- Role: REPAIR_WORKER (Claude, provider-neutral role contract). Codex holds
+  REVIEWER and COMMIT_STEWARD independently; this repair does not self-grant
+  REVIEW_PASS and does not stage, commit, or push.
+- Findings G2-R1 through G2-R4 from repair round 1 remain **closed** — this
+  round adds one finding on top of them, it does not reopen or alter their
+  disposition.
+- **G2-R5 — ROLLBACK_REHEARSAL_ORDER_CONTRADICTION (repaired).** Independent
+  Codex review found `OW-G2-WO-001`'s commit-plan text — "Each commit is
+  preceded by a rollback rehearsal in a temporary sibling git worktree,
+  performed by Codex, before the commit is treated as final" — contradicted
+  the binding order in `G2-AC-22`, which requires the commit to exist first,
+  with rehearsal running post-commit/pre-push, and push withheld until the
+  rehearsal passes. **Repair:** corrected the sentence in
+  `docs/work_orders/G2_GOVERNANCE_RECONCILIATION_WORK_ORDER.md`'s commit-plan
+  section to read: "Each commit is created by Codex COMMIT_STEWARD, then
+  rehearsed post-commit and pre-push in a temporary sibling worktree. A
+  commit is not pushed or treated as accepted until its rehearsal passes." No
+  other text in the work order was touched by this round.
+- Repaired exactly the 2 paths authorized for this round
+  (`docs/work_orders/G2_GOVERNANCE_RECONCILIATION_WORK_ORDER.md` and this
+  handoff); no other path — registry, index, session state, implementation
+  status — was modified. No `.cvf/manifest.json`, Golden Kit file, Module
+  Registry, Module Catalog, roadmap, runtime, provenance, source-intake, or
+  CVF core content was touched. No secret was read; no provider call was
+  made. No BUILD occurred.
+- Total changed set across both repair rounds remains the same 8 paths
+  originally authorized; nothing outside that set exists.
+- G2 package status after this round: **repaired (rounds 1 and 2), not yet
+  independently re-reviewed, not authorized for BUILD.**
+- Next governed move: unchanged from round 1 — Codex acts as independent
+  REVIEWER performing authorization re-review of `ADR-OW-003`,
+  `OW-G2-SPEC-001`, and `OW-G2-WO-001` as repaired (rounds 1 and 2). Only
+  after RE_REVIEW/REVIEW_PASS may BUILD begin.
+
+## G2 Independent Authorization Re-review — REVIEW_PASS — 2026-07-23
+
+- Role transition: REVIEWER -> COMMIT_STEWARD (Codex, independent from the
+  authorization author and repair worker).
+- G2-R1 through G2-R5 are closed. The repaired ADR, specification, and work
+  order are internally consistent and preserve the no-runtime/no-roadmap
+  claim boundary.
+- Independent evidence: exact eight-path changed set; target
+  HEAD/origin/main `b1d1cf8684a7da9903f682456da8ee8770f2217f`; public core
+  HEAD/origin/main `27137db4d9aa2aea931ddd2507185d5c24943080`, clean; existing
+  catalog check PASS; 104/104 tests PASS; JSON parse and `git diff --check`
+  PASS; Module Registry and Module Catalog byte-identical to HEAD.
+- Pre-BUILD doctor result remains the expected disclosed 24/25 failure:
+  public core freshness PASS, manifest-pin mismatch warn-only, and blocking
+  `DAMAGED_GOVERNED_KIT` pending the authorized BUILD migration. No doctor
+  PASS is claimed.
+- Authorization disposition: **REVIEW_PASS**. C1 may be staged explicitly,
+  committed, rehearsed post-commit/pre-push in a temporary sibling worktree,
+  and pushed by Codex COMMIT_STEWARD. BUILD may begin only after C1 succeeds
+  and the assigned IMPLEMENTATION_WORKER records its acknowledgment and role/
+  phase transition.
+
 ## Claim Boundary
 
-G0 bootstrap and G1 structural Index/Catalog governance are complete. F0 is
-authorized but not yet built, and Module Registry remains empty. No runtime
-governance behavior, Shift profile, release, deployment, provider integration,
-Agent Operations, Live View, or Human Takeover capability is claimed.
+G0 bootstrap and G1 structural Index/Catalog governance are complete. **F0
+BUILD is complete, independently REVIEW_PASS'd, and FREEZE'd** (C1/C2/C3
+committed as listed above); Module Registry remains empty and no runtime has
+been imported into the target. No runtime governance behavior, Shift profile,
+release, deployment, provider integration, Agent Operations, Live View, or
+Human Takeover capability is claimed. G2's authorization package is authored,
+registered, repaired through round 2, and independently **REVIEW_PASS** with
+G2-R1 through G2-R5 closed. BUILD is authorized only after C1 commit,
+post-commit/pre-push rehearsal, push, and explicit IMPLEMENTATION_WORKER
+acknowledgment; no BUILD has occurred yet. The downstream project's own CVF
+core manifest pin and catalog schema are unchanged as of this entry. The
+workspace doctor is **not** PASS — it fails on the pre-BUILD manifest-pin
+drift (warn-only) and `DAMAGED_GOVERNED_KIT` (blocking), both expected and
+unresolved until BUILD.
