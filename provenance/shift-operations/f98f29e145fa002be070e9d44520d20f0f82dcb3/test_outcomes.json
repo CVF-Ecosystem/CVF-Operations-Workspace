@@ -1,0 +1,39 @@
+[
+  {
+    "command": [
+      "C:\\Users\\tiennm\\AppData\\Local\\Programs\\Python\\Python313\\python.exe",
+      "-m",
+      "pytest",
+      "-q"
+    ],
+    "status": "PASS",
+    "reason": "command exited 0"
+  },
+  {
+    "command": [
+      "pnpm",
+      "run",
+      "tree"
+    ],
+    "status": "NOT_RUN",
+    "reason": "tool not found: pnpm"
+  },
+  {
+    "command": [
+      "pnpm",
+      "run",
+      "test"
+    ],
+    "status": "NOT_RUN",
+    "reason": "tool not found: pnpm"
+  },
+  {
+    "command": [
+      "pnpm",
+      "run",
+      "build:web"
+    ],
+    "status": "NOT_RUN",
+    "reason": "tool not found: pnpm"
+  }
+]

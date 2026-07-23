@@ -1,0 +1,40 @@
+{
+  "application_roots": [
+    "integration-edge",
+    "workspace-api",
+    "workspace-web",
+    "workspace-worker"
+  ],
+  "package_roots": [
+    "ai-gateway",
+    "ai-providers",
+    "channel-adapters",
+    "channel-sdk",
+    "conversation-routing",
+    "cvf-application-profile",
+    "cvf-bridge",
+    "cvf-runtime",
+    "identity-mapping",
+    "notification-engine",
+    "operations-domain",
+    "operations-ledger",
+    "refinery-bridge",
+    "reporting-engine",
+    "shared-kernel",
+    "workspace-contracts"
+  ],
+  "import_edges": [
+    {
+      "from": "apps/workspace-api",
+      "to": "packages/cvf-runtime"
+    },
+    {
+      "from": "apps/workspace-api",
+      "to": "packages/operations-domain"
+    },
+    {
+      "from": "apps/workspace-api",
+      "to": "packages/operations-ledger"
+    }
+  ]
+}

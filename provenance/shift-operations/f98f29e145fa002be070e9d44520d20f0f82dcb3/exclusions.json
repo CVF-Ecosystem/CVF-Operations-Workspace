@@ -1,0 +1,14 @@
+[
+  {
+    "source_path": ".env.example",
+    "reason": "env-file"
+  },
+  {
+    "source_path": "docs/security/CREDENTIAL_MANAGEMENT.md",
+    "reason": "credential-like-name"
+  },
+  {
+    "source_path": "tests/cvf/test_auth_config_secret_validation.py",
+    "reason": "credential-like-name"
+  }
+]
