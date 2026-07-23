@@ -2,19 +2,25 @@
     "schemaVersion":  "1.0",
     "projectName":  "CVF-Operations-Workspace",
     "overallStatus":  "SOURCE_BASELINE_READY",
-    "currentPhase":  "FREEZE",
+    "currentPhase":  "WORK_ORDER",
     "completedCapabilities":  [
                                   "Machine-governed documentation Index and source-backed Module Catalog (G1 structural governance)",
                                   "Reproducible, read-only Shift Operations source-intake and compatibility baseline at f98f29e145fa002be070e9d44520d20f0f82dcb3 (F0)",
                                   "Golden Downstream Catalog Kit 1.1 and CVF core-pin reconciliation with closed schemas, single canonical writer, 116 regression tests and workspace doctor PASS 25/25 (G2)"
                               ],
-    "activeWorkOrders":  [],
+    "activeWorkOrders":  [
+                             "OW-RM1-WO-001 (RM1 canonical platform roadmap synthesis, authorization REVIEW_PASS; RM1-R1/RM1-R2/RM1-R3 closed; awaiting Codex C1 commit/rehearsal/push before bounded documentation BUILD)"
+                         ],
     "knownLimitations":  [
                              "No runtime module has been implemented or imported.",
                              "F0 captured a reproducible read-only baseline of shift-operations-workspace at commit f98f29e145fa002be070e9d44520d20f0f82dcb3; it did not import, adapt or reimplement any asset. Every import-ledger row is REFERENCE_ONLY, pending a dedicated F1+ work order and reviewer disposition. F0 BUILD, independent REVIEW_PASS and FREEZE are complete (commits C1 8c193984c5fc158ca65ea554dd8d4934d12c28f4, C2 39541d5e84b06f8650ce2b0f6341425c7a05d7bf, C3 3064d4bce08d36f553516d59719358fd8788cbcf); this limitation is about F1+ import authorization, not about F0 completion status.",
                              "F0 authorizes no asset import. Every import-ledger row remains REFERENCE_ONLY until a dedicated F1+ work order and independent review.",
                              "Agent Operations, Live View, and Human Takeover are future roadmap items only.",
-                             "The active roadmap still contains one historical G1 textual reference to the retired scripts/manage_catalog.py writer. G2 could not change the roadmap; the next separately governed roadmap tranche must update that line and replace the stale F0 NEXT/claim-boundary text without treating the mention as an executable writer."
+                             "The active roadmap (docs/roadmaps/CVF_OPERATIONS_WORKSPACE_ROADMAP.md) is confirmed stale as of this round: it still shows the retired G0 core pin, lists G1's deleted scripts/manage_catalog.py as current tooling, marks F0 as NEXT although F0 is complete, is silent on G2, and its claim boundary says 'Only G0 is complete'. OW-RM1-WO-001 authorizes a future documentation-only BUILD to rewrite it; this round (authorization only) does not edit the roadmap.",
+                             "operations-workspace-all-phases (194 physical files, 191 manifest entries, MIGRATION_MANIFEST.json SHA-256 7e900e85460061064d56818071c31486def91ce5c84784ec92a2d194a6b86b90, independently verified this round) is a reviewed design input only, per ADR-OW-004. It proposes renaming shift-operations-workspace to operations-workspace, which ADR-OW-001 already rejected; none of its content is imported, adopted, or treated as runtime/continuity evidence by this round.",
+                             "Delta-accounting failure history, preserved in full (do not erase any stage): (1) the round's opening estimate was 25-path old baseline / 21 unchanged / 4 changed / 169 new, superseded because it omitted scripts/migration/README.md from the changed set; (2) the first correction was 26 / 21 / 5 / 168, accepted by Codex as an RM1-R1 reviewer amendment, but superseded because it compared the old baseline (with __pycache__ excluded) against the full bundle (with __pycache__ still included) -- an asymmetric comparison, not an input change; (3) repair round 2 (RM1-R3, finding ASYMMETRIC_CACHE_FILTER_INVALID_DELTA) independently re-derived the delta with __pycache__ excluded symmetrically from both inputs and found 182 full-bundle non-cache paths, giving 26 / 21 unchanged / 5 changed / 156 new / 161 total disposition candidates -- withdrew the 168 figure specifically (RM1-R1's separate finding that a worker may not self-classify a triggered stop condition remains closed and unaffected) -- and accepted 26/21/5/156/161 as the current authoritative baseline. This was recorded as a comparison-method defect (BLOCKED_EVIDENCE_METHOD), not input drift: neither input's content changed at any stage. See ADR-OW-004's 'Delta accounting -- full failure history (RM1-R1, RM1-R3)' section.",
+                             "Integrity facts (unchanged, re-confirmed in repair round 2): 194 physical files, 191 manifest entries (MIGRATION_MANIFEST.json does not list itself in its own files array), 12 total .pyc files of which 10 are manifest-listed and 2 are not -- manifest membership does not make a generated binary source; all 12 are excluded from candidacy.",
+                             "Repair round 1 also closed RM1-R2: OW-RM1-WO-001 previously claimed the C3 independent review receipt was covered by an undefined docs/reviews/** wildcard. A separate Codex-owned C3 closure ceiling is now defined (docs/reviews/RM1_INDEPENDENT_REVIEW_2026-07-23.md, IMPLEMENTATION_STATUS.json, CVF_SESSION/ACTIVE_SESSION_STATE.json, CVF_SESSION/handoffs/AGENT_HANDOFF_V1_2026-07-23.md); IMPLEMENTATION_WORKER may not author or modify the independent review receipt under any circumstance. Unaffected by repair round 2."
                          ],
     "evidence":  [
                       "docs/reviews/ASSESSMENT_RECONCILIATION_2026-07-23.md",
@@ -35,7 +41,10 @@
                       "docs/specs/G2_GOVERNANCE_RECONCILIATION_SPEC.md",
                       "docs/work_orders/G2_GOVERNANCE_RECONCILIATION_WORK_ORDER.md",
                       "docs/reviews/G2_BUILD_EVIDENCE_2026-07-23.md",
-                      "docs/reviews/G2_INDEPENDENT_REVIEW_2026-07-23.md"
+                      "docs/reviews/G2_INDEPENDENT_REVIEW_2026-07-23.md",
+                      "docs/decisions/ADR_2026-07-23_CANONICAL_ROADMAP_EXECUTION_BASELINE.md",
+                      "docs/specs/RM1_CANONICAL_PLATFORM_ROADMAP_SPEC.md",
+                      "docs/work_orders/RM1_CANONICAL_PLATFORM_ROADMAP_WORK_ORDER.md"
                  ],
     "updatedAt":  "2026-07-23"
 }
