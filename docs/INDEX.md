@@ -16,7 +16,7 @@
 ## Artifact Registry Summary
 
 - Registered artifacts: **21**
-- By status: active=18, awaiting_authorization=2, generated=1
+- By status: active=15, awaiting_authorization=2, generated=1, historical=3
 
 ## Catalog
 
@@ -35,13 +35,13 @@
 ## Specification
 
 - [F0 Source Intake and Compatibility Baseline Specification](specs/F0_SOURCE_INTAKE_AND_COMPATIBILITY_BASELINE_SPEC.md) — `awaiting_authorization` — Requirements for reproducible source intake without runtime import.
-- [G1 Index and Catalog Governance Specification](specs/G1_INDEX_CATALOG_GOVERNANCE_SPEC.md) — `active` — Requirements for schema-backed registries and drift checks.
+- [G1 Index and Catalog Governance Specification](specs/G1_INDEX_CATALOG_GOVERNANCE_SPEC.md) — `historical` — Requirements for schema-backed registries and drift checks.
 
 ## Work Order
 
 - [F0 Source Intake and Compatibility Baseline Work Order](work_orders/F0_SOURCE_INTAKE_AND_COMPATIBILITY_BASELINE_WORK_ORDER.md) — `awaiting_authorization` — Bounded F0 work order; BUILD remains prohibited.
-- [G1 Index and Catalog Governance Work Order](work_orders/G1_INDEX_CATALOG_GOVERNANCE_WORK_ORDER.md) — `active` — Authorized R1 changed-set ceiling for Index/Catalog governance.
-- [G1 Work Order Amendment 1 — Python Generated Cache Exclusion](work_orders/G1_INDEX_CATALOG_GOVERNANCE_WORK_ORDER_AMENDMENT_1.md) — `active` — Adds Python generated-cache exclusions to the G1 ceiling.
+- [G1 Index and Catalog Governance Work Order](work_orders/G1_INDEX_CATALOG_GOVERNANCE_WORK_ORDER.md) — `historical` — Authorized R1 changed-set ceiling for Index/Catalog governance.
+- [G1 Work Order Amendment 1 — Python Generated Cache Exclusion](work_orders/G1_INDEX_CATALOG_GOVERNANCE_WORK_ORDER_AMENDMENT_1.md) — `historical` — Adds Python generated-cache exclusions to the G1 ceiling.
 
 ## Review
 

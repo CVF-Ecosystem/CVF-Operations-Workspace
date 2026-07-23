@@ -13,9 +13,9 @@
                        "FREEZE"
                    ],
     "activeHandoff":  "CVF_SESSION/handoffs/AGENT_HANDOFF_V1_2026-07-23.md",
-    "nextAllowedMove":  "Independently review OW-F0-WO-001 and record AUTHORIZE, AMEND, or REJECT. Do not begin BUILD before authorization.",
-    "parkedOperatorCheckpoint":  "OW-F0-WO-001 is authored and awaiting independent authorization review.",
+    "nextAllowedMove":  "Independently review OW-F0-WO-001 and record AUTHORIZE, AMEND, or REJECT. Do not begin F0 BUILD before authorization.",
+    "parkedOperatorCheckpoint":  "G1 is CLOSED; OW-F0-WO-001 remains authored and unauthorized.",
     "activeRole":  "REVIEWER",
-    "roleRoute":  "INDEPENDENT_REVIEW_REQUIRED",
+    "roleRoute":  "R1_SINGLE_AGENT_EXPLICIT_TRANSITIONS",
     "updatedAt":  "2026-07-23"
 }

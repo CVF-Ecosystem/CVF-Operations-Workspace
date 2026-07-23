@@ -225,8 +225,8 @@
       "title": "G1 Index and Catalog Governance Specification",
       "path": "docs/specs/G1_INDEX_CATALOG_GOVERNANCE_SPEC.md",
       "type": "specification",
-      "status": "active",
-      "authority": "authorized",
+      "status": "historical",
+      "authority": "frozen_spec",
       "entrypoint": false,
       "summary": "Requirements for schema-backed registries and drift checks.",
       "related": ["g1-work-order", "adr-index-catalog"]
@@ -236,8 +236,8 @@
       "title": "G1 Index and Catalog Governance Work Order",
       "path": "docs/work_orders/G1_INDEX_CATALOG_GOVERNANCE_WORK_ORDER.md",
       "type": "work_order",
-      "status": "active",
-      "authority": "authorized",
+      "status": "historical",
+      "authority": "closed",
       "entrypoint": false,
       "summary": "Authorized R1 changed-set ceiling for Index/Catalog governance.",
       "related": ["g1-spec", "g1-work-order-amendment-1"]
@@ -247,8 +247,8 @@
       "title": "G1 Work Order Amendment 1 — Python Generated Cache Exclusion",
       "path": "docs/work_orders/G1_INDEX_CATALOG_GOVERNANCE_WORK_ORDER_AMENDMENT_1.md",
       "type": "work_order",
-      "status": "active",
-      "authority": "authorized_bounded_repair",
+      "status": "historical",
+      "authority": "closed_amendment",
       "entrypoint": false,
       "summary": "Adds Python generated-cache exclusions to the G1 ceiling.",
       "related": ["g1-work-order"]

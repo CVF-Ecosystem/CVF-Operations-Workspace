@@ -1,10 +1,10 @@
 ﻿{
     "schemaVersion":  "1.0",
     "projectName":  "CVF-Operations-Workspace",
-    "overallStatus":  "PLANNING",
+    "overallStatus":  "GOVERNANCE_FOUNDATION",
     "currentPhase":  "WORK_ORDER",
     "completedCapabilities":  [
-
+                                  "Machine-governed documentation Index and source-backed Module Catalog (G1 structural governance)"
                               ],
     "activeWorkOrders":  [
                               {
@@ -20,7 +20,10 @@
                          ],
     "evidence":  [
                       "docs/reviews/ASSESSMENT_RECONCILIATION_2026-07-23.md",
-                      "docs/decisions/ADR_2026-07-23_GREENFIELD_PLATFORM_AND_PROFILE_PORTING.md"
+                      "docs/decisions/ADR_2026-07-23_GREENFIELD_PLATFORM_AND_PROFILE_PORTING.md",
+                      "docs/decisions/ADR_2026-07-23_INDEX_CATALOG_GOVERNANCE.md",
+                      "scripts/manage_catalog.py",
+                      "tests/test_catalog_management.py"
                  ],
     "updatedAt":  "2026-07-23"
 }

@@ -21,6 +21,17 @@ INTAKE -> DESIGN -> SPEC -> WORK_ORDER -> BUILD -> REVIEW -> FREEZE
 - Empty module registry and honest implementation status established.
 - No Shift source or review-bundle content imported.
 
+## G1 — Machine-governed Index and Catalog — COMPLETE
+
+- Artifact Registry is the machine source for generated `docs/INDEX.md`.
+- Module Registry is the machine source for generated Module Catalog claims.
+- Both registries have committed JSON Schemas and controlled vocabularies.
+- `scripts/manage_catalog.py --write/--check` generates and detects drift.
+- Eleven tests cover valid state, duplicate IDs/paths, missing paths, unknown
+  status/control/relationships/dependencies, required fields, path separators,
+  path escape and generated hand edits.
+- Module Registry remains empty; G1 creates no runtime capability claim.
+
 ## F0 — Source intake and compatibility baseline — NEXT
 
 Goal: make reuse decisions from reproducible evidence rather than folder
