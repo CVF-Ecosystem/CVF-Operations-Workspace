@@ -329,6 +329,39 @@
       "entrypoint": false,
       "summary": "Independent AC-01 through AC-19 disposition, including closure of Git-blob hash correctness and evidence-count findings.",
       "related": ["f0-build-evidence", "f0-work-order", "f0-spec", "f0-capture-receipt"]
+    },
+    {
+      "id": "adr-golden-catalog-reconciliation",
+      "title": "Golden Downstream Catalog Kit 1.1 Reconciliation",
+      "path": "docs/decisions/ADR_2026-07-23_GOLDEN_DOWNSTREAM_CATALOG_RECONCILIATION.md",
+      "type": "decision",
+      "status": "active",
+      "authority": "accepted",
+      "entrypoint": false,
+      "summary": "Decides Golden Downstream Catalog Kit 1.1 as canonical, dispositions all 28 legacy artifact paths, and reconciles the CVF core pin to 27137db4d9aa2aea931ddd2507185d5c24943080 (re-pinned per repair finding G2-R1; original target 571cb21b7026f0cd925279ba698bf30a291a4644 preserved as repair history).",
+      "related": ["g2-spec", "g2-work-order", "adr-index-catalog", "artifact-registry", "module-registry"]
+    },
+    {
+      "id": "g2-spec",
+      "title": "G2 Governance Reconciliation Specification",
+      "path": "docs/specs/G2_GOVERNANCE_RECONCILIATION_SPEC.md",
+      "type": "specification",
+      "status": "active",
+      "authority": "authorized",
+      "entrypoint": false,
+      "summary": "22 testable acceptance criteria for core-pin reconciliation, Golden Catalog Kit 1.1 migration, and workspace doctor PASS.",
+      "related": ["adr-golden-catalog-reconciliation", "g2-work-order"]
+    },
+    {
+      "id": "g2-work-order",
+      "title": "G2 Governance Reconciliation Work Order",
+      "path": "docs/work_orders/G2_GOVERNANCE_RECONCILIATION_WORK_ORDER.md",
+      "type": "work_order",
+      "status": "active",
+      "authority": "authorized",
+      "entrypoint": false,
+      "summary": "Independently REVIEW_PASS'd bounded BUILD changed-set ceiling, roles, commit plan and stop conditions for G2; BUILD starts only after C1 succeeds and the implementation worker acknowledges the transition.",
+      "related": ["g2-spec", "adr-golden-catalog-reconciliation"]
     }
   ],
   "claimBoundary": "The artifact registry governs discovery and authority metadata; source, tests, implementation status and review evidence govern capability truth."

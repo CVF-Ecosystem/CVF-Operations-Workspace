@@ -2,17 +2,20 @@
     "schemaVersion":  "1.0",
     "projectName":  "CVF-Operations-Workspace",
     "overallStatus":  "SOURCE_BASELINE_READY",
-    "currentPhase":  "FREEZE",
+    "currentPhase":  "WORK_ORDER",
     "completedCapabilities":  [
                                   "Machine-governed documentation Index and source-backed Module Catalog (G1 structural governance)",
                                   "Reproducible, read-only Shift Operations source-intake and compatibility baseline at f98f29e145fa002be070e9d44520d20f0f82dcb3 (F0)"
                               ],
-    "activeWorkOrders":  [],
+    "activeWorkOrders":  [
+                             "OW-G2-WO-001 (AUTHORIZATION REVIEW_PASS after repair rounds 1 and 2; G2-R1 through G2-R5 closed; C1 commit stewardship active; BUILD authorized only after C1 rehearsal/push and explicit IMPLEMENTATION_WORKER acknowledgment)"
+                         ],
     "knownLimitations":  [
                              "No runtime module has been implemented or imported.",
-                             "F0 captured a reproducible read-only baseline of shift-operations-workspace at commit f98f29e145fa002be070e9d44520d20f0f82dcb3; it did not import, adapt or reimplement any asset. Every import-ledger row is REFERENCE_ONLY, pending a dedicated F1+ work order and reviewer disposition.",
+                             "F0 captured a reproducible read-only baseline of shift-operations-workspace at commit f98f29e145fa002be070e9d44520d20f0f82dcb3; it did not import, adapt or reimplement any asset. Every import-ledger row is REFERENCE_ONLY, pending a dedicated F1+ work order and reviewer disposition. F0 BUILD, independent REVIEW_PASS and FREEZE are complete (commits C1 8c193984c5fc158ca65ea554dd8d4934d12c28f4, C2 39541d5e84b06f8650ce2b0f6341425c7a05d7bf, C3 3064d4bce08d36f553516d59719358fd8788cbcf); this limitation is about F1+ import authorization, not about F0 completion status.",
                              "F0 authorizes no asset import. Every import-ledger row remains REFERENCE_ONLY until a dedicated F1+ work order and independent review.",
-                             "Agent Operations, Live View, and Human Takeover are future roadmap items only."
+                             "Agent Operations, Live View, and Human Takeover are future roadmap items only.",
+                             "The CVF core pin (.cvf/manifest.json cvfCoreCommit) remains 6ce1cf00c31a7f825d4c3fa3e66e8a3509e4a4b2 until BUILD; public CVF core origin/main is now 27137db4d9aa2aea931ddd2507185d5c24943080 (re-pinned per repair finding G2-R1; the hidden core was reconciled to this commit via the official update_cvf_workspace_public_core.ps1 reconciler during repair, but the downstream project's own manifest pin is unchanged pending BUILD). The workspace doctor reports DAMAGED_GOVERNED_KIT because docs/catalog/ARTIFACT_REGISTRY.json predates the Golden Downstream Catalog Kit 1.1 closed schema; BEHIND_PUBLIC_REMOTE is resolved. OW-G2-WO-001 authorizes, but does not yet perform, the reconciliation."
                          ],
     "evidence":  [
                       "docs/reviews/ASSESSMENT_RECONCILIATION_2026-07-23.md",
@@ -25,7 +28,10 @@
                       "tests/source_intake/test_capture_integration.py",
                       "provenance/shift-operations/f98f29e145fa002be070e9d44520d20f0f82dcb3/capture_receipt.json",
                       "docs/reviews/F0_BUILD_EVIDENCE_2026-07-23.md",
-                      "docs/reviews/F0_INDEPENDENT_REVIEW_2026-07-23.md"
+                      "docs/reviews/F0_INDEPENDENT_REVIEW_2026-07-23.md",
+                      "docs/decisions/ADR_2026-07-23_GOLDEN_DOWNSTREAM_CATALOG_RECONCILIATION.md",
+                      "docs/specs/G2_GOVERNANCE_RECONCILIATION_SPEC.md",
+                      "docs/work_orders/G2_GOVERNANCE_RECONCILIATION_WORK_ORDER.md"
                  ],
     "updatedAt":  "2026-07-23"
 }
