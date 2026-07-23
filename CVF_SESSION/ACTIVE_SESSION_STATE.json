@@ -1,8 +1,8 @@
 ﻿{
     "schemaVersion":  "1.0",
     "projectName":  "CVF-Operations-Workspace",
-    "currentMode":  "FREEZE",
-    "activePhase":  "FREEZE",
+    "currentMode":  "WORK_ORDER",
+    "activePhase":  "WORK_ORDER",
     "phaseModel":  [
                        "INTAKE",
                        "DESIGN",
@@ -13,9 +13,9 @@
                        "FREEZE"
                    ],
     "activeHandoff":  "CVF_SESSION/handoffs/AGENT_HANDOFF_V1_2026-07-23.md",
-    "nextAllowedMove":  "OW-G2 is closed by the C3 commit containing this state once Codex COMMIT_STEWARD's post-commit/pre-push sibling-worktree rehearsal and push succeed. The next owner-directed move is a separate roadmap-synthesis tranche to update docs/roadmaps/CVF_OPERATIONS_WORKSPACE_ROADMAP.md from the completed G0/G1/F0/G2 truth, Shift runtime baseline, and reviewed full-bundle learnings. No roadmap or runtime BUILD is authorized by G2.",
-    "parkedOperatorCheckpoint":  "G2 authorization C1 3d1c316c343f9893b2e72672ef19c1ba68aa46f1 and BUILD C2 4cea16eaf7997adec7e3e821db894b577f871834 are committed, rehearsed post-commit/pre-push, and pushed. Independent REVIEW_PASS closes G2-R1 through G2-R5 and G2-BR1/G2-BR2; Golden Catalog Kit 1.1 is pinned to CVF core 27137db4d9aa2aea931ddd2507185d5c24943080, doctor passes 25/25, 116 tests pass, and Module Registry remains empty. C3 closure becomes effective only after its own rehearsal and push.",
-    "activeRole":  "ORCHESTRATOR",
+    "nextAllowedMove":  "RM1 authorization REVIEW_PASS is recorded with RM1-R1/RM1-R2/RM1-R3 closed. Codex COMMIT_STEWARD must explicitly stage only the six C1 authorization paths, commit, run the post-commit/pre-push sibling-worktree rehearsal, and push. Only after C1 succeeds may the assigned IMPLEMENTATION_WORKER rehydrate continuity, record the role transition and ceiling acknowledgment, and begin the bounded RM1 documentation BUILD. C3 remains a separate Codex-only closure ceiling. F1A is not opened.",
+    "parkedOperatorCheckpoint":  "G0/G1/F0/G2 remain complete, independently REVIEW_PASS'd, and FREEZE'd (G2 authorization C1 3d1c316c343f9893b2e72672ef19c1ba68aa46f1, BUILD C2 4cea16eaf7997adec7e3e821db894b577f871834, both rehearsed post-commit/pre-push and pushed). Golden Catalog Kit 1.1 is pinned to CVF core 27137db4d9aa2aea931ddd2507185d5c24943080, doctor passes 25/25, 116 tests pass, Module Registry remains empty. This round independently re-verified all of that live and found it unchanged. Delta-accounting failure history (do not erase): opening estimate 25/21/4/169 (superseded, omitted a changed file); first correction 26/21/5/168 accepted as an RM1-R1 Codex reviewer amendment (superseded); repair round 2 found (RM1-R3, ASYMMETRIC_CACHE_FILTER_INVALID_DELTA) that '168 new' came from comparing the old baseline with __pycache__ excluded against the full bundle with __pycache__ still included -- an asymmetric comparison, not an input change -- and Codex withdrew 168 and accepted the symmetric 26/21 unchanged/5 changed/156 new/161 total disposition candidates as current authoritative baseline. RM1-R1's separate finding (a worker may not self-classify a triggered stop condition) remains closed; only its numeric 168 was withdrawn. RM1-R2 (false docs/reviews/** wildcard claim for the C3 independent review receipt, replaced by a separate Codex-only C3 closure ceiling) also remains closed, unaffected by repair round 2. Integrity facts unchanged: 194 physical files, 191 manifest entries (manifest does not list itself), 12 total .pyc (10 manifest-listed, 2 not) -- all excluded from candidacy regardless of manifest membership.",
+    "activeRole":  "COMMIT_STEWARD",
     "roleRoute":  "ORCHESTRATOR_THEN_SPEC_AUTHOR_THEN_WORK_ORDER_AUTHOR_THEN_REVIEWER_THEN_COMMIT_STEWARD_C1_THEN_IMPLEMENTATION_WORKER_THEN_REVIEWER_THEN_REPAIR_WORKER_IF_NEEDED_THEN_RE_REVIEW_THEN_COMMIT_STEWARD_C2_C3_THEN_CLOSER_THEN_SESSION_SYNC_STEWARD_THEN_ORCHESTRATOR",
     "updatedAt":  "2026-07-23"
 }
