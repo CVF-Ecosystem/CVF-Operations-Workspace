@@ -1,0 +1,38 @@
+﻿{
+    "schemaVersion":  "2.0",
+    "cvfCoreRepository":  "https://github.com/Blackbird081/Controlled-Vibe-Framework-CVF.git",
+    "cvfCoreCommit":  "6ce1cf00c31a7f825d4c3fa3e66e8a3509e4a4b2",
+    "workspaceLayout":  "SIBLING_HIDDEN_CORE",
+    "cvfCoreRelativePath":  "../.Controlled-Vibe-Framework-CVF",
+    "workspaceRulesRelativePath":  "../WORKSPACE_RULES.md",
+    "projectRelativePath":  ".",
+    "phaseModel":  [
+                       "INTAKE",
+                       "DESIGN",
+                       "SPEC",
+                       "WORK_ORDER",
+                       "BUILD",
+                       "REVIEW",
+                       "FREEZE"
+                   ],
+    "liveGovernanceEvidenceRequired":  true,
+    "mockAllowedOnlyForUi":  true,
+    "requiredDocs":  [
+                         ".cvf/manifest.json",
+                         ".cvf/policy.json",
+                         "scripts/initialize_cvf_clone.ps1",
+                         "..\\WORKSPACE_RULES.md",
+                         "docs/CVF_BOOTSTRAP_LOG_20260723.md",
+                         "CVF_SESSION_MEMORY.md",
+                         "CVF_SESSION/ACTIVE_SESSION_STATE.json",
+                         "docs/INDEX.md",
+                         "docs/catalog/MODULE_REGISTRY.json",
+                         "docs/catalog/MODULE_CATALOG.md",
+                         "IMPLEMENTATION_STATUS.json"
+                     ],
+    "bootstrapDate":  "2026-07-23",
+    "enforcementVersion":  "3.0-portable-clone",
+    "bootstrapScript":  "scripts/new-cvf-workspace.ps1",
+    "w112TrancheRef":  "CVF_W112_T1_WORKSPACE_AGENT_ENFORCEMENT_AND_WEB_CONTROL_UPLIFT_ROADMAP_2026-04-22.md",
+    "knowledgePath":  "knowledge/"
+}

@@ -1,0 +1,21 @@
+﻿{
+    "schemaVersion":  "1.0",
+    "projectName":  "CVF-Operations-Workspace",
+    "currentMode":  "INTAKE",
+    "activePhase":  "INTAKE",
+    "phaseModel":  [
+                       "INTAKE",
+                       "DESIGN",
+                       "SPEC",
+                       "WORK_ORDER",
+                       "BUILD",
+                       "REVIEW",
+                       "FREEZE"
+                   ],
+    "activeHandoff":  "CVF_SESSION/handoffs/AGENT_HANDOFF_V1_2026-07-23.md",
+    "nextAllowedMove":  "Complete INTAKE: record intent, context, constraints, risk, authority, and acceptance boundary.",
+    "parkedOperatorCheckpoint":  null,
+    "activeRole":  "ORCHESTRATOR",
+    "roleRoute":  "SINGLE_AGENT_MULTI_ROLE_ALLOWED",
+    "updatedAt":  "2026-07-23"
+}
