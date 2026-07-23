@@ -2,20 +2,19 @@
     "schemaVersion":  "1.0",
     "projectName":  "CVF-Operations-Workspace",
     "overallStatus":  "SOURCE_BASELINE_READY",
-    "currentPhase":  "BUILD",
+    "currentPhase":  "FREEZE",
     "completedCapabilities":  [
                                   "Machine-governed documentation Index and source-backed Module Catalog (G1 structural governance)",
-                                  "Reproducible, read-only Shift Operations source-intake and compatibility baseline at f98f29e145fa002be070e9d44520d20f0f82dcb3 (F0)"
+                                  "Reproducible, read-only Shift Operations source-intake and compatibility baseline at f98f29e145fa002be070e9d44520d20f0f82dcb3 (F0)",
+                                  "Golden Downstream Catalog Kit 1.1 and CVF core-pin reconciliation with closed schemas, single canonical writer, 116 regression tests and workspace doctor PASS 25/25 (G2)"
                               ],
-    "activeWorkOrders":  [
-                             "OW-G2-WO-001 (BUILD complete, self-reported by IMPLEMENTATION_WORKER: core pin re-pinned to 27137db4d9aa2aea931ddd2507185d5c24943080, Golden Downstream Catalog Kit 1.1 installed byte-identical, both registries migrated to the Golden closed schema per ADR-OW-003's 28-row disposition table, legacy Python catalog writer and old schemas retired with regression evidence, workspace doctor self-reported PASS 25/25. NOT yet independently reviewed, NOT REVIEW_PASS'd, NOT FREEZE'd. See docs/reviews/G2_BUILD_EVIDENCE_2026-07-23.md for full AC-01..AC-22 evidence.)"
-                         ],
+    "activeWorkOrders":  [],
     "knownLimitations":  [
                              "No runtime module has been implemented or imported.",
                              "F0 captured a reproducible read-only baseline of shift-operations-workspace at commit f98f29e145fa002be070e9d44520d20f0f82dcb3; it did not import, adapt or reimplement any asset. Every import-ledger row is REFERENCE_ONLY, pending a dedicated F1+ work order and reviewer disposition. F0 BUILD, independent REVIEW_PASS and FREEZE are complete (commits C1 8c193984c5fc158ca65ea554dd8d4934d12c28f4, C2 39541d5e84b06f8650ce2b0f6341425c7a05d7bf, C3 3064d4bce08d36f553516d59719358fd8788cbcf); this limitation is about F1+ import authorization, not about F0 completion status.",
                              "F0 authorizes no asset import. Every import-ledger row remains REFERENCE_ONLY until a dedicated F1+ work order and independent review.",
                              "Agent Operations, Live View, and Human Takeover are future roadmap items only.",
-                             "G2 BUILD is self-reported, not independently verified: .cvf/manifest.json cvfCoreCommit is now 27137db4d9aa2aea931ddd2507185d5c24943080 (re-pinned during BUILD; matches public CVF core origin/main); docs/catalog/ARTIFACT_REGISTRY.json and MODULE_REGISTRY.json are migrated to the Golden Downstream Catalog Kit 1.1 closed schema; scripts/manage_catalog.py and the old-path legacy schema files are deleted. The workspace doctor self-reports PASS (25/25) with no DAMAGED_GOVERNED_KIT, MIGRATION_REQUIRED, LEGACY_PROJECT, BEHIND_PUBLIC_REMOTE, or core-pin mismatch. This claim stands only until Codex's independent REVIEWER pass confirms it against docs/reviews/G2_BUILD_EVIDENCE_2026-07-23.md."
+                             "The active roadmap still contains one historical G1 textual reference to the retired scripts/manage_catalog.py writer. G2 could not change the roadmap; the next separately governed roadmap tranche must update that line and replace the stale F0 NEXT/claim-boundary text without treating the mention as an executable writer."
                          ],
     "evidence":  [
                       "docs/reviews/ASSESSMENT_RECONCILIATION_2026-07-23.md",
@@ -35,7 +34,8 @@
                       "docs/decisions/ADR_2026-07-23_GOLDEN_DOWNSTREAM_CATALOG_RECONCILIATION.md",
                       "docs/specs/G2_GOVERNANCE_RECONCILIATION_SPEC.md",
                       "docs/work_orders/G2_GOVERNANCE_RECONCILIATION_WORK_ORDER.md",
-                      "docs/reviews/G2_BUILD_EVIDENCE_2026-07-23.md"
+                      "docs/reviews/G2_BUILD_EVIDENCE_2026-07-23.md",
+                      "docs/reviews/G2_INDEPENDENT_REVIEW_2026-07-23.md"
                  ],
     "updatedAt":  "2026-07-23"
 }

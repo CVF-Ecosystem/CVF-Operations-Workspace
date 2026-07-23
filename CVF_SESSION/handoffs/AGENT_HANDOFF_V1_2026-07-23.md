@@ -544,3 +544,43 @@ PASS (25/25). C2/C3 are not yet committed, no REVIEW_PASS has been
 self-granted, and FREEZE has not occurred. Module Registry remains empty
 throughout BUILD; no runtime capability claim is created. This claim stands
 only until Codex's independent REVIEWER re-review confirms it.
+
+## G2 Independent BUILD Re-review and FREEZE Authorization — 2026-07-23
+
+- Role route completed: REVIEWER -> COMMIT_STEWARD (C2) -> CLOSER ->
+  SESSION_SYNC_STEWARD -> ORCHESTRATOR.
+- Independent re-review closed `G2-BR1` and `G2-BR2`; authorization findings
+  `G2-R1` through `G2-R5` remain closed. No finding was waived.
+- Acceptance result: `G2-AC-01` through `G2-AC-21` PASS independently.
+  `G2-AC-22` PASS for C1/C2 after post-commit/pre-push sibling-worktree
+  rehearsals; C3 closure becomes effective only after the same rehearsal and
+  push succeed.
+- Independent evidence: Golden manager check PASS; 116/116 tests PASS; four
+  Golden payload SHA-256 values match pinned CVF core
+  `27137db4d9aa2aea931ddd2507185d5c24943080`; workspace doctor PASS 25/25;
+  exact 20-path BUILD set; protected/excluded diffs empty; Module Registry
+  remains empty.
+- C2 `4cea16eaf7997adec7e3e821db894b577f871834` was explicitly staged,
+  committed, rehearsed successfully in a temporary sibling worktree, pushed
+  to `origin/main`, and the temporary worktree removed.
+- Independent receipt:
+  `docs/reviews/G2_INDEPENDENT_REVIEW_2026-07-23.md`.
+- FREEZE disposition: `REVIEW_PASS`, no open G2 work order, no catalog/pin
+  drift, no runtime capability claim. C3 contains the review receipt and
+  synchronized closure surfaces; it must be rehearsed and pushed before the
+  closure is effective.
+- Next separate governed move: update the canonical operations-workspace
+  roadmap using completed G0/G1/F0/G2 truth, Shift runtime evidence, and the
+  reviewed full-bundle learnings. G2 grants no authority to edit the roadmap
+  or implement runtime.
+
+## G2 Final Claim Boundary
+
+Golden Downstream Catalog Kit 1.1 is structurally enforced at pinned CVF core
+`27137db4d9aa2aea931ddd2507185d5c24943080`; the project has one executable
+catalog writer, closed registries, generated views, 116 passing tests, and a
+25/25 workspace doctor result. Module Registry remains empty. No Shift
+runtime, provider behavior, deployment, Agent Operations, Live View, or Human
+Takeover capability is claimed. The active roadmap's historical reference to
+the retired Python writer remains a disclosed next-tranche documentation
+repair, not an executable governance conflict.

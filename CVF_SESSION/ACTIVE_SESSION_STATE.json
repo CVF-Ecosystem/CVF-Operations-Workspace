@@ -1,8 +1,8 @@
 ﻿{
     "schemaVersion":  "1.0",
     "projectName":  "CVF-Operations-Workspace",
-    "currentMode":  "BUILD",
-    "activePhase":  "BUILD",
+    "currentMode":  "FREEZE",
+    "activePhase":  "FREEZE",
     "phaseModel":  [
                        "INTAKE",
                        "DESIGN",
@@ -13,9 +13,9 @@
                        "FREEZE"
                    ],
     "activeHandoff":  "CVF_SESSION/handoffs/AGENT_HANDOFF_V1_2026-07-23.md",
-    "nextAllowedMove":  "OW-G2-WO-001 BUILD is complete and self-reported by IMPLEMENTATION_WORKER (docs/reviews/G2_BUILD_EVIDENCE_2026-07-23.md). Not yet independently reviewed, not REVIEW_PASS'd, not FREEZE'd. Next governed move: Codex acts as independent REVIEWER over the BUILD evidence against OW-G2-SPEC-001's AC-01 through AC-22; only after REVIEW_PASS may Codex COMMIT_STEWARD stage/commit/rehearse/push C2/C3 and CLOSER/SESSION_SYNC_STEWARD close the tranche. IMPLEMENTATION_WORKER did not stage, commit, push, self-grant REVIEW_PASS, or declare FREEZE.",
-    "parkedOperatorCheckpoint":  "F0 REVIEW_PASS and FREEZE are complete. Findings F0-R1/F0-R2 are closed; commits C1 8c193984c5fc158ca65ea554dd8d4934d12c28f4, C2 39541d5e84b06f8650ce2b0f6341425c7a05d7bf, and C3 3064d4bce08d36f553516d59719358fd8788cbcf are recorded. G2 authorization independently passed re-review after repair rounds 1 and 2; C1 (authorization commit 3d1c316c343f9893b2e72672ef19c1ba68aa46f1) is complete. G2 BUILD (core pin re-pin to 27137db4d9aa2aea931ddd2507185d5c24943080, Golden Catalog Kit 1.1 migration, legacy writer retirement, doctor self-reported PASS 25/25) is complete but awaiting independent REVIEW_PASS before C2/C3 commit.",
-    "activeRole":  "IMPLEMENTATION_WORKER",
+    "nextAllowedMove":  "OW-G2 is closed by the C3 commit containing this state once Codex COMMIT_STEWARD's post-commit/pre-push sibling-worktree rehearsal and push succeed. The next owner-directed move is a separate roadmap-synthesis tranche to update docs/roadmaps/CVF_OPERATIONS_WORKSPACE_ROADMAP.md from the completed G0/G1/F0/G2 truth, Shift runtime baseline, and reviewed full-bundle learnings. No roadmap or runtime BUILD is authorized by G2.",
+    "parkedOperatorCheckpoint":  "G2 authorization C1 3d1c316c343f9893b2e72672ef19c1ba68aa46f1 and BUILD C2 4cea16eaf7997adec7e3e821db894b577f871834 are committed, rehearsed post-commit/pre-push, and pushed. Independent REVIEW_PASS closes G2-R1 through G2-R5 and G2-BR1/G2-BR2; Golden Catalog Kit 1.1 is pinned to CVF core 27137db4d9aa2aea931ddd2507185d5c24943080, doctor passes 25/25, 116 tests pass, and Module Registry remains empty. C3 closure becomes effective only after its own rehearsal and push.",
+    "activeRole":  "ORCHESTRATOR",
     "roleRoute":  "ORCHESTRATOR_THEN_SPEC_AUTHOR_THEN_WORK_ORDER_AUTHOR_THEN_REVIEWER_THEN_COMMIT_STEWARD_C1_THEN_IMPLEMENTATION_WORKER_THEN_REVIEWER_THEN_REPAIR_WORKER_IF_NEEDED_THEN_RE_REVIEW_THEN_COMMIT_STEWARD_C2_C3_THEN_CLOSER_THEN_SESSION_SYNC_STEWARD_THEN_ORCHESTRATOR",
     "updatedAt":  "2026-07-23"
 }
