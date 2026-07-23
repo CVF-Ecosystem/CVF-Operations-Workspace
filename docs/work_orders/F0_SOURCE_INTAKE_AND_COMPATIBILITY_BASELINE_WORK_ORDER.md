@@ -2,11 +2,13 @@
 
 - Work order ID: `OW-F0-WO-001`
 - Date: 2026-07-23
-- Status: AUTHORED_NOT_AUTHORIZED
+- Status: AUTHORIZED
 - Phase: WORK_ORDER
 - Risk: R2
 - Governing spec: `OW-F0-SPEC-001`
 - Commit ownership: COMMIT_STEWARD only
+- Authorization: owner instruction to hand work to the implementation worker,
+  recorded 2026-07-23 after REVIEWER amendment `OW-F0-WO-001-A1`
 
 ## Authority boundary
 
@@ -30,7 +32,8 @@ docs/reviews/F0_*
 provenance/shift-operations/**
 scripts/source_intake/**
 tests/source_intake/**
-docs/INDEX.md
+docs/catalog/ARTIFACT_REGISTRY.json
+docs/INDEX.md  # generated only
 IMPLEMENTATION_STATUS.json
 CVF_SESSION/ACTIVE_SESSION_STATE.json
 CVF_SESSION/handoffs/**
@@ -48,6 +51,8 @@ database/**
 .github/**
 .cvf/**
 AGENTS.md
+docs/catalog/MODULE_REGISTRY.json
+docs/catalog/MODULE_CATALOG.md
 secrets and provider configuration
 source repository files
 review-bundle files
@@ -65,8 +70,10 @@ commit, provider call or secret read is authorized.
 5. Generate a complete import ledger with conservative default disposition.
 6. Add negative tests covering the five lessons from the old verifier plus
    secret-safe URL handling and unclassified candidates.
-7. Run the evidence matrix and leave all changes unstaged for review.
-8. Stop at `READY_FOR_INDEPENDENT_F0_REVIEW`.
+7. Register discoverable F0 artifacts, regenerate Index, and prove catalog
+   `--check` passes without changing Module Registry.
+8. Run the evidence matrix and leave all changes unstaged for review.
+9. Stop at `READY_FOR_INDEPENDENT_F0_REVIEW`.
 
 ## Evidence matrix
 

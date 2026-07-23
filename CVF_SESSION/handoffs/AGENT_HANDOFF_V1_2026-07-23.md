@@ -5,13 +5,14 @@ Status: ACTIVE
 ## Current State
 
 - Project: CVF-Operations-Workspace
-- Current mode: WORK_ORDER
-- Active phase: WORK_ORDER
-- Active role: REVIEWER
-- Next allowed move: independently review `OW-F0-WO-001` and record AUTHORIZE,
-  AMEND, or REJECT. Do not begin F0 BUILD before authorization.
-- Parked operator checkpoint: G1 is CLOSED; `OW-F0-WO-001` remains authored
-  and unauthorized.
+- Current mode: BUILD
+- Active phase: BUILD
+- Active role: IMPLEMENTATION_WORKER
+- Next allowed move: acknowledge `OW-F0-WO-001` and Amendment 1, implement only
+  the F0 ceiling, leave changes unstaged, and stop at
+  `READY_FOR_INDEPENDENT_F0_REVIEW`.
+- Parked operator checkpoint: G1 is CLOSED; F0 is authorized for bounded
+  BUILD. Codex retains independent REVIEWER/COMMIT_STEWARD responsibility.
 
 ## Seven-Step Control Chain
 
@@ -67,13 +68,16 @@ independent reviewer.
 
 ## Open Work
 
-- Independent authorization review for `OW-F0-WO-001`.
-- F0 BUILD remains prohibited.
+- Owner authorized F0 BUILD by instructing assignment to the implementation
+  worker on 2026-07-23.
+- REVIEWER recorded `OW-F0-WO-001-A1` before BUILD: F0 must update Artifact
+  Registry and generate Index, never hand-edit Index or modify Module Registry.
+- Implementation worker must acknowledge scope before touching BUILD paths.
+- After BUILD, Codex performs independent review and owns all staging/commits.
 
 ## Claim Boundary
 
-G0 bootstrap and G1 structural Index/Catalog governance are complete. Module
-Registry remains empty and F0 is not built. G1 proves repository structure and
-drift enforcement only; it does not claim runtime governance behavior, any
-Shift profile, release, deployment, provider integration, Agent Operations,
-Live View, or Human Takeover capability.
+G0 bootstrap and G1 structural Index/Catalog governance are complete. F0 is
+authorized but not yet built, and Module Registry remains empty. No runtime
+governance behavior, Shift profile, release, deployment, provider integration,
+Agent Operations, Live View, or Human Takeover capability is claimed.

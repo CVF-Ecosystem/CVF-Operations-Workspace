@@ -2,7 +2,7 @@
 
 - Spec ID: `OW-F0-SPEC-001`
 - Date: 2026-07-23
-- Status: READY_FOR_AUTHORIZATION_REVIEW
+- Status: AUTHORIZED
 - Risk: R2
 - Implements: `ADR-OW-001`, roadmap F0
 
@@ -46,6 +46,8 @@ pin is the only source-code authority.
   secrets and provider transcripts from import candidacy.
 - FR-14: Leave both source repository and source commit untouched.
 - FR-15: Do not create `apps/`, `packages/` or `database/` in the target.
+- FR-16: Register discoverable F0 artifacts in Artifact Registry and regenerate
+  Index; never hand-edit generated Index or modify Module Registry.
 
 ## Import ledger minimum schema
 
@@ -81,6 +83,8 @@ review_status
   for explicitly separated runtime timestamps.
 - AC-17: no raw secret value appears in stdout, evidence or repository diff.
 - AC-18: independent review confirms no runtime source was imported.
+- AC-19: Artifact Registry and generated Index agree; Module Registry remains
+  unchanged and empty.
 
 ## Non-goals
 
