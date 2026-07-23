@@ -366,6 +366,164 @@ independent reviewer.
   and the assigned IMPLEMENTATION_WORKER records its acknowledgment and role/
   phase transition.
 
+## G2 IMPLEMENTATION_WORKER Acknowledgment and BUILD Start — 2026-07-23
+
+- Role transition: COMMIT_STEWARD (Codex, C1) -> IMPLEMENTATION_WORKER
+  (Claude, provider-neutral role contract, this entry records the
+  transition).
+- Read and accepted in full: `ADR-OW-003`, `OW-G2-SPEC-001`, and
+  `OW-G2-WO-001` (repaired through round 2, independently REVIEW_PASS'd).
+- Authorization commit verified: target HEAD = origin/main =
+  `3d1c316c343f9893b2e72672ef19c1ba68aa46f1`, worktree clean, branch `main`.
+  CVF core HEAD = origin/main = `27137db4d9aa2aea931ddd2507185d5c24943080`,
+  worktree clean, remote
+  `https://github.com/Blackbird081/Controlled-Vibe-Framework-CVF.git`. Both
+  match the authorized targets exactly; no drift.
+- BUILD ceiling accepted exactly as listed in `OW-G2-WO-001`'s "BUILD
+  changed-set ceiling" section: `.cvf/manifest.json`, `AGENTS.md`,
+  `docs/CVF_BOOTSTRAP_LOG_20260723.md`,
+  `scripts/manage_cvf_downstream_catalog.ps1`,
+  `scripts/lib/downstream_catalog/CvfDownstreamCatalogLib.ps1`,
+  `docs/catalog/schemas/{ARTIFACT_REGISTRY,MODULE_REGISTRY}.schema.json`,
+  `docs/catalog/{ARTIFACT_REGISTRY,MODULE_REGISTRY}.json`,
+  `docs/catalog/README.md`, `docs/INDEX.md`,
+  `docs/catalog/MODULE_CATALOG.md`, `scripts/manage_catalog.py` (delete only,
+  evidence-gated), `tests/test_catalog_management.py` (convert to Golden
+  regression tests), the two old-path legacy schema files (delete only,
+  evidence-gated), `docs/reviews/G2_*`, `IMPLEMENTATION_STATUS.json`,
+  `CVF_SESSION/ACTIVE_SESSION_STATE.json`, `CVF_SESSION/handoffs/**`, and the
+  three G2 authorization documents (repair-note updates only if needed). No
+  other path will be touched.
+- Stop conditions accepted as listed in `OW-G2-WO-001`: baseline drift,
+  further core-pin drift, dirty worktree, an undispositioned artifact path,
+  a Golden schema that cannot represent a claim honestly, a Module Registry
+  gaining an entry, an unresolved competing-writer question, a generated view
+  requiring a hand-edit, any F0 provenance/runtime path change, an
+  out-of-scope doctor failure, any need to modify CVF core, any need to
+  expand the changed-set ceiling, a secret, a live provider call, or an
+  undeterminable rollback/test strategy.
+- Codex retains independent REVIEWER and COMMIT_STEWARD authority for C2/C3.
+  This worker will not stage, commit, push, amend, self-approve REVIEW_PASS,
+  or declare FREEZE.
+- BUILD proceeds against exactly the tasks in `OW-G2-WO-001`: core-pin
+  re-pin, Golden Kit byte-identical copy, deliberate 28-row registry
+  migration, Golden-manager-only generated views, evidence-gated legacy
+  writer retirement, `docs/catalog/README.md` rewrite, and
+  `docs/reviews/G2_BUILD_EVIDENCE_2026-07-23.md`.
+
+## G2 BUILD Complete (Self-Reported) — 2026-07-23
+
+- `.cvf/manifest.json` re-pinned: `cvfCoreCommit` =
+  `27137db4d9aa2aea931ddd2507185d5c24943080`, `catalogKitVersion` = `"1.1"`,
+  `requiredDocs` extended with the 5 Golden governed surfaces,
+  `enforcementVersion` = `"3.1-governed-catalog"`.
+- Golden Kit copied byte-identical from the pinned core (SHA-256 verified
+  match for all four payload files — see
+  `docs/reviews/G2_BUILD_EVIDENCE_2026-07-23.md`):
+  `scripts/manage_cvf_downstream_catalog.ps1`,
+  `scripts/lib/downstream_catalog/CvfDownstreamCatalogLib.ps1`,
+  `docs/catalog/schemas/ARTIFACT_REGISTRY.schema.json`,
+  `docs/catalog/schemas/MODULE_REGISTRY.schema.json`.
+- Both registries migrated to the Golden closed schema per `ADR-OW-003`'s
+  28-row disposition table (5 migrate, 2 replace, 4 retire, 17 retain — all
+  17 Golden baseline entries present; Module Registry stays `modules: []`).
+- `scripts/manage_catalog.py` and the two old-path legacy schema files are
+  **deleted**; `tests/test_catalog_management.py` is **rewritten** as 23
+  regression tests that exercise the real Golden manager as a subprocess
+  (20 negative + 3 positive cases) — all pass, reproducing every guarantee
+  the retired suite proved. Only one canonical catalog writer remains.
+- `docs/catalog/README.md`, `AGENTS.md`, and
+  `docs/CVF_BOOTSTRAP_LOG_20260723.md` reconciled to the new pin and Golden
+  model.
+- Validation: `-Write` then `-Check` → `[PASS]`;
+  `python -m unittest discover -s tests -p "test_*.py"` → **116/116 OK**
+  (93 F0 + 23 Golden catalog, up from 104); `git diff --check` → exit 0;
+  workspace doctor → **PASS (25/25)**, no `BEHIND_PUBLIC_REMOTE`, no
+  core-pin mismatch, no `DAMAGED_GOVERNED_KIT`, no `MIGRATION_REQUIRED`, no
+  `LEGACY_PROJECT`.
+- One real failure occurred and was repaired during BUILD, not hidden: the
+  first draft of the new test file had a test-isolation bug (generated
+  views weren't reset between tests, so a hand-edit from one negative test
+  leaked into `test_real_repository_registries_pass_check`); fixed by
+  resetting `docs/INDEX.md`/`docs/catalog/MODULE_CATALOG.md` in `setUp()`.
+  Full detail in `docs/reviews/G2_BUILD_EVIDENCE_2026-07-23.md`.
+- F0 protected paths (`provenance/shift-operations/`,
+  `scripts/source_intake/`, `tests/source_intake/`, `docs/architecture/`)
+  and excluded paths (`docs/roadmaps/`, `apps/`, `packages/`, `database/`,
+  `.github/`) show empty `git diff` — untouched.
+- Full AC-01 through AC-22 evidence, the 28-row reconciliation, SHA-256
+  parity table, and negative-test matrix are recorded in
+  `docs/reviews/G2_BUILD_EVIDENCE_2026-07-23.md`.
+- This is a **self-report by IMPLEMENTATION_WORKER, not an independent
+  review**. No REVIEW_PASS is self-granted. No stage, commit, or push
+  occurred. No FREEZE occurred.
+- Next governed move (superseded by BUILD Repair Round 1 below): Codex acts
+  as independent REVIEWER over the BUILD evidence against
+  `OW-G2-SPEC-001`'s AC-01 through AC-22.
+
+## G2 BUILD Repair Round 1 — 2026-07-23
+
+- Role: REPAIR_WORKER (Claude, provider-neutral role contract). Codex holds
+  REVIEWER and COMMIT_STEWARD independently; this repair does not self-grant
+  REVIEW_PASS and does not stage, commit, or push.
+- Independent Codex post-BUILD review of the BUILD evidence above returned
+  two findings, both repaired in this round:
+  - **G2-BR1 — INCOMPLETE_ARTIFACT_DISPOSITION_DISCOVERY (repaired).**
+    `ADR-OW-003` disposition row #10 says `docs/catalog/README.md` is RETAIN
+    and discoverable via `.cvf/manifest.json requiredDocs` — but the
+    manifest did not actually list that path, so `AC-07`'s 28/28 claim was
+    not yet true by the ADR's own named mechanism. Golden's closed schema
+    has no `guide` family for this file and the generated Index does not
+    deep-link it, so `requiredDocs` is the only remaining discovery surface.
+    **Repair:** added `"docs/catalog/README.md"` to `.cvf/manifest.json`'s
+    `requiredDocs` array — no family was invented in the Golden Artifact
+    Registry to work around this. `docs/reviews/G2_BUILD_EVIDENCE_2026-07-23.md`'s
+    AC-03, AC-07, and disposition row #10 are corrected to state the actual
+    (not merely intended) discovery mechanism.
+  - **G2-BR2 — STALE_BOOTSTRAP_DOCTOR_RECEIPT (repaired).**
+    `docs/CVF_BOOTSTRAP_LOG_20260723.md` still showed
+    `[ ] Workspace doctor: PASS` even though both the BUILD self-report and
+    Codex's independent post-BUILD review had already reproduced doctor
+    PASS 25/25. **Repair:** checkbox corrected to
+    `[x] Workspace doctor: PASS (25/25)`, noting the result is a BUILD-time
+    self-report independently reproduced by Codex — not a FREEZE
+    disposition — and added the governed-catalog-check command
+    (`scripts\manage_cvf_downstream_catalog.ps1 -Check`) to Section 5's
+    Golden workflow. Live readiness, API health, frontend, and runtime-smoke
+    checkboxes remain unchecked; Section 6 (Approval) remains blank — this
+    tranche is not FREEZE'd.
+- Disclosed, not claimed away: `docs/roadmaps/CVF_OPERATIONS_WORKSPACE_ROADMAP.md`
+  still contains one historical line under its already-`COMPLETE` G1 section
+  naming `scripts/manage_catalog.py` as a description of what G1 built. The
+  roadmap is out of `OW-G2-WO-001`'s ceiling and untouched (`git diff` empty,
+  verified); fixing that historical line is deferred to a future roadmap
+  tranche. This is not an executable reference and does not revive the
+  deleted script. AC-11's "competing writer resolved" claim, and this
+  handoff's claims generally, are scoped to **no competing executable
+  writer or generation workflow** — not to zero textual mentions of the old
+  tool's name anywhere in repository history.
+- Repaired exactly the 4 paths authorized for this round
+  (`.cvf/manifest.json`, `docs/CVF_BOOTSTRAP_LOG_20260723.md`,
+  `docs/reviews/G2_BUILD_EVIDENCE_2026-07-23.md`, this handoff); no registry,
+  generated view, test file, Golden Kit payload file, or other path was
+  touched. `docs/INDEX.md`/`docs/catalog/MODULE_CATALOG.md` were not
+  regenerated since neither registry changed.
+- Re-validated after repair: `manage_cvf_downstream_catalog.ps1 -Check` →
+  `[PASS]`; `python -m unittest discover -s tests -p "test_*.py"` →
+  **116/116 OK** (unchanged); `git diff --check` → exit 0; workspace doctor →
+  **PASS (25/25)** (unchanged). Total BUILD changed set remains the same 20
+  paths; Module Registry still `modules: []`; the four Golden payload
+  SHA-256 hashes are unchanged (no payload file was touched); no secret was
+  read; no provider call was made; no stage/commit/push/self-review/FREEZE
+  occurred.
+- G2 BUILD status after this round: **repaired (BUILD repair round 1),
+  still self-reported only, not independently REVIEW_PASS'd, not FREEZE'd.**
+- Next governed move: Codex acts as independent REVIEWER performing a
+  **re-review** of the BUILD evidence as repaired, against `OW-G2-SPEC-001`'s
+  AC-01 through AC-22. Only after REVIEW_PASS may Codex COMMIT_STEWARD
+  stage/commit/rehearse/push C2/C3, and CLOSER/SESSION_SYNC_STEWARD close the
+  tranche.
+
 ## Claim Boundary
 
 G0 bootstrap and G1 structural Index/Catalog governance are complete. **F0
@@ -375,10 +533,14 @@ been imported into the target. No runtime governance behavior, Shift profile,
 release, deployment, provider integration, Agent Operations, Live View, or
 Human Takeover capability is claimed. G2's authorization package is authored,
 registered, repaired through round 2, and independently **REVIEW_PASS** with
-G2-R1 through G2-R5 closed. BUILD is authorized only after C1 commit,
-post-commit/pre-push rehearsal, push, and explicit IMPLEMENTATION_WORKER
-acknowledgment; no BUILD has occurred yet. The downstream project's own CVF
-core manifest pin and catalog schema are unchanged as of this entry. The
-workspace doctor is **not** PASS — it fails on the pre-BUILD manifest-pin
-drift (warn-only) and `DAMAGED_GOVERNED_KIT` (blocking), both expected and
-unresolved until BUILD.
+G2-R1 through G2-R5 closed; C1 is committed. **G2 BUILD is complete and has
+been repaired once (BUILD repair round 1: G2-BR1/G2-BR2 closed) but remains
+self-reported only** — core pin re-pinned to
+`27137db4d9aa2aea931ddd2507185d5c24943080`, Golden Catalog Kit 1.1 migrated,
+legacy writer retired (no competing *executable* writer remains; one
+historical, non-executable textual mention survives in the roadmap,
+disclosed above and deferred to a future roadmap tranche), doctor self-reports
+PASS (25/25). C2/C3 are not yet committed, no REVIEW_PASS has been
+self-granted, and FREEZE has not occurred. Module Registry remains empty
+throughout BUILD; no runtime capability claim is created. This claim stands
+only until Codex's independent REVIEWER re-review confirms it.
