@@ -1,21 +1,17 @@
 ﻿{
     "schemaVersion":  "1.0",
     "projectName":  "CVF-Operations-Workspace",
-    "overallStatus":  "GOVERNANCE_FOUNDATION",
-    "currentPhase":  "BUILD",
+    "overallStatus":  "SOURCE_BASELINE_READY",
+    "currentPhase":  "FREEZE",
     "completedCapabilities":  [
-                                  "Machine-governed documentation Index and source-backed Module Catalog (G1 structural governance)"
+                                  "Machine-governed documentation Index and source-backed Module Catalog (G1 structural governance)",
+                                  "Reproducible, read-only Shift Operations source-intake and compatibility baseline at f98f29e145fa002be070e9d44520d20f0f82dcb3 (F0)"
                               ],
-    "activeWorkOrders":  [
-                              {
-                                  "id":  "OW-F0-WO-001",
-                                  "status":  "AUTHORIZED_BUILD",
-                                  "path":  "docs/work_orders/F0_SOURCE_INTAKE_AND_COMPATIBILITY_BASELINE_WORK_ORDER.md"
-                              }
-                         ],
+    "activeWorkOrders":  [],
     "knownLimitations":  [
                              "No runtime module has been implemented or imported.",
-                             "The Shift source baseline has not yet been captured through the authorized F0 process.",
+                             "F0 captured a reproducible read-only baseline of shift-operations-workspace at commit f98f29e145fa002be070e9d44520d20f0f82dcb3; it did not import, adapt or reimplement any asset. Every import-ledger row is REFERENCE_ONLY, pending a dedicated F1+ work order and reviewer disposition.",
+                             "F0 authorizes no asset import. Every import-ledger row remains REFERENCE_ONLY until a dedicated F1+ work order and independent review.",
                              "Agent Operations, Live View, and Human Takeover are future roadmap items only."
                          ],
     "evidence":  [
@@ -23,7 +19,13 @@
                       "docs/decisions/ADR_2026-07-23_GREENFIELD_PLATFORM_AND_PROFILE_PORTING.md",
                       "docs/decisions/ADR_2026-07-23_INDEX_CATALOG_GOVERNANCE.md",
                       "scripts/manage_catalog.py",
-                      "tests/test_catalog_management.py"
+                      "tests/test_catalog_management.py",
+                      "docs/architecture/PLATFORM_BOUNDARY_AND_PORTING_RULES.md",
+                      "scripts/source_intake/capture.py",
+                      "tests/source_intake/test_capture_integration.py",
+                      "provenance/shift-operations/f98f29e145fa002be070e9d44520d20f0f82dcb3/capture_receipt.json",
+                      "docs/reviews/F0_BUILD_EVIDENCE_2026-07-23.md",
+                      "docs/reviews/F0_INDEPENDENT_REVIEW_2026-07-23.md"
                  ],
     "updatedAt":  "2026-07-23"
 }
