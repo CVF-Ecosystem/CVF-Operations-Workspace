@@ -1,8 +1,8 @@
 ﻿{
     "schemaVersion":  "1.0",
     "projectName":  "CVF-Operations-Workspace",
-    "currentMode":  "INTAKE",
-    "activePhase":  "INTAKE",
+    "currentMode":  "WORK_ORDER",
+    "activePhase":  "WORK_ORDER",
     "phaseModel":  [
                        "INTAKE",
                        "DESIGN",
@@ -13,9 +13,9 @@
                        "FREEZE"
                    ],
     "activeHandoff":  "CVF_SESSION/handoffs/AGENT_HANDOFF_V1_2026-07-23.md",
-    "nextAllowedMove":  "Complete INTAKE: record intent, context, constraints, risk, authority, and acceptance boundary.",
-    "parkedOperatorCheckpoint":  null,
-    "activeRole":  "ORCHESTRATOR",
-    "roleRoute":  "SINGLE_AGENT_MULTI_ROLE_ALLOWED",
+    "nextAllowedMove":  "Independently review OW-F0-WO-001 and record AUTHORIZE, AMEND, or REJECT. Do not begin BUILD before authorization.",
+    "parkedOperatorCheckpoint":  "OW-F0-WO-001 is authored and awaiting independent authorization review.",
+    "activeRole":  "REVIEWER",
+    "roleRoute":  "INDEPENDENT_REVIEW_REQUIRED",
     "updatedAt":  "2026-07-23"
 }
