@@ -15,8 +15,8 @@
 
 ## Artifact Registry Summary
 
-- Registered artifacts: **22**
-- By status: active=18, generated=1, historical=3
+- Registered artifacts: **28**
+- By status: active=20, generated=1, historical=7
 
 ## Catalog
 
@@ -34,13 +34,13 @@
 
 ## Specification
 
-- [F0 Source Intake and Compatibility Baseline Specification](specs/F0_SOURCE_INTAKE_AND_COMPATIBILITY_BASELINE_SPEC.md) — `active` — Requirements for reproducible source intake without runtime import.
+- [F0 Source Intake and Compatibility Baseline Specification](specs/F0_SOURCE_INTAKE_AND_COMPATIBILITY_BASELINE_SPEC.md) — `historical` — Requirements for reproducible source intake without runtime import.
 - [G1 Index and Catalog Governance Specification](specs/G1_INDEX_CATALOG_GOVERNANCE_SPEC.md) — `historical` — Requirements for schema-backed registries and drift checks.
 
 ## Work Order
 
-- [F0 Source Intake and Compatibility Baseline Work Order](work_orders/F0_SOURCE_INTAKE_AND_COMPATIBILITY_BASELINE_WORK_ORDER.md) — `active` — Authorized bounded F0 source-intake work order.
-- [F0 Work Order Amendment 1 — Index/Catalog Integration](work_orders/F0_SOURCE_INTAKE_AND_COMPATIBILITY_BASELINE_WORK_ORDER_AMENDMENT_1.md) — `active` — Requires Artifact Registry updates and generated Index while excluding Module Registry.
+- [F0 Source Intake and Compatibility Baseline Work Order](work_orders/F0_SOURCE_INTAKE_AND_COMPATIBILITY_BASELINE_WORK_ORDER.md) — `historical` — Authorized bounded F0 source-intake work order.
+- [F0 Work Order Amendment 1 — Index/Catalog Integration](work_orders/F0_SOURCE_INTAKE_AND_COMPATIBILITY_BASELINE_WORK_ORDER_AMENDMENT_1.md) — `historical` — Requires Artifact Registry updates and generated Index while excluding Module Registry.
 - [G1 Index and Catalog Governance Work Order](work_orders/G1_INDEX_CATALOG_GOVERNANCE_WORK_ORDER.md) — `historical` — Authorized R1 changed-set ceiling for Index/Catalog governance.
 - [G1 Work Order Amendment 1 — Python Generated Cache Exclusion](work_orders/G1_INDEX_CATALOG_GOVERNANCE_WORK_ORDER_AMENDMENT_1.md) — `historical` — Adds Python generated-cache exclusions to the G1 ceiling.
 
@@ -48,10 +48,16 @@
 
 - [Index and Catalog Management Tests](../tests/test_catalog_management.py) — `active` — Positive, negative and generated-drift checks for registry governance.
 - [Assessment Reconciliation](reviews/ASSESSMENT_RECONCILIATION_2026-07-23.md) — `active` — Reconciles the old rename assessment with the greenfield decision.
+- [F0 Source Intake Tests](../tests/source_intake/test_capture_integration.py) — `active` — End-to-end and negative-path evidence for the F0 capture tool; sibling unit tests in the same directory cover paths, redaction, pin verification, inventory, routes, migrations and the ledger.
+- [F0 Capture Receipt — Shift Operations @ f98f29e1](../provenance/shift-operations/f98f29e145fa002be070e9d44520d20f0f82dcb3/capture_receipt.json) — `active` — Reproducible F0 baseline receipt for Shift Operations at the pinned commit: file, route, migration, dependency, module and test evidence, plus the import ledger, live in this same directory.
+- [F0 Build Evidence and Acceptance-Criteria Matrix](reviews/F0_BUILD_EVIDENCE_2026-07-23.md) — `historical` — IMPLEMENTATION_WORKER self-report mapping OW-F0-SPEC-001's AC-01 through AC-19 to evidence; independently reviewed with two recorded and closed findings.
+- [F0 Independent Review Receipt](reviews/F0_INDEPENDENT_REVIEW_2026-07-23.md) — `active` — Independent AC-01 through AC-19 disposition, including closure of Git-blob hash correctness and evidence-count findings.
 
 ## Guide
 
 - [Index and Catalog Manager](../scripts/manage_catalog.py) — `active` — Validates registries, computes metrics and generates both human views.
+- [Platform Boundary and Porting Rules](architecture/PLATFORM_BOUNDARY_AND_PORTING_RULES.md) — `active` — Concrete dependency-direction and disposition rules F0's ledger followed, binding on future F1+ import work orders.
+- [F0 Source Intake Capture Tool](../scripts/source_intake/capture.py) — `active` — Captures a reproducible, secret-safe Shift Operations baseline into provenance/shift-operations/ without importing runtime source.
 
 ## Governed Artifact Families
 

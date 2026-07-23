@@ -203,8 +203,8 @@
       "title": "F0 Source Intake and Compatibility Baseline Specification",
       "path": "docs/specs/F0_SOURCE_INTAKE_AND_COMPATIBILITY_BASELINE_SPEC.md",
       "type": "specification",
-      "status": "active",
-      "authority": "authorized",
+      "status": "historical",
+      "authority": "frozen_spec",
       "entrypoint": false,
       "summary": "Requirements for reproducible source intake without runtime import.",
       "related": ["f0-work-order", "f0-work-order-amendment-1", "platform-roadmap"]
@@ -214,8 +214,8 @@
       "title": "F0 Source Intake and Compatibility Baseline Work Order",
       "path": "docs/work_orders/F0_SOURCE_INTAKE_AND_COMPATIBILITY_BASELINE_WORK_ORDER.md",
       "type": "work_order",
-      "status": "active",
-      "authority": "authorized",
+      "status": "historical",
+      "authority": "closed",
       "entrypoint": false,
       "summary": "Authorized bounded F0 source-intake work order.",
       "related": ["f0-spec", "f0-work-order-amendment-1"]
@@ -225,8 +225,8 @@
       "title": "F0 Work Order Amendment 1 — Index/Catalog Integration",
       "path": "docs/work_orders/F0_SOURCE_INTAKE_AND_COMPATIBILITY_BASELINE_WORK_ORDER_AMENDMENT_1.md",
       "type": "work_order",
-      "status": "active",
-      "authority": "authorized",
+      "status": "historical",
+      "authority": "closed_amendment",
       "entrypoint": false,
       "summary": "Requires Artifact Registry updates and generated Index while excluding Module Registry.",
       "related": ["f0-spec", "f0-work-order"]
@@ -263,6 +263,72 @@
       "entrypoint": false,
       "summary": "Adds Python generated-cache exclusions to the G1 ceiling.",
       "related": ["g1-work-order"]
+    },
+    {
+      "id": "f0-architecture-rules",
+      "title": "Platform Boundary and Porting Rules",
+      "path": "docs/architecture/PLATFORM_BOUNDARY_AND_PORTING_RULES.md",
+      "type": "guide",
+      "status": "active",
+      "authority": "canonical",
+      "entrypoint": false,
+      "summary": "Concrete dependency-direction and disposition rules F0's ledger followed, binding on future F1+ import work orders.",
+      "related": ["adr-greenfield", "f0-spec", "f0-source-intake-tool"]
+    },
+    {
+      "id": "f0-source-intake-tool",
+      "title": "F0 Source Intake Capture Tool",
+      "path": "scripts/source_intake/capture.py",
+      "type": "guide",
+      "status": "active",
+      "authority": "executable_control",
+      "entrypoint": false,
+      "summary": "Captures a reproducible, secret-safe Shift Operations baseline into provenance/shift-operations/ without importing runtime source.",
+      "related": ["f0-work-order", "f0-work-order-amendment-1", "f0-architecture-rules", "f0-source-intake-tests"]
+    },
+    {
+      "id": "f0-source-intake-tests",
+      "title": "F0 Source Intake Tests",
+      "path": "tests/source_intake/test_capture_integration.py",
+      "type": "review",
+      "status": "active",
+      "authority": "executable_evidence",
+      "entrypoint": false,
+      "summary": "End-to-end and negative-path evidence for the F0 capture tool; sibling unit tests in the same directory cover paths, redaction, pin verification, inventory, routes, migrations and the ledger.",
+      "related": ["f0-source-intake-tool"]
+    },
+    {
+      "id": "f0-capture-receipt",
+      "title": "F0 Capture Receipt — Shift Operations @ f98f29e1",
+      "path": "provenance/shift-operations/f98f29e145fa002be070e9d44520d20f0f82dcb3/capture_receipt.json",
+      "type": "review",
+      "status": "active",
+      "authority": "executable_evidence",
+      "entrypoint": false,
+      "summary": "Reproducible F0 baseline receipt for Shift Operations at the pinned commit: file, route, migration, dependency, module and test evidence, plus the import ledger, live in this same directory.",
+      "related": ["f0-source-intake-tool", "f0-work-order"]
+    },
+    {
+      "id": "f0-build-evidence",
+      "title": "F0 Build Evidence and Acceptance-Criteria Matrix",
+      "path": "docs/reviews/F0_BUILD_EVIDENCE_2026-07-23.md",
+      "type": "review",
+      "status": "historical",
+      "authority": "reviewed_worker_report",
+      "entrypoint": false,
+      "summary": "IMPLEMENTATION_WORKER self-report mapping OW-F0-SPEC-001's AC-01 through AC-19 to evidence; independently reviewed with two recorded and closed findings.",
+      "related": ["f0-work-order", "f0-work-order-amendment-1", "f0-spec", "f0-capture-receipt", "f0-source-intake-tool", "f0-source-intake-tests", "f0-independent-review"]
+    },
+    {
+      "id": "f0-independent-review",
+      "title": "F0 Independent Review Receipt",
+      "path": "docs/reviews/F0_INDEPENDENT_REVIEW_2026-07-23.md",
+      "type": "review",
+      "status": "active",
+      "authority": "review_pass",
+      "entrypoint": false,
+      "summary": "Independent AC-01 through AC-19 disposition, including closure of Git-blob hash correctness and evidence-count findings.",
+      "related": ["f0-build-evidence", "f0-work-order", "f0-spec", "f0-capture-receipt"]
     }
   ],
   "claimBoundary": "The artifact registry governs discovery and authority metadata; source, tests, implementation status and review evidence govern capability truth."
