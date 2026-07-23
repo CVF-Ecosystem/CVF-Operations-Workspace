@@ -7,15 +7,16 @@ Status: ACTIVE
 - Project: CVF-Operations-Workspace
 - Current mode: FREEZE
 - Active phase: FREEZE
-- Active role: COMMIT_STEWARD (Codex, explicitly transitioned after
-  independent REVIEW_PASS)
-- Next allowed move: commit C3 review receipt and continuity closure, rehearse
-  the full C1/C2/C3 stack, then push `main`. No F1+ BUILD is authorized
-  without a new governed work order.
-- Parked operator checkpoint: F0 REVIEW_PASS is recorded. C1
+- Active role: ORCHESTRATOR (parked after REVIEWER, REPAIR_WORKER and
+  COMMIT_STEWARD responsibilities completed)
+- Next allowed move: none until the owner opens a separate governed tranche.
+  No F1+ BUILD or upstream CVF bootstrap-learning work is authorized by F0.
+- Parked operator checkpoint: F0 REVIEW_PASS and FREEZE are complete. C1
   `8c193984c5fc158ca65ea554dd8d4934d12c28f4` and C2
-  `39541d5e84b06f8650ce2b0f6341425c7a05d7bf` passed sibling-worktree
-  rehearsal. C3 and final push remain.
+  `39541d5e84b06f8650ce2b0f6341425c7a05d7bf` passed their sibling-worktree
+  rehearsals; C3 is
+  `3064d4bce08d36f553516d59719358fd8788cbcf`. Full-stack rehearsal and push
+  are execution receipts, not new BUILD authority.
 
 ## Seven-Step Control Chain
 
@@ -129,7 +130,8 @@ independent reviewer.
   `docs/reviews/F0_INDEPENDENT_REVIEW_2026-07-23.md`.
 - C1 `8c193984c5fc158ca65ea554dd8d4934d12c28f4` and C2
   `39541d5e84b06f8650ce2b0f6341425c7a05d7bf` passed rollback rehearsal in
-  temporary sibling worktrees and were left local pending C3/final push.
+  temporary sibling worktrees. C3 review/continuity commit is
+  `3064d4bce08d36f553516d59719358fd8788cbcf`.
 
 ## Open Work
 
