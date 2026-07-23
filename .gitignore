@@ -1,1 +1,4 @@
-﻿.cvf/local-binding.json
+.cvf/local-binding.json
+__pycache__/
+*.py[cod]
+.pytest_cache/

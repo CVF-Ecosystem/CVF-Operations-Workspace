@@ -1,0 +1,48 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://github.com/CVF-Ecosystem/CVF-Operations-Workspace/raw/main/docs/catalog/MODULE_REGISTRY.schema.json",
+  "title": "CVF Operations Workspace Module Registry",
+  "type": "object",
+  "additionalProperties": false,
+  "required": ["schemaVersion", "projectName", "statusLegend", "cvfControlVocabulary", "modules", "metrics", "claimBoundary"],
+  "properties": {
+    "schemaVersion": {"const": "1.0"},
+    "projectName": {"const": "CVF-Operations-Workspace"},
+    "description": {"type": "string", "minLength": 1},
+    "statusLegend": {"type": "object", "minProperties": 1, "additionalProperties": {"type": "string", "minLength": 1}},
+    "cvfControlVocabulary": {"type": "array", "uniqueItems": true, "items": {"type": "string"}},
+    "modules": {
+      "type": "array",
+      "items": {
+        "type": "object",
+        "additionalProperties": false,
+        "required": ["id", "path", "kind", "purpose", "status", "cvfControls", "enforcement", "dependsOn", "tests", "nextStep", "metrics"],
+        "properties": {
+          "id": {"type": "string", "pattern": "^[a-z0-9]+(?:-[a-z0-9]+)*$"},
+          "path": {"type": "string", "minLength": 1, "pattern": "^[^\\\\]+$"},
+          "kind": {"type": "string", "enum": ["app", "package", "service", "tool"]},
+          "purpose": {"type": "string", "minLength": 1},
+          "status": {"type": "string", "minLength": 1},
+          "cvfControls": {"type": "array", "uniqueItems": true, "items": {"type": "string"}},
+          "enforcement": {"type": "string", "minLength": 1},
+          "contract": {"type": "string"},
+          "dependsOn": {"type": "array", "uniqueItems": true, "items": {"type": "string"}},
+          "tests": {"type": "array", "uniqueItems": true, "items": {"type": "string"}},
+          "nextStep": {"type": "string", "minLength": 1},
+          "metrics": {
+            "type": "object",
+            "additionalProperties": false,
+            "required": ["codeLoc", "codeFiles", "nonemptyCodeFiles"],
+            "properties": {
+              "codeLoc": {"type": "integer", "minimum": 0},
+              "codeFiles": {"type": "integer", "minimum": 0},
+              "nonemptyCodeFiles": {"type": "integer", "minimum": 0}
+            }
+          }
+        }
+      }
+    },
+    "metrics": {"type": "object"},
+    "claimBoundary": {"type": "string", "minLength": 1}
+  }
+}
