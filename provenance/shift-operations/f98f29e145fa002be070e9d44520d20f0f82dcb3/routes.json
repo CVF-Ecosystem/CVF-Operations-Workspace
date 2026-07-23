@@ -1,0 +1,114 @@
+[
+  {
+    "app": "integration-edge",
+    "method": "GET",
+    "path": "/health",
+    "function": "health",
+    "source_path": "apps/integration-edge/src/integration_edge/main.py"
+  },
+  {
+    "app": "integration-edge",
+    "method": "POST",
+    "path": "/webhooks/generic",
+    "function": "generic_webhook",
+    "source_path": "apps/integration-edge/src/integration_edge/webhook/router.py"
+  },
+  {
+    "app": "workspace-api",
+    "method": "POST",
+    "path": "/auth/login",
+    "function": "login",
+    "source_path": "apps/workspace-api/src/workspace_api/auth/router.py"
+  },
+  {
+    "app": "workspace-api",
+    "method": "POST",
+    "path": "/corrections/events/{event_id}",
+    "function": "correct_event",
+    "source_path": "apps/workspace-api/src/workspace_api/api/corrections/router.py"
+  },
+  {
+    "app": "workspace-api",
+    "method": "POST",
+    "path": "/customer-requests",
+    "function": "create_customer_request",
+    "source_path": "apps/workspace-api/src/workspace_api/api/customer_requests/router.py"
+  },
+  {
+    "app": "workspace-api",
+    "method": "POST",
+    "path": "/customer-requests/{request_id}/transition",
+    "function": "transition_customer_request",
+    "source_path": "apps/workspace-api/src/workspace_api/api/customer_requests/router.py"
+  },
+  {
+    "app": "workspace-api",
+    "method": "POST",
+    "path": "/events",
+    "function": "create_event",
+    "source_path": "apps/workspace-api/src/workspace_api/api/events/router.py"
+  },
+  {
+    "app": "workspace-api",
+    "method": "POST",
+    "path": "/events/{event_id}/confirm",
+    "function": "confirm_event",
+    "source_path": "apps/workspace-api/src/workspace_api/api/events/router.py"
+  },
+  {
+    "app": "workspace-api",
+    "method": "GET",
+    "path": "/health",
+    "function": "health",
+    "source_path": "apps/workspace-api/src/workspace_api/api/health/router.py"
+  },
+  {
+    "app": "workspace-api",
+    "method": "POST",
+    "path": "/messages",
+    "function": "create_message",
+    "source_path": "apps/workspace-api/src/workspace_api/api/messages/router.py"
+  },
+  {
+    "app": "workspace-api",
+    "method": "GET",
+    "path": "/shifts",
+    "function": "list_shifts",
+    "source_path": "apps/workspace-api/src/workspace_api/api/shifts/router.py"
+  },
+  {
+    "app": "workspace-api",
+    "method": "POST",
+    "path": "/shifts",
+    "function": "create_shift",
+    "source_path": "apps/workspace-api/src/workspace_api/api/shifts/router.py"
+  },
+  {
+    "app": "workspace-api",
+    "method": "POST",
+    "path": "/shifts/{shift_id}/close",
+    "function": "close_shift",
+    "source_path": "apps/workspace-api/src/workspace_api/api/shifts/router.py"
+  },
+  {
+    "app": "workspace-api",
+    "method": "POST",
+    "path": "/shifts/{shift_id}/freeze",
+    "function": "freeze_shift",
+    "source_path": "apps/workspace-api/src/workspace_api/api/shifts/router.py"
+  },
+  {
+    "app": "workspace-api",
+    "method": "POST",
+    "path": "/tasks",
+    "function": "create_task",
+    "source_path": "apps/workspace-api/src/workspace_api/api/tasks/router.py"
+  },
+  {
+    "app": "workspace-api",
+    "method": "POST",
+    "path": "/tasks/{task_id}/transition",
+    "function": "transition_task",
+    "source_path": "apps/workspace-api/src/workspace_api/api/tasks/router.py"
+  }
+]

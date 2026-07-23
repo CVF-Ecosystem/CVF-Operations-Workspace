@@ -1,0 +1,20 @@
+[
+  {
+    "order": 0,
+    "source_path": "database/migrations/001_foundation.sql",
+    "sha256": "5f2e070d01e5817a004d3d2a260aeef17565ae9f89526c31428b268231982e19",
+    "size_bytes": 2862
+  },
+  {
+    "order": 1,
+    "source_path": "database/migrations/002_tasks_customers_reports.sql",
+    "sha256": "1a971b4f224c54054a88d678fe9e744b617eef7b125ccd634c008574a9632e28",
+    "size_bytes": 1416
+  },
+  {
+    "order": 2,
+    "source_path": "database/migrations/003_users.sql",
+    "sha256": "31104961fa97d209283242df9f168cd0c2299417d96fa190913c29638fedcd82",
+    "size_bytes": 345
+  }
+]

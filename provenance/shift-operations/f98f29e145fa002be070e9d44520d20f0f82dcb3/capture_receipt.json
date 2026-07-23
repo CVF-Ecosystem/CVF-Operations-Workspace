@@ -1,0 +1,18 @@
+{
+  "schema_version": 1,
+  "source_repository": "shift-operations-workspace",
+  "source_commit": "f98f29e145fa002be070e9d44520d20f0f82dcb3",
+  "source_status_before": "?? docs/decisions/ASSESSMENT_2026-07-23_OPERATIONS_WORKSPACE_REPOSITIONING.md\n",
+  "source_status_after": "?? docs/decisions/ASSESSMENT_2026-07-23_OPERATIONS_WORKSPACE_REPOSITIONING.md\n",
+  "source_status_unchanged": true,
+  "counts": {
+    "tracked_files_inventoried": 577,
+    "tracked_files_excluded": 3,
+    "routes_discovered": 16,
+    "migrations_discovered": 3,
+    "import_edges_discovered": 3,
+    "test_commands_attempted": 4,
+    "ledger_rows": 577
+  },
+  "claim_boundary": "This receipt proves a reproducible read-only baseline was captured at the pinned commit. It does not import runtime source, does not claim any module status, and does not authorize any asset for porting."
+}
