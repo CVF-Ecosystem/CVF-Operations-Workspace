@@ -2,14 +2,14 @@
     "schemaVersion":  "1.0",
     "projectName":  "CVF-Operations-Workspace",
     "overallStatus":  "GOVERNANCE_FOUNDATION",
-    "currentPhase":  "WORK_ORDER",
+    "currentPhase":  "BUILD",
     "completedCapabilities":  [
                                   "Machine-governed documentation Index and source-backed Module Catalog (G1 structural governance)"
                               ],
     "activeWorkOrders":  [
                               {
                                   "id":  "OW-F0-WO-001",
-                                  "status":  "AUTHORED_NOT_AUTHORIZED",
+                                  "status":  "AUTHORIZED_BUILD",
                                   "path":  "docs/work_orders/F0_SOURCE_INTAKE_AND_COMPATIBILITY_BASELINE_WORK_ORDER.md"
                               }
                          ],

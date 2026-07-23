@@ -1,8 +1,8 @@
 ﻿{
     "schemaVersion":  "1.0",
     "projectName":  "CVF-Operations-Workspace",
-    "currentMode":  "WORK_ORDER",
-    "activePhase":  "WORK_ORDER",
+    "currentMode":  "BUILD",
+    "activePhase":  "BUILD",
     "phaseModel":  [
                        "INTAKE",
                        "DESIGN",
@@ -13,9 +13,9 @@
                        "FREEZE"
                    ],
     "activeHandoff":  "CVF_SESSION/handoffs/AGENT_HANDOFF_V1_2026-07-23.md",
-    "nextAllowedMove":  "Independently review OW-F0-WO-001 and record AUTHORIZE, AMEND, or REJECT. Do not begin F0 BUILD before authorization.",
-    "parkedOperatorCheckpoint":  "G1 is CLOSED; OW-F0-WO-001 remains authored and unauthorized.",
-    "activeRole":  "REVIEWER",
-    "roleRoute":  "R1_SINGLE_AGENT_EXPLICIT_TRANSITIONS",
+    "nextAllowedMove":  "Implementation worker acknowledges OW-F0-WO-001 and Amendment 1, builds only the authorized F0 ceiling, leaves changes unstaged, and stops at READY_FOR_INDEPENDENT_F0_REVIEW.",
+    "parkedOperatorCheckpoint":  "G1 is CLOSED; F0 is authorized for bounded BUILD. Codex retains independent REVIEWER/COMMIT_STEWARD responsibility.",
+    "activeRole":  "IMPLEMENTATION_WORKER",
+    "roleRoute":  "IMPLEMENTATION_WORKER_THEN_INDEPENDENT_REVIEW",
     "updatedAt":  "2026-07-23"
 }

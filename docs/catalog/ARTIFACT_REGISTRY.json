@@ -203,22 +203,33 @@
       "title": "F0 Source Intake and Compatibility Baseline Specification",
       "path": "docs/specs/F0_SOURCE_INTAKE_AND_COMPATIBILITY_BASELINE_SPEC.md",
       "type": "specification",
-      "status": "awaiting_authorization",
-      "authority": "authored",
+      "status": "active",
+      "authority": "authorized",
       "entrypoint": false,
       "summary": "Requirements for reproducible source intake without runtime import.",
-      "related": ["f0-work-order", "platform-roadmap"]
+      "related": ["f0-work-order", "f0-work-order-amendment-1", "platform-roadmap"]
     },
     {
       "id": "f0-work-order",
       "title": "F0 Source Intake and Compatibility Baseline Work Order",
       "path": "docs/work_orders/F0_SOURCE_INTAKE_AND_COMPATIBILITY_BASELINE_WORK_ORDER.md",
       "type": "work_order",
-      "status": "awaiting_authorization",
-      "authority": "authored_not_authorized",
+      "status": "active",
+      "authority": "authorized",
       "entrypoint": false,
-      "summary": "Bounded F0 work order; BUILD remains prohibited.",
-      "related": ["f0-spec"]
+      "summary": "Authorized bounded F0 source-intake work order.",
+      "related": ["f0-spec", "f0-work-order-amendment-1"]
+    },
+    {
+      "id": "f0-work-order-amendment-1",
+      "title": "F0 Work Order Amendment 1 — Index/Catalog Integration",
+      "path": "docs/work_orders/F0_SOURCE_INTAKE_AND_COMPATIBILITY_BASELINE_WORK_ORDER_AMENDMENT_1.md",
+      "type": "work_order",
+      "status": "active",
+      "authority": "authorized",
+      "entrypoint": false,
+      "summary": "Requires Artifact Registry updates and generated Index while excluding Module Registry.",
+      "related": ["f0-spec", "f0-work-order"]
     },
     {
       "id": "g1-spec",
