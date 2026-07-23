@@ -1,19 +1,26 @@
 ﻿{
     "schemaVersion":  "1.0",
     "projectName":  "CVF-Operations-Workspace",
-    "overallStatus":  "BOOTSTRAPPED",
-    "currentPhase":  "INTAKE",
+    "overallStatus":  "PLANNING",
+    "currentPhase":  "WORK_ORDER",
     "completedCapabilities":  [
 
                               ],
     "activeWorkOrders":  [
-
+                              {
+                                  "id":  "OW-F0-WO-001",
+                                  "status":  "AUTHORED_NOT_AUTHORIZED",
+                                  "path":  "docs/work_orders/F0_SOURCE_INTAKE_AND_COMPATIBILITY_BASELINE_WORK_ORDER.md"
+                              }
                          ],
     "knownLimitations":  [
-                             "Project implementation status has not yet been assessed."
+                             "No runtime module has been implemented or imported.",
+                             "The Shift source baseline has not yet been captured through the authorized F0 process.",
+                             "Agent Operations, Live View, and Human Takeover are future roadmap items only."
                          ],
     "evidence":  [
-
+                      "docs/reviews/ASSESSMENT_RECONCILIATION_2026-07-23.md",
+                      "docs/decisions/ADR_2026-07-23_GREENFIELD_PLATFORM_AND_PROFILE_PORTING.md"
                  ],
     "updatedAt":  "2026-07-23"
 }
