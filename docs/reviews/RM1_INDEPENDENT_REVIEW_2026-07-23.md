@@ -63,6 +63,10 @@ F1A is the next candidate, not an active work order. It requires a new
 
 ## Commit disposition
 
-C1 and C2 passed post-commit/pre-push sibling-worktree rehearsals and were
-pushed. C3 closure becomes effective only after C3 passes the same rehearsal
-and is pushed.
+C1, C2, and C3 passed post-commit/pre-push sibling-worktree rehearsals and
+were pushed. C3 is
+`0f0fecd8e1a3bd462f375e97de5ea3555cbdde5d`; RM1 FREEZE is effective.
+
+Post-push continuity finding `RM1-CR1` recorded on 2026-07-24: C3 succeeded
+but canonical continuity still described C3 as pending. The Codex-owned
+closure surfaces were synchronized without changing RM1 BUILD content.
