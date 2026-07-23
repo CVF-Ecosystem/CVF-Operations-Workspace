@@ -1,8 +1,8 @@
 ﻿{
     "schemaVersion":  "1.0",
     "projectName":  "CVF-Operations-Workspace",
-    "currentMode":  "REVIEW",
-    "activePhase":  "REVIEW",
+    "currentMode":  "FREEZE",
+    "activePhase":  "FREEZE",
     "phaseModel":  [
                        "INTAKE",
                        "DESIGN",
@@ -13,9 +13,9 @@
                        "FREEZE"
                    ],
     "activeHandoff":  "CVF_SESSION/handoffs/AGENT_HANDOFF_V1_2026-07-23.md",
-    "nextAllowedMove":  "RM1 documentation BUILD is self-reported complete and has been repaired twice (docs/reviews/RM1_BUILD_EVIDENCE_2026-07-23.md Section 10): roadmap rewritten and repaired (509 lines), learning assessment authored and repaired (256 lines, 161/161 candidates classified), continuity updated -- all strictly within the IMPLEMENTATION_WORKER-only ceiling; docs/reviews/RM1_INDEPENDENT_REVIEW_2026-07-23.md was not touched (Codex-only C3 ceiling); nothing was staged, committed, or pushed. BUILD repair round 1 closed RM1-BR1 (BLOCKED_CONTINUITY_DRIFT, continuity-only). BUILD repair round 2 closed RM1-BR2 (target commit pins now explicit in the roadmap: RM1 input-verification baseline 34519a3b17b416b11f64bae1da602c8fb9a7eb1a, RM1 authorization/BUILD baseline C1 ed0d1cd7ea70a51ed8e350afed8cc3b38647ca45), RM1-BR3 (F2 expanded into fully-structured F2A-F2G sub-tranches), RM1-BR4 (all six RM1-AC-06 exclusions now explicit in the roadmap itself), RM1-BR5 (learning-assessment phase-domain count corrected from a mislabeled 55 to the true 56, with no change to the 156/161 totals or 0/99/42/20 dispositions), and RM1-BR6 (BUILD evidence's false 'docs/roadmaps/ contains exactly one file' claim corrected -- it contains two: the roadmap and a pre-existing, untouched README.md folder-family stub). This file's own currentMode/activePhase/activeRole were already correct and remain unchanged by both repair rounds. Codex now acts as independent REVIEWER over the BUILD evidence as repaired, against OW-RM1-SPEC-001's RM1-AC-01 through RM1-AC-26. Only after REVIEW_PASS may Codex COMMIT_STEWARD stage/commit/rehearse/push C2/C3, and CLOSER/SESSION_SYNC_STEWARD close the tranche. F1A remains not opened.",
+    "nextAllowedMove":  "RM1 is independently REVIEW_PASS and at FREEZE closure. C1 ed0d1cd7ea70a51ed8e350afed8cc3b38647ca45 and C2 701c9e07b20b4f6362398e753669dd543cd0599c passed post-commit/pre-push rehearsals and were pushed. Codex COMMIT_STEWARD must explicitly stage only the four C3 closure paths, commit, rehearse C3 in a sibling worktree, and push. After that RM1 is CLOSED and parked. F1A is only the next candidate and requires a new INTAKE -> DESIGN -> SPEC -> WORK_ORDER sequence.",
     "parkedOperatorCheckpoint":  "G0/G1/F0/G2 remain complete, independently REVIEW_PASS'd, and FREEZE'd (G2 authorization C1 3d1c316c343f9893b2e72672ef19c1ba68aa46f1, BUILD C2 4cea16eaf7997adec7e3e821db894b577f871834, both rehearsed post-commit/pre-push and pushed). Golden Catalog Kit 1.1 is pinned to CVF core 27137db4d9aa2aea931ddd2507185d5c24943080, doctor passes 25/25, 116 tests pass, Module Registry remains empty. RM1 authorization (ADR-OW-004, OW-RM1-SPEC-001, OW-RM1-WO-001) is REVIEW_PASS'd with RM1-R1/RM1-R2/RM1-R3 closed and committed as C1 ed0d1cd7ea70a51ed8e350afed8cc3b38647ca45. Delta-accounting failure history (do not erase): opening estimate 25/21/4/169 (superseded, omitted a changed file); first correction 26/21/5/168 accepted as an RM1-R1 Codex reviewer amendment (superseded); repair round 2 found (RM1-R3, ASYMMETRIC_CACHE_FILTER_INVALID_DELTA) that '168 new' came from comparing the old baseline with __pycache__ excluded against the full bundle with __pycache__ still included -- an asymmetric comparison, not an input change -- and Codex withdrew 168 and accepted the symmetric 26/21 unchanged/5 changed/156 new/161 total disposition candidates as current authoritative baseline. Integrity facts: 194 physical files, 191 manifest entries (manifest does not list itself), 12 total .pyc (10 manifest-listed, 2 not) -- all excluded from candidacy regardless of manifest membership.",
-    "activeRole":  "REVIEWER",
+    "activeRole":  "ORCHESTRATOR",
     "roleRoute":  "ORCHESTRATOR_THEN_SPEC_AUTHOR_THEN_WORK_ORDER_AUTHOR_THEN_REVIEWER_THEN_COMMIT_STEWARD_C1_THEN_IMPLEMENTATION_WORKER_THEN_REVIEWER_THEN_REPAIR_WORKER_IF_NEEDED_THEN_RE_REVIEW_THEN_COMMIT_STEWARD_C2_C3_THEN_CLOSER_THEN_SESSION_SYNC_STEWARD_THEN_ORCHESTRATOR",
     "updatedAt":  "2026-07-23"
 }
