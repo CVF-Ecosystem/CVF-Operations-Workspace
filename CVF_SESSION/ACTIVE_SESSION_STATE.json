@@ -1,8 +1,8 @@
 ﻿{
     "schemaVersion":  "1.0",
     "projectName":  "CVF-Operations-Workspace",
-    "currentMode":  "FREEZE",
-    "activePhase":  "FREEZE",
+    "currentMode":  "WORK_ORDER",
+    "activePhase":  "WORK_ORDER",
     "phaseModel":  [
                        "INTAKE",
                        "DESIGN",
@@ -13,9 +13,9 @@
                        "FREEZE"
                    ],
     "activeHandoff":  "CVF_SESSION/handoffs/AGENT_HANDOFF_V1_2026-07-23.md",
-    "nextAllowedMove":  "F1A is CLOSED, FROZEN and PARKED. Authorization C1 d731762a9e135b075261831ed7eb0df4badc98dd, BUILD C2 9e59cfdcf3d1da2644540088e748123cd41f14e9, and independent-review/FREEZE C3 4cdd7f06e040fee43ab733d3dc608aa4d425452b each passed post-commit/pre-push sibling-worktree rehearsal and were pushed to origin/main. No F1B work is opened. Return to ORCHESTRATOR for the next separately governed tranche.",
+    "nextAllowedMove":  "XR1_OPERATIONS_AUTHORIZATION_REVIEW_PASS: XR1-R1 through XR1-R13 and XR1-R7B are closed without waiver, including the bounded reviewer clarification defining non-circular canonical manifestSha256 computation. Codex acts as COMMIT_STEWARD and may stage exactly the six XR1 authorization paths, create XR1-O-C1, run the post-commit/pre-push sibling-worktree rehearsal, and push only after PASS. No XR1 Operations BUILD; after XR1-O-C1 is pushed, the separately governed Shift-side XR1-S-C1/C2/C3 sequence is the next program dependency.",
     "parkedOperatorCheckpoint":  "G0/G1/F0/G2/RM1 and F1A are complete, independently REVIEW_PASS'd, FROZEN and parked. F1A receipts: C1 d731762a9e135b075261831ed7eb0df4badc98dd; C2 9e59cfdcf3d1da2644540088e748123cd41f14e9; C3 4cdd7f06e040fee43ab733d3dc608aa4d425452b; F1A-AC-01 through F1A-AC-31 PASS; F1A-BR1 closed without waiver; 177/177 tests, Golden catalog and doctor 25/25 PASS. F1A freezes contracts only, no runtime/provider/governance behavior. RM1 C1 ed0d1cd7ea70a51ed8e350afed8cc3b38647ca45, C2 701c9e07b20b4f6362398e753669dd543cd0599c, and C3 0f0fecd8e1a3bd462f375e97de5ea3555cbdde5d remain closed. Golden Catalog Kit 1.1 remains pinned to CVF core 27137db4d9aa2aea931ddd2507185d5c24943080.",
-    "activeRole":  "ORCHESTRATOR",
-    "roleRoute":  "ORCHESTRATOR_THEN_SPEC_AUTHOR_THEN_WORK_ORDER_AUTHOR_THEN_REPAIR_WORKER_AUTHORIZATION_ROUND_1_THEN_RE_REVIEW_THEN_REPAIR_WORKER_AUTHORIZATION_ROUND_2_THEN_RE_REVIEW_2_THEN_COMMIT_STEWARD_C1_THEN_IMPLEMENTATION_WORKER_THEN_REVIEWER_THEN_REVIEWER_AMENDMENT_F1A_BR1_THEN_COMMIT_STEWARD_C2_THEN_REVIEWER_INDEPENDENT_RECEIPT_THEN_COMMIT_STEWARD_C3_THEN_COMMIT_STEWARD_C4_POST_PUSH_SYNC_THEN_CLOSER_THEN_SESSION_SYNC_STEWARD_THEN_ORCHESTRATOR",
+    "activeRole":  "COMMIT_STEWARD",
+    "roleRoute":  "ORCHESTRATOR_THEN_SPEC_AUTHOR_THEN_WORK_ORDER_AUTHOR_THEN_REPAIR_WORKER_AUTHORIZATION_ROUND_1_THEN_RE_REVIEW_THEN_REPAIR_WORKER_AUTHORIZATION_ROUND_2_THEN_RE_REVIEW_2_THEN_REPAIR_WORKER_AUTHORIZATION_ROUND_3_THEN_RE_REVIEW_3_THEN_COMMIT_STEWARD_XR1_O_C1_THEN_SHIFT_SIDE_XR1_S_C1_C2_C3_THEN_IMPLEMENTATION_WORKER_XR1_O_C2_THEN_REVIEWER_THEN_REPAIR_WORKER_IF_NEEDED_THEN_RE_REVIEW_THEN_COMMIT_STEWARD_XR1_O_C2_THEN_REVIEWER_INDEPENDENT_RECEIPT_THEN_COMMIT_STEWARD_XR1_O_C3_THEN_CLOSER_THEN_SESSION_SYNC_STEWARD_THEN_ORCHESTRATOR",
     "updatedAt":  "2026-07-24"
 }
