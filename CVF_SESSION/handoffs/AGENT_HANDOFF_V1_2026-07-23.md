@@ -1972,3 +1972,22 @@ frontend or deployment. No live AI-provider call was required or made.
   `REVIEWER -> COMMIT_STEWARD`. BUILD remains prohibited. The next allowed
   action is explicit-path staging of the six authorization paths for
   `XR1-O-C1`, followed by post-commit/pre-push sibling-worktree rehearsal.
+
+## XR1-O-C1 Commit, Rehearsal and Push — 2026-07-24
+
+- Exact six-path authorization commit:
+  `74170650bd7f2732bc2eec985e5b891df6d45897`.
+- The first rehearsal location under the system temp directory correctly
+  failed only the three sibling-relative topology checks (core path,
+  workspace rules, required workspace-rules document); it was removed and
+  no push occurred from that attempt.
+- The required rerun used a direct sibling worktree under `CVF-Workspace`
+  and PASSed: 177/177 tests, Golden catalog, workspace doctor 25/25,
+  `git diff --check`, exact commit hash and clean rehearsal worktree.
+- C1 was pushed afterward; local `HEAD` and Operations `origin/main` both
+  equal `74170650bd7f2732bc2eec985e5b891df6d45897`.
+- Role transition: `COMMIT_STEWARD -> ORCHESTRATOR`. XR1 Operations BUILD
+  remains prohibited. Next dependency is the separately governed Shift
+  sequence `XR1-S-C1 -> XR1-S-C2 -> XR1-S-C3`; Operations `XR1-O-C2`
+  remains blocked until the exact Shift C3 closure commit is independently
+  confirmed.
