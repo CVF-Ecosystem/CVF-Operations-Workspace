@@ -1,8 +1,8 @@
 ﻿{
     "schemaVersion":  "1.0",
     "projectName":  "CVF-Operations-Workspace",
-    "overallStatus":  "F1A_BUILD_REVIEW_PASS_PENDING_C2",
-    "currentPhase":  "REVIEW",
+    "overallStatus":  "F1A_REVIEW_PASS_FREEZE_PENDING_C3_PUSH",
+    "currentPhase":  "FREEZE",
     "completedCapabilities":  [
                                   "Machine-governed documentation Index and source-backed Module Catalog (G1 structural governance)",
                                   "Reproducible, read-only Shift Operations source-intake and compatibility baseline at f98f29e145fa002be070e9d44520d20f0f82dcb3 (F0)",
@@ -72,7 +72,8 @@
                       "requirements-contract-validator.txt",
                       "tests/contracts/test_f1a_contracts.py",
                       "docs/reviews/F1A_BUILD_EVIDENCE_2026-07-24.md",
-                      "docs/catalog/MODULE_REGISTRY.json"
+                      "docs/catalog/MODULE_REGISTRY.json",
+                      "docs/reviews/F1A_INDEPENDENT_REVIEW_2026-07-24.md"
                  ],
     "updatedAt":  "2026-07-24"
 }
