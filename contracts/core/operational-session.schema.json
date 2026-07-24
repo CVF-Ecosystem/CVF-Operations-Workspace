@@ -1,0 +1,94 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "urn:cvf-operations-workspace:contracts:core:operational-session:v1",
+  "title": "Operational Session",
+  "description": "F1A closed contract: OperationalSession. Contract-only — implies no runtime state machine, command execution, governance enforcement, or provider behavior (ADR-OW-005, OW-F1A-SPEC-001 claim boundary). Lifecycle vocabulary DRAFT -> OPEN -> ACTIVE -> CLOSING -> CLOSED -> FROZEN is asserted as a closed enum only; no transition guard is implemented here.",
+  "type": "object",
+  "additionalProperties": false,
+  "properties": {
+    "session_id": {
+      "$ref": "urn:cvf-operations-workspace:contracts:core:common-definitions:v1#/$defs/identifier"
+    },
+    "workspace_id": {
+      "$ref": "urn:cvf-operations-workspace:contracts:core:common-definitions:v1#/$defs/identifier"
+    },
+    "profile_id": {
+      "$ref": "urn:cvf-operations-workspace:contracts:core:common-definitions:v1#/$defs/identifier"
+    },
+    "profile_version": {
+      "$ref": "urn:cvf-operations-workspace:contracts:core:common-definitions:v1#/$defs/semver"
+    },
+    "title": {
+      "type": "string",
+      "minLength": 1
+    },
+    "state": {
+      "enum": ["DRAFT", "OPEN", "ACTIVE", "CLOSING", "CLOSED", "FROZEN"]
+    },
+    "participant_references": {
+      "type": "array",
+      "items": {
+        "$ref": "urn:cvf-operations-workspace:contracts:core:common-definitions:v1#/$defs/identifier"
+      }
+    },
+    "ownership": {
+      "type": ["object", "null"],
+      "additionalProperties": false,
+      "properties": {
+        "owner_principal_id": {
+          "$ref": "urn:cvf-operations-workspace:contracts:core:common-definitions:v1#/$defs/identifier"
+        },
+        "acquired_at": {
+          "$ref": "urn:cvf-operations-workspace:contracts:core:common-definitions:v1#/$defs/timestamp"
+        }
+      },
+      "required": ["owner_principal_id", "acquired_at"]
+    },
+    "opened_at": {
+      "$ref": "urn:cvf-operations-workspace:contracts:core:common-definitions:v1#/$defs/timestamp"
+    },
+    "closed_at": {
+      "anyOf": [
+        { "$ref": "urn:cvf-operations-workspace:contracts:core:common-definitions:v1#/$defs/timestamp" },
+        { "type": "null" }
+      ]
+    },
+    "frozen_at": {
+      "anyOf": [
+        { "$ref": "urn:cvf-operations-workspace:contracts:core:common-definitions:v1#/$defs/timestamp" },
+        { "type": "null" }
+      ]
+    },
+    "policy_profile_id": {
+      "$ref": "urn:cvf-operations-workspace:contracts:core:common-definitions:v1#/$defs/identifier"
+    },
+    "evidence_scope": {
+      "type": "array",
+      "items": {
+        "type": "string",
+        "minLength": 1
+      }
+    },
+    "metadata": {
+      "type": "object"
+    },
+    "version": {
+      "type": "integer",
+      "minimum": 1
+    }
+  },
+  "required": [
+    "session_id",
+    "workspace_id",
+    "profile_id",
+    "profile_version",
+    "title",
+    "state",
+    "participant_references",
+    "opened_at",
+    "policy_profile_id",
+    "evidence_scope",
+    "metadata",
+    "version"
+  ]
+}

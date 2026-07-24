@@ -1,0 +1,75 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "urn:cvf-operations-workspace:contracts:core:profile-manifest:v1",
+  "title": "Profile Manifest",
+  "description": "F1A closed contract: profile manifest. Contract-only — implies no runtime state machine, command execution, governance enforcement, or provider behavior (ADR-OW-005, OW-F1A-SPEC-001 claim boundary).",
+  "type": "object",
+  "additionalProperties": false,
+  "properties": {
+    "profile_id": {
+      "$ref": "urn:cvf-operations-workspace:contracts:core:common-definitions:v1#/$defs/identifier"
+    },
+    "profile_version": {
+      "$ref": "urn:cvf-operations-workspace:contracts:core:common-definitions:v1#/$defs/semver"
+    },
+    "display_name": {
+      "type": "string",
+      "minLength": 1
+    },
+    "status": {
+      "enum": ["planned", "contract-only", "partial", "pilot", "frozen"]
+    },
+    "owned_aggregates": {
+      "type": "array",
+      "items": {
+        "type": "string",
+        "minLength": 1
+      },
+      "uniqueItems": true
+    },
+    "supported_session_types": {
+      "type": "array",
+      "items": {
+        "type": "string",
+        "minLength": 1
+      }
+    },
+    "commands": {
+      "type": "array",
+      "items": {
+        "type": "string",
+        "minLength": 1
+      }
+    },
+    "events": {
+      "type": "array",
+      "items": {
+        "type": "string",
+        "minLength": 1
+      }
+    },
+    "capability_dependencies": {
+      "type": "array",
+      "items": {
+        "type": "string",
+        "minLength": 1
+      }
+    },
+    "cvf_profile_extension": {
+      "type": "string",
+      "minLength": 1
+    }
+  },
+  "required": [
+    "profile_id",
+    "profile_version",
+    "display_name",
+    "status",
+    "owned_aggregates",
+    "supported_session_types",
+    "commands",
+    "events",
+    "capability_dependencies",
+    "cvf_profile_extension"
+  ]
+}
