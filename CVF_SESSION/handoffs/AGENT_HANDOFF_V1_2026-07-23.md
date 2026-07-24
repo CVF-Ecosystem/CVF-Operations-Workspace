@@ -5,20 +5,13 @@ Status: ACTIVE
 ## Current State
 
 - Project: CVF-Operations-Workspace
-- Current mode: WORK_ORDER
-- Active phase: WORK_ORDER
-- Active role: COMMIT_STEWARD (Codex, after independent
-  `F1A_AUTHORIZATION_REVIEW_PASS`; C1 only).
-- Next allowed move: RM1 is CLOSED and parked (C3
-  `0f0fecd8e1a3bd462f375e97de5ea3555cbdde5d` passed rehearsal and was pushed
-  to `origin/main`). F1A's authorization package (`ADR-OW-005`,
-  `OW-F1A-SPEC-001`, `OW-F1A-WO-001`) was authored, reviewed by Codex
-  (`F1A_AUTHORIZATION_REVIEW_FAIL`, five findings, repaired round 1),
-  re-reviewed (`F1A-R1`–`F1A-R5` confirmed closed; `F1A-R6` repaired round
-  2), and independently **REVIEW_PASS'd with `F1A-R1`–`F1A-R6` closed
-  without waiver**. Codex now owns C1 explicit staging, commit,
-  post-commit/pre-push sibling-worktree rehearsal, and push-after-PASS.
-  BUILD remains prohibited until C1 is pushed.
+- Current mode: REVIEW
+- Active phase: REVIEW
+- Active role: COMMIT_STEWARD (Codex, after independent F1A BUILD
+  `REVIEW_PASS`; C2 only).
+- Next allowed move: explicitly stage exactly the 15 F1A BUILD paths,
+  commit C2, rehearse post-commit/pre-push in a sibling worktree, and push
+  only after PASS.
 - Parked operator checkpoint (superseded by "G2 Final Claim Boundary" and the
   OW-RM1 entry further down; kept for history): F0 REVIEW_PASS and FREEZE are
   complete. C1 `8c193984c5fc158ca65ea554dd8d4934d12c28f4` and C2
@@ -1467,7 +1460,7 @@ worker discretion to reclassify it as non-blocking.
   worktree, and pushed only after PASS. BUILD remains prohibited until C1 is
   pushed.
 
-## F1A Authorization Claim Boundary (current)
+## F1A Authorization Claim Boundary (superseded by BUILD below; kept for history)
 
 G0/G1/F0/G2/RM1 remain complete, independently REVIEW_PASS'd, and FREEZE'd;
 Module Registry remains empty; no runtime has been imported. The F1A
@@ -1482,3 +1475,151 @@ this tranche. `capability-invocation` and the
 of this tranche's scope. Any mismatch between this package's stated
 pins/counts/hashes and Codex's independent reproduction is blocking, with no
 worker discretion to reclassify it as non-blocking.
+
+## F1A IMPLEMENTATION_WORKER Acknowledgment and BUILD Start — 2026-07-24
+
+- Role transition: `COMMIT_STEWARD` (Codex, C1) -> `IMPLEMENTATION_WORKER`
+  (Claude, provider-neutral role contract, this entry records the
+  transition).
+- Read and accepted in full: `ADR-OW-005`, `OW-F1A-SPEC-001`, and
+  `OW-F1A-WO-001` (repaired through round 2, `F1A-R1`–`F1A-R6` closed,
+  independently REVIEW_PASS'd twice).
+- Authorization commit verified live, not assumed: target HEAD =
+  `origin/main` = `d731762a9e135b075261831ed7eb0df4badc98dd`, worktree
+  clean, branch `main`. CVF core HEAD = `27137db4d9aa2aea931ddd2507185d5c24943080`,
+  matching `.cvf/manifest.json`. Both read-only inputs
+  (`shift-operations-workspace`, `operations-workspace-all-phases`)
+  reconfirmed unchanged.
+- BUILD ceiling accepted exactly as listed in `OW-F1A-WO-001`'s "BUILD
+  changed-set ceiling": the six `contracts/core/*.schema.json` files;
+  `requirements-contract-validator.txt`; `tests/contracts/__init__.py` and
+  `tests/contracts/test_f1a_contracts.py`;
+  `docs/reviews/F1A_BUILD_EVIDENCE_2026-07-24.md`; the conditional
+  `docs/catalog/MODULE_REGISTRY.json`/`docs/catalog/MODULE_CATALOG.md`
+  change (only after tests pass); and the three continuity paths. Explicitly
+  excluded, per the separate C3 closure ceiling:
+  `docs/reviews/F1A_INDEPENDENT_REVIEW_2026-07-24.md` — this worker will not
+  author or modify it under any circumstance.
+- Stop conditions accepted as listed in `OW-F1A-WO-001`, including the
+  expanded `F1A-R1` dependency-drift triggers (a different 19-package
+  closure, version, or hash; a missing wheel for `CPython 3.13`/`win_amd64`;
+  any unpinned/unhashed package; a source-build fallback; a `--no-deps`
+  workaround; or installation into the user/global Python environment).
+- Codex retains independent `REVIEWER`/`COMMIT_STEWARD` authority for
+  C2/C3/C4. This worker will not stage, commit, push, amend, self-approve
+  REVIEW_PASS, or declare FREEZE.
+- BUILD proceeds against exactly the tasks in `OW-F1A-WO-001`: author the
+  six schemas, the pinned validator dependency manifest, the test suite,
+  the BUILD evidence file, and — conditionally — the Module Registry entry
+  and generated Module Catalog.
+
+## F1A BUILD Complete (Self-Reported) — 2026-07-24
+
+- Authored `contracts/core/{common-definitions,profile-manifest,
+  operational-session,command-envelope,event-envelope,capability-manifest}.schema.json`
+  exactly per `ADR-OW-005`'s twelve decisions: JSON Schema 2020-12; URN
+  `$id`s (`urn:cvf-operations-workspace:contracts:core:<name>:v1`); a
+  standalone `common-definitions.schema.json` (`identifier`, `slug`,
+  `semver`, `timestamp`, `riskClass`) referenced everywhere by offline
+  `$ref`; closed-world semantics (`additionalProperties: false` at every
+  contract-owned object level, including the nested `ownership` object),
+  with exactly two named opaque fields (`operational-session.metadata`,
+  `payload` on the two envelopes); the corrected stable-release SemVer
+  grammar; `correlation_id`/`causation_id`/`sequence` added to
+  `event-envelope` and `expected_version` added to `command-envelope`
+  (both beyond the design input, per Decision 7); provider-neutral
+  `provider_id`; and the exact five-schema F1A set (`capability-invocation`
+  excluded).
+- Authored `requirements-contract-validator.txt` with the exact 19-package,
+  hash-pinned closure from `ADR-OW-005` Decision 12. Installed with
+  `pip install --require-hashes` into a temporary, isolated virtual
+  environment created solely for this BUILD's test run (created at a short
+  filesystem path after a Windows `MAX_PATH` failure surfaced when a venv
+  was first attempted inside the deeply nested session scratch directory —
+  disclosed, not hidden; the venv itself is outside this repository and is
+  not a committed artifact). All 19 hash checks passed; all 19 resolved to
+  wheels (no source build); `pip freeze` inside that venv matched the ADR
+  table exactly; the ambient/global Python used for the pre-existing 116
+  tests remained unpolluted (confirmed: no `jsonschema` present there).
+  Live-confirmed inside that exact environment:
+  `jsonschema.FormatChecker().checkers` contains `'date-time'`, and
+  `2026-13-01T00:00:00Z`/`2026-02-30T00:00:00Z`/`2026-07-24T25:00:00Z` are
+  each rejected.
+- Authored `tests/contracts/test_f1a_contracts.py`: 61 new tests covering
+  `F1A-AC-01` through `F1A-AC-31`, including a test-only (never shipped
+  outside the suite) cross-contract identity helper for `F1A-AC-14`, and
+  the three-case opaque-nested-key-never-bypasses-the-envelope test for
+  `F1A-AC-31`. Full suite via the isolated venv: **177/177 OK** (116
+  pre-existing + 61 new), re-run again after the Module Registry change
+  with the same result.
+- Validation: `git diff --check` → clean; Golden catalog check → `[PASS]`;
+  project-scoped workspace doctor → **PASS (25/25)**;
+  `docs/architecture/PLATFORM_BOUNDARY_AND_PORTING_RULES.md`, `ADR-OW-001`,
+  the roadmap, `docs/catalog/ARTIFACT_REGISTRY.json`, `.cvf/manifest.json`,
+  and `AGENTS.md` all show an empty `git diff`.
+- Added **exactly one** Module Registry entry (`id: contracts-core-f1a`,
+  `status: CONTRACT_ONLY`), byte-identical to the authorized entry, only
+  after all 177 tests passed. Regenerated `docs/catalog/MODULE_CATALOG.md`
+  via `scripts/manage_cvf_downstream_catalog.ps1 -Write` only.
+  `docs/INDEX.md` was regenerated by the same invocation (the Golden
+  manager always rewrites both together) but is **byte-identical** — empty
+  `git diff` — and `docs/catalog/ARTIFACT_REGISTRY.json` was not touched at
+  all.
+- Full `F1A-AC-01`–`F1A-AC-31` evidence matrix, real command transcripts,
+  and the hash-lock provenance (including the resolver pitfall from
+  `F1A-R1` and its corrected method) are in
+  `docs/reviews/F1A_BUILD_EVIDENCE_2026-07-24.md`.
+- Exact BUILD changed set: the six schema files, the validator manifest,
+  `tests/contracts/__init__.py` and `test_f1a_contracts.py`, the BUILD
+  evidence file, `docs/catalog/MODULE_REGISTRY.json`,
+  `docs/catalog/MODULE_CATALOG.md` (generated), and the three continuity
+  paths. No other path — `docs/roadmaps/**`, `docs/catalog/ARTIFACT_REGISTRY.json`,
+  `.cvf/**`, `AGENTS.md`, any API route, any provider adapter, either
+  read-only input, the CVF core repository — was touched.
+  `docs/reviews/F1A_INDEPENDENT_REVIEW_2026-07-24.md` was **not** created —
+  it remains exclusively Codex's, under the separate C3 closure ceiling.
+- No F1B+ implementation, no runtime `OperationalSession`/profile
+  registry/command handler/provider adapter/database/API/frontend change,
+  no secret read, and no AI/agent provider call occurred (only public PyPI
+  package-registry reads, no credentials, to install the pinned validator).
+  No stage, commit, push, amend, rebase, or force-push occurred, and no
+  REVIEW_PASS or FREEZE was self-granted.
+- This is a **self-report by IMPLEMENTATION_WORKER, not an independent
+  review**. Next governed move: Codex acts as independent REVIEWER over the
+  BUILD evidence against `OW-F1A-SPEC-001`'s `F1A-AC-01` through
+  `F1A-AC-31`, including independently reproducing the 19-package
+  hash-locked install in a fresh isolated environment and independently
+  re-running the full 177-test suite.
+
+## F1A Independent BUILD Review and Bounded Amendment — 2026-07-24
+
+- Independent REVIEWER reproduced the exact 19-package lock in a fresh
+  CPython 3.13/win_amd64 virtual environment using `--require-hashes`;
+  `pip check` passed and the installed freeze matched the authorized set.
+- `jsonschema.FormatChecker` registered `date-time`; a valid timestamp was
+  accepted and invalid month/day/hour timestamps were rejected.
+- Independent full suite: 177/177 tests PASS. Golden catalog PASS;
+  workspace doctor PASS 25/25; JSON and `git diff --check` PASS.
+- `F1A-AC-01` through `F1A-AC-31` PASS. Schema, offline-reference, closed
+  object, SemVer, timestamp, opaque-boundary, registry and claim-boundary
+  checks were reproduced.
+- Finding `F1A-BR1 — FORMAT_EXTRA_NOT_MATERIALIZED`: the worker lock used
+  `jsonschema==4.26.0` although the authorization required
+  `jsonschema[format-nongpl]==4.26.0`. The complete dependency set made the
+  original install functionally pass, but did not satisfy the exact
+  authorization expression.
+- Bounded reviewer amendment changed only that expression, preserving the
+  exact version, hash and other 18 package lines. A second fresh isolated
+  install and the full 177-test/gate set passed afterward.
+- Disposition: `F1A_BUILD_REVIEW_PASS`; `F1A-BR1` closed without waiver.
+  Role transitioned to `COMMIT_STEWARD` for C2.
+
+## F1A BUILD Claim Boundary (current)
+
+G0/G1/F0/G2/RM1 remain complete and FROZEN. F1A authorization C1
+`d731762a9e135b075261831ed7eb0df4badc98dd` is pushed. The F1A BUILD is
+independently REVIEW_PASS'd for contract/schema behavior only and is
+pending C2 commit/rehearsal/push. It implements no runtime state machine,
+command execution, governance enforcement, provider behavior, F1B+
+capability, database, API, frontend or deployment. No live AI-provider
+call was required or made.

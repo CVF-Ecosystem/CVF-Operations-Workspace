@@ -1,8 +1,8 @@
 ﻿{
     "schemaVersion":  "1.0",
     "projectName":  "CVF-Operations-Workspace",
-    "currentMode":  "WORK_ORDER",
-    "activePhase":  "WORK_ORDER",
+    "currentMode":  "REVIEW",
+    "activePhase":  "REVIEW",
     "phaseModel":  [
                        "INTAKE",
                        "DESIGN",
@@ -13,9 +13,9 @@
                        "FREEZE"
                    ],
     "activeHandoff":  "CVF_SESSION/handoffs/AGENT_HANDOFF_V1_2026-07-23.md",
-    "nextAllowedMove":  "F1A authorization package independently REVIEW_PASS'd by Codex: F1A-R1 through F1A-R6 are closed without waiver; the 19-wheel closure and hashes, FormatChecker behavior, exact six-path ceiling, catalog, 116-test, doctor 25/25, JSON, line-count, diff, pin, and protected-path gates were independently verified. Codex now acts as COMMIT_STEWARD for C1: explicitly stage exactly the six authorization paths, commit, rehearse post-commit/pre-push in a temporary sibling worktree, and push only after PASS. BUILD remains prohibited until C1 is pushed.",
-    "parkedOperatorCheckpoint":  "G0/G1/F0/G2/RM1 remain complete, independently REVIEW_PASS'd, and FREEZE'd. RM1 C1 ed0d1cd7ea70a51ed8e350afed8cc3b38647ca45, C2 701c9e07b20b4f6362398e753669dd543cd0599c, and C3 0f0fecd8e1a3bd462f375e97de5ea3555cbdde5d each passed post-commit/pre-push sibling-worktree rehearsal and were pushed to origin/main; RM1 is CLOSED and parked. Golden Catalog Kit 1.1 is pinned to CVF core 27137db4d9aa2aea931ddd2507185d5c24943080, doctor passes 25/25, 116 tests pass, Module Registry remains empty. Delta-accounting failure history (do not erase): opening estimate 25/21/4/169 (superseded); first correction 26/21/5/168 accepted as an RM1-R1 Codex reviewer amendment (superseded, ASYMMETRIC_CACHE_FILTER_INVALID_DELTA); 26/21/5/156/161 is the current authoritative RM1 input baseline. Integrity facts: 194 physical files, 191 manifest entries (manifest does not list itself), 12 total .pyc (10 manifest-listed, 2 not) -- all excluded from candidacy regardless of manifest membership.",
+    "nextAllowedMove":  "F1A BUILD independently REVIEW_PASS'd against F1A-AC-01 through F1A-AC-31 after bounded reviewer amendment F1A-BR1 materialized the exact authorized jsonschema[format-nongpl]==4.26.0 lock expression. Fresh isolated install, pip check, exact 19-package freeze, FormatChecker behavior, 177/177 tests, Golden catalog, workspace doctor 25/25, JSON, diff, path and pin gates PASS. Codex acts as COMMIT_STEWARD for C2: explicitly stage only the 15 F1A BUILD paths, commit, rehearse post-commit/pre-push in a sibling worktree, and push only after PASS.",
+    "parkedOperatorCheckpoint":  "G0/G1/F0/G2/RM1 remain complete, independently REVIEW_PASS'd, and FREEZE'd. RM1 C1 ed0d1cd7ea70a51ed8e350afed8cc3b38647ca45, C2 701c9e07b20b4f6362398e753669dd543cd0599c, and C3 0f0fecd8e1a3bd462f375e97de5ea3555cbdde5d each passed post-commit/pre-push sibling-worktree rehearsal and were pushed to origin/main; RM1 is CLOSED and parked. Golden Catalog Kit 1.1 is pinned to CVF core 27137db4d9aa2aea931ddd2507185d5c24943080, doctor passes 25/25. Delta-accounting failure history (do not erase): opening estimate 25/21/4/169 (superseded); first correction 26/21/5/168 accepted as an RM1-R1 Codex reviewer amendment (superseded, ASYMMETRIC_CACHE_FILTER_INVALID_DELTA); 26/21/5/156/161 is the current authoritative RM1 input baseline. Integrity facts: 194 physical files, 191 manifest entries (manifest does not list itself), 12 total .pyc (10 manifest-listed, 2 not) -- all excluded from candidacy regardless of manifest membership.",
     "activeRole":  "COMMIT_STEWARD",
-    "roleRoute":  "ORCHESTRATOR_THEN_SPEC_AUTHOR_THEN_WORK_ORDER_AUTHOR_THEN_REPAIR_WORKER_AUTHORIZATION_ROUND_1_THEN_RE_REVIEW_THEN_REPAIR_WORKER_AUTHORIZATION_ROUND_2_THEN_RE_REVIEW_2_THEN_COMMIT_STEWARD_C1_THEN_IMPLEMENTATION_WORKER_THEN_REVIEWER_THEN_REPAIR_WORKER_IF_NEEDED_THEN_RE_REVIEW_THEN_COMMIT_STEWARD_C2_THEN_REVIEWER_INDEPENDENT_RECEIPT_THEN_COMMIT_STEWARD_C3_THEN_COMMIT_STEWARD_C4_POST_PUSH_SYNC_THEN_CLOSER_THEN_SESSION_SYNC_STEWARD_THEN_ORCHESTRATOR",
+    "roleRoute":  "ORCHESTRATOR_THEN_SPEC_AUTHOR_THEN_WORK_ORDER_AUTHOR_THEN_REPAIR_WORKER_AUTHORIZATION_ROUND_1_THEN_RE_REVIEW_THEN_REPAIR_WORKER_AUTHORIZATION_ROUND_2_THEN_RE_REVIEW_2_THEN_COMMIT_STEWARD_C1_THEN_IMPLEMENTATION_WORKER_THEN_REVIEWER_THEN_REVIEWER_AMENDMENT_F1A_BR1_THEN_COMMIT_STEWARD_C2_THEN_REVIEWER_INDEPENDENT_RECEIPT_THEN_COMMIT_STEWARD_C3_THEN_COMMIT_STEWARD_C4_POST_PUSH_SYNC_THEN_CLOSER_THEN_SESSION_SYNC_STEWARD_THEN_ORCHESTRATOR",
     "updatedAt":  "2026-07-24"
 }

@@ -1,0 +1,69 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "urn:cvf-operations-workspace:contracts:core:command-envelope:v1",
+  "title": "Command Envelope",
+  "description": "F1A closed contract: command envelope. Contract-only — implies no runtime state machine, command execution, governance enforcement, or provider behavior (ADR-OW-005, OW-F1A-SPEC-001 claim boundary). `payload` is the sole intentionally opaque nested namespace on this contract (ADR-OW-005 Decision 5): it accepts arbitrary nested keys, but no nested key overrides or bypasses this envelope's own closed top-level fields.",
+  "type": "object",
+  "additionalProperties": false,
+  "properties": {
+    "command_id": {
+      "$ref": "urn:cvf-operations-workspace:contracts:core:common-definitions:v1#/$defs/identifier"
+    },
+    "workspace_id": {
+      "$ref": "urn:cvf-operations-workspace:contracts:core:common-definitions:v1#/$defs/identifier"
+    },
+    "session_id": {
+      "$ref": "urn:cvf-operations-workspace:contracts:core:common-definitions:v1#/$defs/identifier"
+    },
+    "profile_id": {
+      "$ref": "urn:cvf-operations-workspace:contracts:core:common-definitions:v1#/$defs/identifier"
+    },
+    "profile_version": {
+      "$ref": "urn:cvf-operations-workspace:contracts:core:common-definitions:v1#/$defs/semver"
+    },
+    "principal_id": {
+      "$ref": "urn:cvf-operations-workspace:contracts:core:common-definitions:v1#/$defs/identifier"
+    },
+    "action": {
+      "$ref": "urn:cvf-operations-workspace:contracts:core:common-definitions:v1#/$defs/slug"
+    },
+    "risk_class": {
+      "$ref": "urn:cvf-operations-workspace:contracts:core:common-definitions:v1#/$defs/riskClass"
+    },
+    "evidence_references": {
+      "type": "array",
+      "items": {
+        "type": "string",
+        "minLength": 1
+      }
+    },
+    "idempotency_key": {
+      "$ref": "urn:cvf-operations-workspace:contracts:core:common-definitions:v1#/$defs/identifier"
+    },
+    "requested_at": {
+      "$ref": "urn:cvf-operations-workspace:contracts:core:common-definitions:v1#/$defs/timestamp"
+    },
+    "payload": {
+      "type": "object"
+    },
+    "expected_version": {
+      "type": ["integer", "null"],
+      "minimum": 1
+    }
+  },
+  "required": [
+    "command_id",
+    "workspace_id",
+    "session_id",
+    "profile_id",
+    "profile_version",
+    "principal_id",
+    "action",
+    "risk_class",
+    "evidence_references",
+    "idempotency_key",
+    "requested_at",
+    "payload",
+    "expected_version"
+  ]
+}

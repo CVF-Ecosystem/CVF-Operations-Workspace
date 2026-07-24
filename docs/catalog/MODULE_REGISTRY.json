@@ -1,7 +1,18 @@
 {
   "schemaVersion": "1.0",
   "projectName": "CVF-Operations-Workspace",
-  "updatedAt": "2026-07-23",
+  "updatedAt": "2026-07-24",
   "claimBoundary": "Empty initial registry; add only source-verified modules with evidence. No status may represent plan-only intent.",
-  "modules": []
+  "modules": [
+    {
+      "id": "contracts-core-f1a",
+      "name": "F1A Core Contract Foundation",
+      "path": "contracts/core",
+      "status": "CONTRACT_ONLY",
+      "description": "Versioned closed JSON Schema contracts for the provider-neutral operations-workspace core; no runtime enforcement.",
+      "evidence": "contracts/core/*.schema.json; tests/contracts/test_f1a_contracts.py; docs/reviews/F1A_BUILD_EVIDENCE_2026-07-24.md",
+      "controls": [],
+      "dependencies": []
+    }
+  ]
 }

@@ -1,0 +1,78 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "urn:cvf-operations-workspace:contracts:core:capability-manifest:v1",
+  "title": "Capability Manifest",
+  "description": "F1A closed contract: capability interface/manifest. Contract-only — implies no runtime state machine, command execution, governance enforcement, or provider behavior (ADR-OW-005, OW-F1A-SPEC-001 claim boundary). `provider_id` is a free-form opaque identifier, never a provider-name enum (ADR-OW-005 Decision 8, provider-neutrality). `capability-invocation.schema.json` from the design input is explicitly out of scope for F1A (Decision 9).",
+  "type": "object",
+  "additionalProperties": false,
+  "properties": {
+    "capability_id": {
+      "$ref": "urn:cvf-operations-workspace:contracts:core:common-definitions:v1#/$defs/identifier"
+    },
+    "version": {
+      "$ref": "urn:cvf-operations-workspace:contracts:core:common-definitions:v1#/$defs/semver"
+    },
+    "provider_id": {
+      "$ref": "urn:cvf-operations-workspace:contracts:core:common-definitions:v1#/$defs/identifier"
+    },
+    "status": {
+      "enum": ["stub", "contract-only", "partial", "pilot", "production"]
+    },
+    "allowed_profiles": {
+      "type": "array",
+      "items": {
+        "$ref": "urn:cvf-operations-workspace:contracts:core:common-definitions:v1#/$defs/identifier"
+      }
+    },
+    "data_classification": {
+      "type": "array",
+      "items": {
+        "type": "string",
+        "minLength": 1
+      }
+    },
+    "required_permissions": {
+      "type": "array",
+      "items": {
+        "type": "string",
+        "minLength": 1
+      }
+    },
+    "risk_ceiling": {
+      "$ref": "urn:cvf-operations-workspace:contracts:core:common-definitions:v1#/$defs/riskClass"
+    },
+    "cost_policy": {
+      "type": "string",
+      "minLength": 1
+    },
+    "fallback": {
+      "type": ["string", "null"]
+    },
+    "termination_contract": {
+      "type": "string",
+      "minLength": 1
+    },
+    "input_schema": {
+      "type": "string",
+      "minLength": 1
+    },
+    "output_schema": {
+      "type": "string",
+      "minLength": 1
+    }
+  },
+  "required": [
+    "capability_id",
+    "version",
+    "provider_id",
+    "status",
+    "allowed_profiles",
+    "data_classification",
+    "required_permissions",
+    "risk_ceiling",
+    "cost_policy",
+    "termination_contract",
+    "input_schema",
+    "output_schema"
+  ]
+}

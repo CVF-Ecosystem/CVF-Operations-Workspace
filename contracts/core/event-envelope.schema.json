@@ -1,0 +1,77 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "urn:cvf-operations-workspace:contracts:core:event-envelope:v1",
+  "title": "Event Envelope",
+  "description": "F1A closed contract: event envelope. Contract-only — implies no runtime state machine, command execution, governance enforcement, or provider behavior (ADR-OW-005, OW-F1A-SPEC-001 claim boundary). `payload` is the sole intentionally opaque nested namespace on this contract (ADR-OW-005 Decision 5): it accepts arbitrary nested keys, but no nested key overrides or bypasses this envelope's own closed top-level fields. `correlation_id`, `causation_id` and `sequence` are additions beyond the operations-workspace-all-phases design input (ADR-OW-005 Decision 7), added for causal-chain grouping and deterministic ordering; they assert no runtime event-store behavior.",
+  "type": "object",
+  "additionalProperties": false,
+  "properties": {
+    "event_id": {
+      "$ref": "urn:cvf-operations-workspace:contracts:core:common-definitions:v1#/$defs/identifier"
+    },
+    "event_type": {
+      "$ref": "urn:cvf-operations-workspace:contracts:core:common-definitions:v1#/$defs/slug"
+    },
+    "profile_id": {
+      "$ref": "urn:cvf-operations-workspace:contracts:core:common-definitions:v1#/$defs/identifier"
+    },
+    "profile_version": {
+      "$ref": "urn:cvf-operations-workspace:contracts:core:common-definitions:v1#/$defs/semver"
+    },
+    "session_id": {
+      "$ref": "urn:cvf-operations-workspace:contracts:core:common-definitions:v1#/$defs/identifier"
+    },
+    "source": {
+      "type": "string",
+      "minLength": 1
+    },
+    "data_state": {
+      "enum": ["RAW", "NORMALIZED", "PROPOSED", "CONFIRMED", "REJECTED", "CORRECTED", "FROZEN"]
+    },
+    "evidence_references": {
+      "type": "array",
+      "items": {
+        "type": "string",
+        "minLength": 1
+      }
+    },
+    "created_by": {
+      "$ref": "urn:cvf-operations-workspace:contracts:core:common-definitions:v1#/$defs/identifier"
+    },
+    "created_at": {
+      "$ref": "urn:cvf-operations-workspace:contracts:core:common-definitions:v1#/$defs/timestamp"
+    },
+    "payload": {
+      "type": "object"
+    },
+    "correlation_id": {
+      "$ref": "urn:cvf-operations-workspace:contracts:core:common-definitions:v1#/$defs/identifier"
+    },
+    "causation_id": {
+      "anyOf": [
+        { "$ref": "urn:cvf-operations-workspace:contracts:core:common-definitions:v1#/$defs/identifier" },
+        { "type": "null" }
+      ]
+    },
+    "sequence": {
+      "type": "integer",
+      "minimum": 0
+    }
+  },
+  "required": [
+    "event_id",
+    "event_type",
+    "profile_id",
+    "profile_version",
+    "session_id",
+    "source",
+    "data_state",
+    "evidence_references",
+    "created_by",
+    "created_at",
+    "payload",
+    "correlation_id",
+    "causation_id",
+    "sequence"
+  ]
+}
