@@ -1,8 +1,8 @@
 ﻿{
     "schemaVersion":  "1.0",
     "projectName":  "CVF-Operations-Workspace",
-    "currentMode":  "FREEZE",
-    "activePhase":  "FREEZE",
+    "currentMode":  "WORK_ORDER",
+    "activePhase":  "WORK_ORDER",
     "phaseModel":  [
                        "INTAKE",
                        "DESIGN",
@@ -13,9 +13,9 @@
                        "FREEZE"
                    ],
     "activeHandoff":  "CVF_SESSION/handoffs/AGENT_HANDOFF_V1_2026-07-23.md",
-    "nextAllowedMove":  "RM1 is CLOSED and parked. C1 ed0d1cd7ea70a51ed8e350afed8cc3b38647ca45, C2 701c9e07b20b4f6362398e753669dd543cd0599c, and C3 0f0fecd8e1a3bd462f375e97de5ea3555cbdde5d each passed post-commit/pre-push sibling-worktree rehearsal and were pushed to origin/main. F1A is only the next candidate; opening it requires a new INTAKE -> DESIGN -> SPEC -> WORK_ORDER authorization tranche before BUILD.",
-    "parkedOperatorCheckpoint":  "G0/G1/F0/G2 remain complete, independently REVIEW_PASS'd, and FREEZE'd (G2 authorization C1 3d1c316c343f9893b2e72672ef19c1ba68aa46f1, BUILD C2 4cea16eaf7997adec7e3e821db894b577f871834, both rehearsed post-commit/pre-push and pushed). Golden Catalog Kit 1.1 is pinned to CVF core 27137db4d9aa2aea931ddd2507185d5c24943080, doctor passes 25/25, 116 tests pass, Module Registry remains empty. RM1 authorization (ADR-OW-004, OW-RM1-SPEC-001, OW-RM1-WO-001) is REVIEW_PASS'd with RM1-R1/RM1-R2/RM1-R3 closed and committed as C1 ed0d1cd7ea70a51ed8e350afed8cc3b38647ca45. Delta-accounting failure history (do not erase): opening estimate 25/21/4/169 (superseded, omitted a changed file); first correction 26/21/5/168 accepted as an RM1-R1 Codex reviewer amendment (superseded); repair round 2 found (RM1-R3, ASYMMETRIC_CACHE_FILTER_INVALID_DELTA) that '168 new' came from comparing the old baseline with __pycache__ excluded against the full bundle with __pycache__ still included -- an asymmetric comparison, not an input change -- and Codex withdrew 168 and accepted the symmetric 26/21 unchanged/5 changed/156 new/161 total disposition candidates as current authoritative baseline. Integrity facts: 194 physical files, 191 manifest entries (manifest does not list itself), 12 total .pyc (10 manifest-listed, 2 not) -- all excluded from candidacy regardless of manifest membership.",
-    "activeRole":  "ORCHESTRATOR",
-    "roleRoute":  "ORCHESTRATOR_THEN_SPEC_AUTHOR_THEN_WORK_ORDER_AUTHOR_THEN_REVIEWER_THEN_COMMIT_STEWARD_C1_THEN_IMPLEMENTATION_WORKER_THEN_REVIEWER_THEN_REPAIR_WORKER_IF_NEEDED_THEN_RE_REVIEW_THEN_COMMIT_STEWARD_C2_C3_THEN_CLOSER_THEN_SESSION_SYNC_STEWARD_THEN_ORCHESTRATOR",
-    "updatedAt":  "2026-07-23"
+    "nextAllowedMove":  "F1A authorization package independently REVIEW_PASS'd by Codex: F1A-R1 through F1A-R6 are closed without waiver; the 19-wheel closure and hashes, FormatChecker behavior, exact six-path ceiling, catalog, 116-test, doctor 25/25, JSON, line-count, diff, pin, and protected-path gates were independently verified. Codex now acts as COMMIT_STEWARD for C1: explicitly stage exactly the six authorization paths, commit, rehearse post-commit/pre-push in a temporary sibling worktree, and push only after PASS. BUILD remains prohibited until C1 is pushed.",
+    "parkedOperatorCheckpoint":  "G0/G1/F0/G2/RM1 remain complete, independently REVIEW_PASS'd, and FREEZE'd. RM1 C1 ed0d1cd7ea70a51ed8e350afed8cc3b38647ca45, C2 701c9e07b20b4f6362398e753669dd543cd0599c, and C3 0f0fecd8e1a3bd462f375e97de5ea3555cbdde5d each passed post-commit/pre-push sibling-worktree rehearsal and were pushed to origin/main; RM1 is CLOSED and parked. Golden Catalog Kit 1.1 is pinned to CVF core 27137db4d9aa2aea931ddd2507185d5c24943080, doctor passes 25/25, 116 tests pass, Module Registry remains empty. Delta-accounting failure history (do not erase): opening estimate 25/21/4/169 (superseded); first correction 26/21/5/168 accepted as an RM1-R1 Codex reviewer amendment (superseded, ASYMMETRIC_CACHE_FILTER_INVALID_DELTA); 26/21/5/156/161 is the current authoritative RM1 input baseline. Integrity facts: 194 physical files, 191 manifest entries (manifest does not list itself), 12 total .pyc (10 manifest-listed, 2 not) -- all excluded from candidacy regardless of manifest membership.",
+    "activeRole":  "COMMIT_STEWARD",
+    "roleRoute":  "ORCHESTRATOR_THEN_SPEC_AUTHOR_THEN_WORK_ORDER_AUTHOR_THEN_REPAIR_WORKER_AUTHORIZATION_ROUND_1_THEN_RE_REVIEW_THEN_REPAIR_WORKER_AUTHORIZATION_ROUND_2_THEN_RE_REVIEW_2_THEN_COMMIT_STEWARD_C1_THEN_IMPLEMENTATION_WORKER_THEN_REVIEWER_THEN_REPAIR_WORKER_IF_NEEDED_THEN_RE_REVIEW_THEN_COMMIT_STEWARD_C2_THEN_REVIEWER_INDEPENDENT_RECEIPT_THEN_COMMIT_STEWARD_C3_THEN_COMMIT_STEWARD_C4_POST_PUSH_SYNC_THEN_CLOSER_THEN_SESSION_SYNC_STEWARD_THEN_ORCHESTRATOR",
+    "updatedAt":  "2026-07-24"
 }

@@ -5,14 +5,20 @@ Status: ACTIVE
 ## Current State
 
 - Project: CVF-Operations-Workspace
-- Current mode: FREEZE
-- Active phase: FREEZE
-- Active role: ORCHESTRATOR (parked after Codex completed independent
-  `REVIEWER -> COMMIT_STEWARD -> CLOSER -> SESSION_SYNC_STEWARD` duties).
-- Next allowed move: RM1 is CLOSED and parked. C3
-  `0f0fecd8e1a3bd462f375e97de5ea3555cbdde5d` passed its post-commit/pre-push
-  sibling-worktree rehearsal and was pushed to `origin/main`. F1A remains
-  only the next candidate and requires a new governed authorization tranche.
+- Current mode: WORK_ORDER
+- Active phase: WORK_ORDER
+- Active role: COMMIT_STEWARD (Codex, after independent
+  `F1A_AUTHORIZATION_REVIEW_PASS`; C1 only).
+- Next allowed move: RM1 is CLOSED and parked (C3
+  `0f0fecd8e1a3bd462f375e97de5ea3555cbdde5d` passed rehearsal and was pushed
+  to `origin/main`). F1A's authorization package (`ADR-OW-005`,
+  `OW-F1A-SPEC-001`, `OW-F1A-WO-001`) was authored, reviewed by Codex
+  (`F1A_AUTHORIZATION_REVIEW_FAIL`, five findings, repaired round 1),
+  re-reviewed (`F1A-R1`–`F1A-R5` confirmed closed; `F1A-R6` repaired round
+  2), and independently **REVIEW_PASS'd with `F1A-R1`–`F1A-R6` closed
+  without waiver**. Codex now owns C1 explicit staging, commit,
+  post-commit/pre-push sibling-worktree rehearsal, and push-after-PASS.
+  BUILD remains prohibited until C1 is pushed.
 - Parked operator checkpoint (superseded by "G2 Final Claim Boundary" and the
   OW-RM1 entry further down; kept for history): F0 REVIEW_PASS and FREEZE are
   complete. C1 `8c193984c5fc158ca65ea554dd8d4934d12c28f4` and C2
@@ -1132,3 +1138,347 @@ runtime/provider/governance claim exists as a result of this BUILD.
   assessment, BUILD evidence, catalog, Module Registry, or runtime surface.
 - Next governed candidate remains F1A; no F1A work order or BUILD is opened by
   this synchronization.
+
+## OW-F1A Versioned Contract Foundation — Authorization Package Authored — 2026-07-24
+
+- Role: `ORCHESTRATOR -> SPEC_AUTHOR -> WORK_ORDER_AUTHOR` (Claude,
+  provider-neutral role contract, transitions recorded in this entry). Codex
+  independently holds `REVIEWER -> COMMIT_STEWARD` for this tranche; this
+  round does not self-grant REVIEW_PASS and does not stage, commit, or push.
+- Trigger: an owner-directed authorization round to open `F1A` — the
+  roadmap's named next candidate ("Versioned closed contracts") — through a
+  fresh `INTAKE -> DESIGN -> SPEC -> WORK_ORDER` sequence, per the roadmap's
+  own explicit non-authorization statement for F1A.
+- Rehydration completed per the First-Request Protocol: `.cvf/manifest.json`,
+  `.cvf/policy.json`, `AGENTS.md`, this handoff, `IMPLEMENTATION_STATUS.json`,
+  `CVF_SESSION/ACTIVE_SESSION_STATE.json`, `docs/INDEX.md`, the canonical
+  roadmap's F1A section, `ADR-OW-001`,
+  `docs/architecture/PLATFORM_BOUNDARY_AND_PORTING_RULES.md`,
+  `docs/reviews/OPERATIONS_WORKSPACE_ALL_PHASES_LEARNING_ASSESSMENT_2026-07-23.md`,
+  and the 6 `operations-workspace-all-phases/contracts/core/` design-input
+  files.
+- **Baseline verification note (repair-worthy drift caught before authoring
+  began):** the round's initiating instructions named a target baseline
+  commit that does not exist in this repository's history or on any
+  `origin`; the actual, verified baseline is documented below. This was
+  caught by independently running `git rev-parse HEAD`/`origin/main` and
+  `git fetch` rather than trusting the instruction's stated hash — no file
+  was authored against an unverified pin.
+- **All baselines independently re-verified live:** target HEAD =
+  `origin/main` = `a9c2505c0ff21df8600e5944383f6c04293eb2f4`, worktree clean;
+  CVF core HEAD = `origin/main` = `27137db4d9aa2aea931ddd2507185d5c24943080`,
+  worktree clean, matching `.cvf/manifest.json`; `docs/catalog/MODULE_REGISTRY.json`
+  `modules: []` confirmed empty; 116/116 tests pass
+  (`python -m unittest discover -s tests -p "test_*.py"`, reproduced this
+  round); this repository has no `pyproject.toml`/`requirements*.txt`/
+  `setup.py` and Python `jsonschema` is not installed (reproduced this
+  round: `ModuleNotFoundError: No module named 'jsonschema'`) — the
+  validator dependency gap the round's instructions required this package to
+  resolve.
+- Authored three artifacts: `ADR-OW-005`
+  (`docs/decisions/ADR_2026-07-24_F1A_VERSIONED_CONTRACT_FOUNDATION.md`)
+  makes 12 decisions — JSON Schema draft 2020-12; a URN `$id`/namespace
+  convention (`urn:cvf-operations-workspace:contracts:core:<name>:v<major>`,
+  chosen over `http(s)://` specifically so no identifier could be misread as
+  needing network resolution); SemVer `1.0.0` initial versions with
+  immutable-release/no-silent-replacement compatibility rules; closed-world
+  semantics with exactly two named, bounded, justified opaque fields
+  (`operational-session.metadata`, `command-envelope.payload` /
+  `event-envelope.payload`) and a newly-closed `ownership` nested object
+  (the design input left it a shapeless open object); shared `identifier`/
+  `slug`/`semver`/`timestamp`/`riskClass` definitions (the `riskClass` enum
+  reuses this repository's own `R0`-`R3` CVF vocabulary rather than
+  inventing a new scale); cross-contract identity invariants, including two
+  additions beyond the design input — `correlation_id`/`causation_id`/
+  `sequence` on `event-envelope` (ordering/causal-chain fields the design
+  input lacked) and `expected_version` on `command-envelope`
+  (optimistic-concurrency against `operational-session.version`) — plus an
+  explicit, honest limitation that cross-document referential integrity
+  (e.g. a command's `profile_id` truly matching a real session's) is not
+  enforceable by static JSON Schema and remains an F1B+ runtime concern;
+  provider-neutrality; the exact five-schema F1A set (profile-manifest,
+  operational-session, command-envelope, event-envelope, capability-manifest
+  — `capability-invocation.schema.json` explicitly excluded as a runtime
+  invocation record, not a closed contract); a standalone
+  `common-definitions.schema.json` shared-definitions file (six files total,
+  one more than the design input's five relevant files); offline/
+  deterministic `$ref` resolution via a local schema registry with no
+  `http(s)://` `$ref` permitted anywhere; and a pinned-`jsonschema`-dependency
+  validator strategy (`requirements-contract-validator.txt`, exact
+  version+hash resolved and disclosed only in BUILD evidence, never an
+  unpinned/network-resolved install, never a hand-written checker presented
+  as full JSON Schema validation). `OW-F1A-SPEC-001`
+  (`docs/specs/F1A_VERSIONED_CONTRACT_FOUNDATION_SPEC.md`) sets 29 acceptance
+  criteria (`F1A-AC-01` through `F1A-AC-29`), including a test-only (never
+  shipped as production code), bounded cross-contract fixture-consistency
+  check (`F1A-AC-14`) that is explicitly not a runtime-enforcement claim.
+  `OW-F1A-WO-001`
+  (`docs/work_orders/F1A_VERSIONED_CONTRACT_FOUNDATION_WORK_ORDER.md`) sets
+  this round's exact 6-path authoring ceiling, a separate, exact BUILD
+  changed-set ceiling (six named schema files, one named validator manifest,
+  one named test file, one named BUILD evidence file, a conditional named
+  Module Registry/Catalog change, and the three continuity paths), a
+  separate Codex-only C3 closure ceiling, roles, a **four**-commit plan (C1
+  authorization, C2 BUILD, C3 independent review receipt and
+  FREEZE-pending continuity, C4 post-C3-push closure synchronization only —
+  because a commit cannot truthfully record its own future push, mirroring
+  the `RM1-CR1` lesson above), and an expanded stop-condition list.
+- Confirmed the Module Registry's closed schema
+  (`docs/catalog/schemas/MODULE_REGISTRY.schema.json`) permits a
+  `CONTRACT_ONLY` status entry with a directory `path` and free-text
+  `evidence`/`description` — read this round, not assumed — so the work
+  order's conditional Module Registry task is representable without
+  inventing a new status value.
+- This round did **not** touch `docs/roadmaps/CVF_OPERATIONS_WORKSPACE_ROADMAP.md`,
+  `docs/catalog/ARTIFACT_REGISTRY.json`, `docs/catalog/MODULE_REGISTRY.json`,
+  `docs/INDEX.md`, `docs/catalog/MODULE_CATALOG.md`, `.cvf/manifest.json`,
+  `AGENTS.md`, `contracts/**`, `tests/**`, `scripts/**`, any F0
+  provenance/source-intake/architecture path, the CVF core repository, the
+  Shift source repository, or either full-bundle/old-baseline read-only
+  input folder. No BUILD occurred. No secret was read; no provider/AI call
+  was made.
+- Consistent with `OW-G2-WO-001`'s and `OW-RM1-WO-001`'s precedent, the three
+  new documents are **not** registered in `docs/catalog/ARTIFACT_REGISTRY.json`
+  this round — the round's own ceiling excludes the registry/Index/Module
+  Catalog, and the Golden Artifact Registry already discovers
+  `docs/decisions/`, `docs/specs/`, and `docs/work_orders/` as registered
+  folder families.
+- **Not done / explicitly deferred:** the six contract schema files, the
+  validator dependency manifest, the test file, the BUILD evidence file, and
+  any conditional Module Registry/Catalog change are all BUILD-phase work
+  under `OW-F1A-WO-001`'s ceiling and require Codex's independent
+  REVIEW_PASS on this authorization package first. Claude does not
+  self-grant REVIEW_PASS and did not stage, commit, or push any file.
+- Next governed move: Codex acts as independent REVIEWER over `ADR-OW-005`,
+  `OW-F1A-SPEC-001`, and `OW-F1A-WO-001` — including independently
+  re-verifying the target/core pins, the empty Module Registry, the 116/116
+  test count, and the confirmed absence of `jsonschema`/a package manifest,
+  rather than trusting this package's restatement of them.
+
+## F1A Authorization Claim Boundary (superseded by the repair round below; kept for history)
+
+G0/G1/F0/G2/RM1 remain complete, independently REVIEW_PASS'd, and FREEZE'd
+exactly as recorded above; nothing in this round changed that status, and
+Module Registry remains empty. The F1A authorization package (`ADR-OW-005`,
+`OW-F1A-SPEC-001`, `OW-F1A-WO-001`) is **authored, not yet independently
+reviewed, not authorized for BUILD.** No schema file, test file, validator
+dependency, Module Registry entry, roadmap edit, or runtime/provider/
+governance behavior exists as a result of this round. `capability-invocation`
+and the `agent-operations/**`/`live-view/**` design input remain unadopted
+and out of this tranche's scope. Any mismatch between this package's stated
+pins/counts and Codex's independent reproduction is blocking, with no worker
+discretion to reclassify it as non-blocking.
+
+## OW-F1A Authorization Repair Round 1 — 2026-07-24
+
+- Role: `REPAIR_WORKER` (Claude, provider-neutral role contract). Codex
+  holds `REVIEWER`/`COMMIT_STEWARD` independently; this repair does not
+  self-grant REVIEW_PASS and does not stage, commit, or push.
+- Independent Codex review of the F1A authorization package above returned
+  `F1A_AUTHORIZATION_REVIEW_FAIL` with five findings, all repaired in this
+  round without waiver:
+  - **F1A-R1 — INCOMPLETE_HASH_LOCK_STRATEGY (repaired).** `ADR-OW-005`
+    Decision 12 originally claimed one package with no further dependency.
+    Withdrawn. This round resolved the real PyPI dependency graph for
+    `jsonschema[format-nongpl]==4.26.0` and found **19** packages, not one —
+    verified two ways: (a) a fresh `pip install --target <empty dir>`,
+    whose real installed `*.dist-info` set is the ground truth, and (b) each
+    of the 19 individually re-fetched with `pip download --no-deps
+    <pkg>==<version>` and hashed directly with `hashlib.sha256`, so no
+    hash was copied from an unverified third party. A genuine resolver
+    pitfall was found and disclosed: an initial `pip install
+    jsonschema[format-nongpl]==4.26.0 --dry-run --report=<file>` reported
+    only 17 packages, silently omitting `idna` and `six` (both real runtime
+    dependencies) because `--dry-run` resolves against the *currently
+    running* environment and treats already-satisfied packages as
+    nothing-to-install — this authoring environment happened to already
+    have both installed globally. The corrected, ground-truth method above
+    is now the mandated BUILD discipline. `ADR-OW-005` Decision 12 records
+    all 19 exact versions and `sha256` hashes, authorizes exactly one
+    supported combination (`CPython 3.13`/`win_amd64` — the only one
+    actually verified, and the one this repository's environment matches;
+    `rpds-py`'s wheel is the sole platform/interpreter-specific artifact
+    among the 19 and is `jsonschema`'s own hard dependency), and requires
+    `pip install --require-hashes` into a temporary isolated virtual
+    environment, never the user/global Python, never `--no-deps`.
+    `OW-F1A-WO-001`'s validator-dependency ceiling entry and stop
+    conditions, and `OW-F1A-SPEC-001` (unaffected in substance but
+    cross-referenced), are updated to match.
+  - **F1A-R2 — SEMVER_CONTRACT_CONTRADICTION (repaired).** `ADR-OW-005`
+    Decision 3 called the grammar "full SemVer 2.0.0" while Decision 6's
+    regex neither forbade leading zeroes nor said anything about
+    prerelease/build-metadata suffixes — an internal contradiction. Both
+    decisions now state one narrower, consistent grammar: a stable
+    MAJOR.MINOR.PATCH triplet only, `^(0|[1-9][0-9]*)\.(0|[1-9][0-9]*)\.(0|[1-9][0-9]*)$`.
+    `OW-F1A-SPEC-001`'s `F1A-AC-10` now names exact accept/reject fixture
+    values (`01.0.0`, `1.01.0`, `1.0.01`, `1.0.0-alpha`, `1.0.0+build`
+    rejected; `0.0.0`, `1.0.0` accepted).
+  - **F1A-R3 — TIMESTAMP_FORMAT_ASSERTION_GAP (repaired).** `ADR-OW-005`
+    Decision 6 falsely claimed the timestamp regex alone "guarantees
+    rejection of malformed timestamps regardless of validator
+    configuration." Tested live this round and found false: bare
+    `jsonschema` does not even register a `date-time` format checker
+    (`'date-time' in jsonschema.FormatChecker().checkers` is `False`
+    without the `format`/`format-nongpl` extra), and the regex by itself
+    accepts calendar-impossible strings (`2026-13-40T25:00:00Z`,
+    `2026-02-30T10:00:00Z`) — confirmed both ways by direct, live
+    validator construction and instance checks this round, not asserted
+    from memory. Corrected: `jsonschema[format-nongpl]` (which supplies
+    `rfc3339-validator`) plus mandatory `FormatChecker` use is the real
+    semantic proof; the regex is restated as defense-in-depth only.
+    `OW-F1A-SPEC-001`'s `F1A-AC-11` is corrected to require
+    `FormatChecker`-enforced validation and to add invalid-month/
+    invalid-day/invalid-hour negative cases across at least two schemas;
+    new `F1A-AC-30` requires a test proving `FormatChecker` is actually
+    supplied and load-bearing, not silently absent.
+  - **F1A-R4 — OPAQUE_BOUNDARY_CLAIM_UNENFORCED (repaired).** `ADR-OW-005`
+    Decision 5 claimed `metadata`/`payload` "cannot carry any contract-owned
+    field name" — unenforceable, since JSON Schema cannot forbid a specific
+    key inside an intentionally-open object without closing it. Withdrawn
+    and replaced with the bounded rule Codex specified: `metadata`/`payload`
+    are opaque nested namespaces that may contain arbitrary nested keys,
+    including names matching a top-level field, but such nested keys never
+    override or bypass the top-level field's own validation. New
+    `F1A-AC-31` requires three cases: arbitrary nested keys accepted; the
+    identical unknown key at the envelope top level rejected; a nested
+    `state`/`version` key inside `metadata` does not satisfy the required
+    top-level `state`/`version` field on `operational-session`.
+  - **F1A-R5 — NONDETERMINISTIC_MODULE_REGISTRY_ENTRY (repaired).**
+    `OW-F1A-WO-001`'s Module Registry section said "something like" before
+    an illustrative entry. Replaced, in both `OW-F1A-WO-001` and
+    `OW-F1A-SPEC-001`'s `F1A-AC-25`, with the exact authorized entry given
+    by the reviewer, verbatim (`id: contracts-core-f1a`, `path:
+    contracts/core`, `status: CONTRACT_ONLY`, fixed `description`/
+    `evidence` strings, empty `controls`/`dependencies`) — no discretion
+    left to BUILD.
+- Repaired exactly the six paths this round's ceiling permits (`ADR-OW-005`,
+  `OW-F1A-SPEC-001`, `OW-F1A-WO-001`, `IMPLEMENTATION_STATUS.json`,
+  `CVF_SESSION/ACTIVE_SESSION_STATE.json`, this handoff); no seventh path.
+  No `contracts/**`, `tests/**`, requirements file, catalog, Index, roadmap,
+  source, script, core-pin, or runtime path was touched. No BUILD occurred.
+- The package-registry reads performed to resolve and hash the validator
+  dependency closure (PyPI, via `pip index versions`, `pip install
+  --dry-run --report`, `pip install --target`, and `pip download --no-deps`)
+  required no credentials, exposed none, and are not an AI/agent-provider
+  call — disclosed per the reviewer's own instruction, not hidden. No other
+  secret was read.
+- All three markdown files remain under 600 lines (`ADR-OW-005` 569,
+  `OW-F1A-SPEC-001` 276, `OW-F1A-WO-001` 282); both JSON continuity files
+  parse; `git diff --check` remains clean (benign CRLF notices only);
+  Golden catalog check PASS; 116/116 tests PASS (unaffected — no test file
+  exists yet, this is still authorization); project-scoped workspace
+  doctor PASS 25/25; target HEAD/origin/main, CVF core HEAD/origin/main,
+  and both read-only inputs (`shift-operations-workspace`,
+  `operations-workspace-all-phases`) are unchanged from the original
+  authorization round's verified pins.
+- F1A authorization package status after this round: **repaired
+  (repair round 1: F1A-R1 through F1A-R5 closed), status
+  REPAIRED_PENDING_INDEPENDENT_RE_REVIEW, not yet authorized for BUILD.**
+  Claude does not self-grant REVIEW_PASS and did not stage, commit, or push
+  any file.
+- Next governed move: Codex acts as independent REVIEWER performing
+  **re-review** of `ADR-OW-005`, `OW-F1A-SPEC-001`, and `OW-F1A-WO-001` as
+  repaired — including independently re-deriving the 19-package dependency
+  closure and its hashes rather than trusting this round's restatement of
+  them, and independently re-testing the bare-`jsonschema`-vs-`format-nongpl`
+  `FormatChecker` behavior claimed above.
+
+## F1A Authorization Claim Boundary (superseded by repair round 2 below; kept for history)
+
+G0/G1/F0/G2/RM1 remain complete, independently REVIEW_PASS'd, and FREEZE'd;
+Module Registry remains empty; no runtime has been imported. The F1A
+authorization package (`ADR-OW-005`, `OW-F1A-SPEC-001`, `OW-F1A-WO-001`) is
+**repaired (repair round 1: `F1A-R1` through `F1A-R5` closed without
+waiver), status REPAIRED_PENDING_INDEPENDENT_RE_REVIEW, not yet
+independently re-reviewed, not authorized for BUILD.** No schema file, test
+file, validator dependency, Module Registry entry, roadmap edit, or
+runtime/provider/governance behavior exists as a result of this round or
+the round before it. `capability-invocation` and the
+`agent-operations/**`/`live-view/**` design input remain unadopted and out
+of this tranche's scope. Any mismatch between this package's stated
+pins/counts/hashes and Codex's independent reproduction is blocking, with no
+worker discretion to reclassify it as non-blocking.
+
+## OW-F1A Authorization Repair Round 2 — 2026-07-24
+
+- Role: `REPAIR_WORKER` (Claude, provider-neutral role contract). Codex
+  holds `REVIEWER`/`COMMIT_STEWARD` independently; this repair does not
+  self-grant REVIEW_PASS and does not stage, commit, or push.
+- Independent Codex re-review verified `F1A-R1` through `F1A-R5` closed:
+  independent PyPI resolution reproduced exactly 19 wheels; all 19 `sha256`
+  hashes matched `ADR-OW-005` exactly; `jsonschema` 4.26.0 with
+  `format-nongpl` was confirmed to activate `FormatChecker` `date-time`
+  checking; invalid-month/day/hour cases were confirmed rejected; catalog
+  check, 116 tests, doctor 25/25, JSON parse, `git diff --check`, and the
+  six-path ceiling all passed independently.
+- One finding remained, repaired in this round without waiver:
+  - **F1A-R6 — VALIDATOR_WHEEL_PORTABILITY_COUNT_CONTRADICTION (repaired).**
+    `ADR-OW-005` Decision 12 said "17 of the 19 wheels are pure-Python ...
+    the sole exception is `rpds-py`" — arithmetically wrong (19 total minus
+    1 platform-specific exception is 18, not 17). **Repair:** corrected to
+    "18 of the 19 wheels are pure-Python (`py3-none-any` or
+    `py2.py3-none-any`). The sole platform/interpreter-specific exception
+    is `rpds-py`, whose authorized wheel is
+    `rpds_py-2026.6.3-cp313-cp313-win_amd64.whl`." No other content in
+    Decision 12 — package table, versions, hashes, supported platform,
+    dependency/install policy — changed.
+- `F1A-R1` through `F1A-R5` and their repair-round-1 disposition remain
+  closed and unaltered by this round. No package table, version, hash,
+  supported platform, dependency policy, SemVer policy, `FormatChecker`
+  policy, opaque-boundary policy, Module Registry entry, acceptance
+  criterion, or BUILD ceiling changed — only the one arithmetic sentence in
+  `ADR-OW-005` Decision 12. `OW-F1A-SPEC-001` and `OW-F1A-WO-001` needed no
+  edits this round (neither ever repeated the "17 of 19" figure) and are
+  unchanged from repair round 1.
+- Repaired exactly `ADR-OW-005` plus the three continuity/status paths
+  (`IMPLEMENTATION_STATUS.json`, `CVF_SESSION/ACTIVE_SESSION_STATE.json`,
+  this handoff) — still inside the same total six-path ceiling; no seventh
+  path. No `contracts/**`, `tests/**`, requirements file, catalog, Index,
+  roadmap, source, script, core-pin, or runtime path was touched. No BUILD
+  occurred. No secret was read; no provider call was made. `ADR-OW-005`
+  remains under the 600-line ceiling (599 lines after this round's edits).
+- F1A authorization package status after this round: **repaired twice
+  (repair round 1: `F1A-R1`–`F1A-R5` closed; repair round 2: `F1A-R6`
+  closed), status REPAIRED_PENDING_INDEPENDENT_RE_REVIEW_2, not yet
+  authorized for BUILD.** Claude does not self-grant REVIEW_PASS and did
+  not stage, commit, or push any file.
+- Next governed move: Codex acts as independent REVIEWER performing a
+  **second re-review**, confirming this single arithmetic correction and
+  that nothing else in the package changed.
+
+## F1A Authorization Independent Re-review 2 — REVIEW_PASS — 2026-07-24
+
+- Independent REVIEWER confirmed the repair-round-2 correction: 18 of the
+  19 authorized wheels are pure-Python and `rpds-py` is the sole
+  platform/interpreter-specific wheel.
+- `F1A-R1` through `F1A-R6` are closed without waiver.
+- Independent evidence retained from the preceding review: PyPI resolution
+  reproduced exactly 19 wheels and every SHA-256 matched ADR-OW-005;
+  `jsonschema[format-nongpl]==4.26.0` activated `date-time` checking and
+  rejected the invalid-month/day/hour cases.
+- Current repository gates: exact six-path ceiling; both JSON files parse;
+  all three authorization Markdown files remain below 600 lines;
+  `git diff --check` clean; Golden catalog PASS; 116/116 tests PASS;
+  workspace doctor PASS 25/25; target/core pins and protected paths
+  unchanged.
+- Disposition: `F1A_AUTHORIZATION_REVIEW_PASS`. Role transitioned from
+  independent `REVIEWER` to `COMMIT_STEWARD`. C1 may now be explicitly
+  staged, committed, rehearsed post-commit/pre-push in a temporary sibling
+  worktree, and pushed only after PASS. BUILD remains prohibited until C1 is
+  pushed.
+
+## F1A Authorization Claim Boundary (current)
+
+G0/G1/F0/G2/RM1 remain complete, independently REVIEW_PASS'd, and FREEZE'd;
+Module Registry remains empty; no runtime has been imported. The F1A
+authorization package (`ADR-OW-005`, `OW-F1A-SPEC-001`, `OW-F1A-WO-001`) is
+**repaired twice and independently REVIEW_PASS'd (`F1A-R1`–`F1A-R6`
+closed without waiver), pending C1 commit/rehearsal/push and not yet
+authorized for BUILD.** No schema file, test file,
+validator dependency, Module Registry entry, roadmap edit, or
+runtime/provider/governance behavior exists as a result of any round of
+this tranche. `capability-invocation` and the
+`agent-operations/**`/`live-view/**` design input remain unadopted and out
+of this tranche's scope. Any mismatch between this package's stated
+pins/counts/hashes and Codex's independent reproduction is blocking, with no
+worker discretion to reclassify it as non-blocking.
