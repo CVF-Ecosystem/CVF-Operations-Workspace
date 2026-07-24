@@ -5,11 +5,16 @@ Status: ACTIVE
 ## Current State
 
 - Project: CVF-Operations-Workspace
-- Current mode: FREEZE
-- Active phase: FREEZE
-- Active role: ORCHESTRATOR
-- Next allowed move: F1A is CLOSED/FROZEN/PARKED. Start any next tranche
-  through a separate governed INTAKE; no F1B work is opened by this closure.
+- Current mode: WORK_ORDER
+- Active phase: WORK_ORDER
+- Active role: REPAIR_WORKER (Claude; XR1 authorization repaired, round 3 —
+  see "OW-XR1 Authorization Repair Round 3" below).
+- Next allowed move: Codex independently re-reviews ADR-OW-006,
+  OW-XR1-SPEC-001 and OW-XR1-WO-001 as repaired through all three rounds
+  (round 1 `XR1-R1`–`XR1-R7` closed; round 2 `XR1-R7B`(renamed from a
+  reused `XR1-R7`)–`XR1-R10` closed; round 3 `XR1-R11`–`XR1-R13` closed,
+  all without waiver). No XR1 BUILD before REVIEW_PASS and XR1-O-C1;
+  Operations BUILD is additionally blocked on Shift XR1-S-C3.
 - Parked operator checkpoint (superseded by "G2 Final Claim Boundary" and the
   OW-RM1 entry further down; kept for history): F0 REVIEW_PASS and FREEZE are
   complete. C1 `8c193984c5fc158ca65ea554dd8d4934d12c28f4` and C2
@@ -1650,3 +1655,320 @@ frontend or deployment. No live AI-provider call was required or made.
   provider or governance behavior is claimed.
 - This C4 changes continuity only to record the already-completed C3 push.
   Next role is ORCHESTRATOR; a new tranche requires a fresh governed INTAKE.
+
+## XR1 Operations Authorization Authored — 2026-07-24
+
+- Baseline: clean post-F1A C4
+  `0efa7f23bfb2ea5677b680ed35ca0ae3f057e715`.
+- Authoring route: `ORCHESTRATOR -> SPEC_AUTHOR -> WORK_ORDER_AUTHOR`
+  (Claude, provider-neutral role contract).
+- Artifacts: ADR-OW-006, OW-XR1-SPEC-001 and OW-XR1-WO-001.
+- Scope: exactly `CVF-Operations-Workspace` and
+  `shift-operations-workspace`; portable reciprocal descriptors and a
+  governed deterministic scan/apply refresh mechanism.
+- Explicitly excluded: CVF Core/bootstrap learning implementation, F1B,
+  Shift lane 2, runtime import, provider calls and any third repository.
+- F1A remains CLOSED/FROZEN/PARKED and its four commits are not reopened.
+- XR1 status: authored, not independently reviewed, not authorized for
+  BUILD. Codex owns independent REVIEWER and COMMIT_STEWARD duties.
+
+## OW-XR1 Authorization Repair Round 1 — 2026-07-24
+
+- Role: `REPAIR_WORKER` (Claude, provider-neutral role contract). Codex
+  holds `REVIEWER`/`COMMIT_STEWARD` independently; this repair does not
+  self-grant REVIEW_PASS and does not stage, commit, or push.
+- Independent Codex review of the XR1 authorization package above returned
+  seven findings, all repaired in this round without waiver:
+  - **XR1-R1 — STALE_POST_F1A_BASELINE (repaired).** All three
+    authorization artifacts still stated the pre-F1A-BUILD baseline and
+    called F1A BUILD uncommitted/awaiting review. **Repair:** corrected
+    throughout to Operations HEAD/origin `0efa7f23bfb2ea5677b680ed35ca0ae3f057e715`;
+    F1A recorded as CLOSED, FROZEN, and PARKED with all four commits (C1
+    `d731762a9e135b075261831ed7eb0df4badc98dd`, C2
+    `9e59cfdcf3d1da2644540088e748123cd41f14e9`, C3
+    `4cdd7f06e040fee43ab733d3dc608aa4d425452b`, C4
+    `0efa7f23bfb2ea5677b680ed35ca0ae3f057e715`); regression baseline
+    corrected to **177** tests. F1A itself was not reopened or modified.
+    `XR1-O-C1`'s description was also corrected to name exactly the six
+    authorization paths, removing a redundant "plus authorization
+    continuity" phrase.
+  - **XR1-R2 — ACCOUNTING_MODEL_AMBIGUITY (repaired).** No single
+    comparison universe or counting unit was defined, and a rename risked
+    being recorded as two entries. **Repair:** `ADR-OW-006` section B now
+    states the exact universe (base tree `B`, candidate tree `C`, matched
+    rename-pair set `R`) and the exact equation
+    `|unchanged|+|modified|+|added|+|deleted|+|renamed| = |B ∪ C| − |R|`,
+    with a rename always one logical record (`oldPath`+`newPath`, flagged
+    `contentChanged` if applicable, never double-counted as `modified`).
+    New required tests cover additions, deletions, a pure rename, and a
+    rename-with-content-change.
+  - **XR1-R3 — UNVERIFIABLE_APPLY_AUTHORIZATION (repaired).** "An
+    independently reviewed, repository-tracked manifest" had no versioned
+    schema or verifiable commit/receipt binding. **Repair:** new
+    `ADR-OW-006` section G defines
+    `scripts/linked_sources/apply_manifest.schema.json` (added to the
+    `XR1-O-C2` BUILD ceiling) binding `schemaVersion`, `workspaceId`,
+    `baseCommit`, `candidateCommit`, scan-dataset and filtering-policy
+    hashes, per-entry source/destination/operation, an authorization
+    receipt path, the exact authorization commit, and the manifest's own
+    hash; `apply` must verify the manifest/receipt blobs exist at that
+    exact commit, that the commit is reachable from Operations
+    `origin/main`, and that the receipt records `REVIEW_PASS` for that
+    exact manifest hash — a scan report, a tracked draft, an uncommitted
+    file, or a self-declared status field is never sufficient.
+  - **XR1-R4 — DESTINATION_PATH_ESCAPE (repaired).** No destination-path
+    safety model existed. **Repair:** new `ADR-OW-006` section H defines
+    fail-closed rejection of absolute/drive/UNC paths, empty/dot/parent
+    traversal (including mixed separators), NUL/ADS/reserved-name
+    components, case-insensitive/Unicode-normalization collisions,
+    duplicate destinations, `.git`/protected-governance destinations,
+    symlink/junction/reparse-point ancestors, repository-root escapes, and
+    Git modes `120000`/`160000` — symlinks and submodules are never
+    applied and remain permanently quarantine-only.
+  - **XR1-R5 — PARTIAL_APPLY_AND_ROLLBACK_GAP (repaired).** Rollback
+    evidence was required only as an output, with no ordering guarantee.
+    **Repair:** new `ADR-OW-006` section I requires the rollback/preimage
+    bundle written and hash-verified *before* the first destination
+    mutation, atomic per-file temp-then-rename writes, full restoration of
+    every mutated path plus a failure/recovery receipt on any mid-batch
+    failure, an explicit claim of all-or-restore (not impossible
+    cross-filesystem atomicity), and a new test injecting failure after the
+    first write to prove zero residual content delta.
+  - **XR1-R6 — UNSAFE_DISCOVERY_OR_CLONE (repaired).** Sibling discovery
+    had no bounded resolution order. **Repair:** exactly three ordered
+    steps (validated `.cvf/local-workspace-link.json`; the exact expected
+    sibling directory whose `origin` matches; explicit `--clone-to` or a
+    documented deterministic default) — no filesystem search, no
+    overwrite/reuse of a non-empty or wrong-remote directory.
+    `.cvf/local-workspace-link.json` is clarified as ignored local
+    execution state, created during a run, never staged or committed.
+  - **XR1-R7 — FILTER_PRECEDENCE_AND_SECRET_CONTENT (repaired).** No
+    precedence existed among overlapping dispositions, and no
+    secret-content rule existed. **Repair:** deterministic precedence
+    `HARD_EXCLUDE > PROTECTED_SOURCE_ONLY > QUARANTINE_REVIEW >
+    ELIGIBLE_CANDIDATE`; `APPROVED_APPLY` restated as an apply/review
+    lifecycle promotion the `scan` engine can never emit; secret-content
+    detection added using only safe synthetic fixtures, with reports
+    recording exclusively classification/reason/hash metadata and never
+    persisting matched secret bytes or values.
+- Repaired exactly the six paths this round's ceiling permits
+  (`ADR-OW-006`, `OW-XR1-SPEC-001`, `OW-XR1-WO-001`,
+  `IMPLEMENTATION_STATUS.json`, `CVF_SESSION/ACTIVE_SESSION_STATE.json`,
+  this handoff); no seventh path. No BUILD occurred; F1A was not reopened;
+  `shift-operations-workspace`, the CVF core repository,
+  `docs/catalog/**`, `docs/INDEX.md`, and the roadmap were not touched. No
+  secret was read; no provider call was made.
+- Post-repair validation, real output: exactly six changed paths; both
+  JSON files parse; all three authorization Markdown files remain under
+  600 lines (`ADR-OW-006` ~597, `OW-XR1-SPEC-001` ~317, `OW-XR1-WO-001`
+  ~309 — exact counts in this round's report); `git diff --check` clean;
+  Golden catalog check PASS; the full 177-test suite passes; project-scoped
+  workspace doctor PASS 25/25; Operations HEAD/origin
+  (`0efa7f23bfb2ea5677b680ed35ca0ae3f057e715`), Shift HEAD/origin
+  (`f98f29e145fa002be070e9d44520d20f0f82dcb3`) and its assessment file's
+  SHA-256, and the CVF core pin are all unchanged; nothing staged.
+- XR1 authorization package status after round 1: **repaired (`XR1-R1`
+  through `XR1-R7` closed without waiver), status
+  REPAIRED_PENDING_INDEPENDENT_RE_REVIEW.** Superseded by repair round 2
+  below.
+
+## OW-XR1 Authorization Repair Round 2 — 2026-07-24
+
+- Role: `REPAIR_WORKER` (Claude, provider-neutral role contract). Codex
+  holds `REVIEWER`/`COMMIT_STEWARD` independently; this repair does not
+  self-grant REVIEW_PASS and does not stage, commit, or push.
+- Independent Codex review of the round-1-repaired package returned four
+  findings, all repaired in this round without waiver:
+  - **`XR1-R7B` — INCOMPLETE_FILTER_LIFECYCLE_SEPARATION (repaired; renamed
+    in round 3's governance-id cleanup from a reused `XR1-R7` id; round
+    1's closed `XR1-R7` above is unaffected).** Every scan-side
+    "five-way partition/disposition" statement is replaced with exactly
+    **four** mutually exclusive `scan`-time classifications
+    (`HARD_EXCLUDE`, `PROTECTED_SOURCE_ONLY`, `QUARANTINE_REVIEW`,
+    `ELIGIBLE_CANDIDATE`); `APPROVED_APPLY` is restated as a separate
+    post-review/`apply` lifecycle state, excluded from `scan` classification
+    counts and never emitted by `scan`'s engine. Corrected: `ADR-OW-006`
+    scan step 6, section C's table/vocabulary/sum, the `ADR-OW-001`
+    comparison paragraph, section F's claim boundary, `OW-XR1-SPEC-001`'s
+    `XR1-AC-21`, and `OW-XR1-WO-001`'s matching stop condition. The four
+    classification counts now sum to the total logical accounting records
+    exactly; no `scan` report may contain `APPROVED_APPLY` at all.
+  - **`XR1-R8` — OPERATION_SCHEMA_AND_DESTINATION_DRIFT (repaired).** The
+    apply-manifest schema is now an operation-keyed `oneOf`: `new`/
+    `modified` (candidate source path/blob/Git-mode, destination,
+    precondition); `deleted` (base source path/blob only — never a
+    candidate blob, since none exists); `renamed` (old/new source paths,
+    base and candidate blob hashes, `contentChanged`, and a precondition
+    for each of two destinations). Every `destinationPrecondition` states
+    `ABSENT` or `PRESENT`+expected `sha256`; `apply` rejects before writing
+    on drift and rechecks immediately before each mutation. New positive/
+    negative criteria (`XR1-AC-45`/`46`) cover every operation, destination
+    drift, rename collision, and deletion of a locally modified destination.
+  - **`XR1-R9` — RECOVERY_ARTIFACTS_OUTSIDE_CEILING (repaired).** Exact
+    recovery locations now named and added to `XR1-O-C2`'s ceiling: raw
+    preimage bytes under gitignored, never-staged
+    `.cvf/local-linked-source-recovery/<run-id>/**`; tracked-safe,
+    hash/status-only receipts under
+    `provenance/shift-operations/<candidate>/apply/<manifest-sha>/`. The
+    authorized `.gitignore` change now covers both new ignored paths;
+    retention/cleanup behavior for local recovery bundles is stated
+    (`XR1-AC-47`).
+  - **`XR1-R10` — SCAN_SIDE_EFFECT_CONTRADICTION (repaired).** `scan`'s
+    exact side-effect boundary is now explicit: only its own declared
+    provenance output, `.cvf/local-workspace-link.json`, and — only via the
+    bounded resolution order — a new peer clone may change; nothing else,
+    ever. `XR1-AC-13` corrected accordingly, including a `git check-ignore`/
+    Git-status proof that the local binding is never staged or committed.
+- Also caught and fixed, in passing, two stale cross-reference bugs from
+  round 1 where a parenthetical "(section G)" pointed at the new
+  apply-manifest section instead of the intended stop-conditions list (one
+  in scan-mode's ancestry-check step, one already fixed in `apply` mode) —
+  disclosed, not hidden, since precision in cross-references matters as
+  much as the findings themselves.
+- Repaired exactly the six paths this round's ceiling permits (`ADR-OW-006`,
+  `OW-XR1-SPEC-001`, `OW-XR1-WO-001`, `IMPLEMENTATION_STATUS.json`,
+  `CVF_SESSION/ACTIVE_SESSION_STATE.json`, this handoff); no seventh path.
+  No BUILD occurred; F1A was not reopened; `shift-operations-workspace`,
+  the CVF core repository, `docs/catalog/**`, `docs/INDEX.md`, and the
+  roadmap were not touched. No secret was read; no provider call was made.
+- Post-repair validation, real output: exactly six changed paths; both
+  JSON files parse; all three authorization Markdown files remain under
+  600 lines (`ADR-OW-006` 597, `OW-XR1-SPEC-001` 361,
+  `OW-XR1-WO-001` 325); `git diff --check` clean; Golden catalog check
+  PASS; the full 177-test suite passes; project-scoped workspace doctor
+  PASS 25/25; Operations HEAD/origin
+  (`0efa7f23bfb2ea5677b680ed35ca0ae3f057e715`), Shift HEAD/origin
+  (`f98f29e145fa002be070e9d44520d20f0f82dcb3`) and its assessment file's
+  SHA-256, and the CVF core pin are all unchanged; nothing staged.
+- XR1 authorization package status after this round: **repaired twice
+  (round 1: `XR1-R1`–`XR1-R7` closed; round 2: `XR1-R7B`(renamed from a
+  reused `XR1-R7`)–`XR1-R10` closed, all without waiver), status
+  REPAIRED_PENDING_INDEPENDENT_RE_REVIEW_2 at the time — superseded by
+  repair round 3 below.**
+
+## OW-XR1 Authorization Repair Round 3 — 2026-07-24
+
+- Role: `REPAIR_WORKER` (Claude, provider-neutral role contract). Codex
+  holds `REVIEWER`/`COMMIT_STEWARD` independently; this repair does not
+  self-grant REVIEW_PASS and does not stage, commit, or push.
+- Independent Codex review of the round-1/round-2-repaired package returned
+  three findings, all repaired in this round without waiver, plus a
+  governance-id cleanup:
+  - **`XR1-R11` — CIRCULAR_COMMIT_BINDING (repaired).** The apply-manifest
+    schema's `authorizationCommit` field named the hash of the Git commit
+    that would contain the manifest itself — a file cannot contain the
+    hash of the commit that contains that same file. **Repair:**
+    `ADR-OW-006` section G rewritten to a non-circular two-artifact model.
+    (1) The manifest is now immutable content only: `schemaVersion`,
+    `workspaceId`, `baseCommit`/`candidateCommit`, `scanDatasetSha256`,
+    `filteringPolicyVersion`/`filteringPolicySha256`, per-entry operation
+    fields, `authorizationReceiptPath` (planned path only), and
+    `manifestSha256` — no `authorizationCommit` field, no self-declared
+    status/approval field. (2) A separate independent review receipt,
+    authored only by Codex `REVIEWER`, carries `receiptSchemaVersion`,
+    `decision` (exactly `REVIEW_PASS`), `manifestPath`, `manifestSha256`,
+    reviewed `baseCommit`/`candidateCommit`,
+    `scanDatasetSha256`/`filteringPolicySha256`, reviewer role, and a
+    review-evidence reference. (3) `apply` takes the authorization commit
+    and receipt path as external CLI arguments
+    (`--authorization-commit`/`--authorization-receipt`), never read from
+    inside the manifest, and verifies: the commit is reachable from
+    Operations `origin/main`; the manifest and receipt blobs both exist
+    byte-identically at that commit; the receipt names this exact manifest
+    hash with `REVIEW_PASS`; the receipt's dataset/policy hashes match the
+    manifest's; and the working manifest's own hash matches both the
+    committed blob and the receipt. New required tests reject an
+    arbitrary/unpushed local authorization commit, a manifest/receipt blob
+    missing or byte-different at that commit, a receipt naming a different
+    manifest hash, mismatched dataset/policy hashes, and a manifest
+    carrying its own self-declared approval field.
+  - **`XR1-R12` — OPERATION_PRECONDITION_TOO_PERMISSIVE (repaired).** The
+    `renamed` operation's single `destinationPrecondition` field
+    (inherited from `new`/`modified`/`deleted`) did not distinguish the
+    old destination (which must already exist) from the new destination
+    (which must not). **Repair:** the `renamed` shape now names
+    `oldDestinationPrecondition` (must be `{"state": "PRESENT", "sha256":
+    "<hash>"}`) and `newDestinationPrecondition` (must be `{"state":
+    "ABSENT"}`) as two exact, separate fields; `new`/`modified`/`deleted`
+    preconditions remain constrained exactly by operation as before. A
+    rename whose `newDestinationPath` collides with another destination
+    only under case-insensitive or Unicode-normalization comparison
+    remains rejected under the existing collision rule (section H), never
+    treated as a distinct destination. New tests cover every invalid
+    operation/precondition combination, destination drift, and the
+    immediate pre-mutation recheck.
+  - **`XR1-R13` — SECRET_SCAN_SCOPE_CONTRADICTION (repaired).** The
+    package's blanket "any secret read" exclusion and its "secret
+    detection" stop condition contradicted the future detector's own
+    documented design (which must inspect blob content to classify
+    `HARD_EXCLUDE`), and did not distinguish `XR1-O-C2` BUILD-time testing
+    from a future real Shift scan. **Repair:** `ADR-OW-006` section C now
+    states `XR1-O-C2` builds and tests the detector against synthetic Git
+    fixtures only — it performs no real `scan`/`apply` against Shift
+    content and reads no real secret; a future real Shift `scan` is its
+    own bounded execution work order, naming the exact candidate commit,
+    opened only after `XR1-O-C2` closes; during such an authorized run the
+    detector may stream Git blob bytes locally, machine-only, for
+    classification, but must never expose them to a human, an agent, a
+    provider call, a log, a prompt, or any tracked file; a `HARD_EXCLUDE`
+    blob can never enter an `apply` manifest. `OW-XR1-WO-001`'s "any
+    secret read" exclusion and "secret detection" stop condition are both
+    corrected to prohibit that exposure specifically — `HARD_EXCLUDE`'s own
+    classification of secret-shaped content is expected behavior, not
+    itself a stop condition.
+  - **Governance-id cleanup.** Round 2's finding, previously stated as a
+    "fresh `XR1-R7`", is renamed `XR1-R7B` throughout `ADR-OW-006`,
+    `OW-XR1-SPEC-001`, `OW-XR1-WO-001`, `IMPLEMENTATION_STATUS.json`, and
+    this handoff; round 1's original `XR1-R7`
+    (`FILTER_PRECEDENCE_AND_SECRET_CONTENT`) is unchanged and remains
+    closed under its own id — the two findings are never conflated again.
+- Repaired exactly the six paths this round's ceiling permits
+  (`ADR-OW-006`, `OW-XR1-SPEC-001`, `OW-XR1-WO-001`,
+  `IMPLEMENTATION_STATUS.json`, `CVF_SESSION/ACTIVE_SESSION_STATE.json`,
+  this handoff); no seventh path. No BUILD occurred; F1A was not reopened;
+  `shift-operations-workspace`, the CVF core repository,
+  `docs/catalog/**`, `docs/INDEX.md`, and the roadmap were not touched. No
+  secret was read; no provider call was made.
+- Post-repair validation, real output: exactly six changed paths; nothing
+  staged; both JSON files parse; all three authorization Markdown files
+  remain under 600 lines (`ADR-OW-006` 596, `OW-XR1-SPEC-001` 414,
+  `OW-XR1-WO-001` 359); `git diff --check` clean; Golden catalog check
+  PASS; the full 177-test suite passes; project-scoped workspace doctor
+  PASS 25/25; Operations HEAD/origin
+  (`0efa7f23bfb2ea5677b680ed35ca0ae3f057e715`), Shift HEAD/origin
+  (`f98f29e145fa002be070e9d44520d20f0f82dcb3`) and its assessment file's
+  SHA-256, and the CVF core pin are all unchanged.
+- XR1 authorization package status after this round: **repaired three
+  times (round 1: `XR1-R1`–`XR1-R7` closed; round 2: `XR1-R7B`–`XR1-R10`
+  closed; round 3: `XR1-R11`–`XR1-R13` closed, all without waiver), status
+  REPAIRED_PENDING_INDEPENDENT_RE_REVIEW_3, not yet authorized for
+  BUILD.** Claude does not self-grant REVIEW_PASS and did not stage,
+  commit, or push any file.
+- Next governed move: Codex acts as independent REVIEWER performing a
+  third re-review of `ADR-OW-006`, `OW-XR1-SPEC-001`, and `OW-XR1-WO-001`
+  as repaired through all three rounds — including independently
+  re-verifying both repositories' pins, the Shift assessment file's hash,
+  the CVF core pin, and the 177-test baseline, rather than trusting this
+  package's restatement of them.
+
+## OW-XR1 Authorization Independent Re-review 3 — REVIEW_PASS — 2026-07-24
+
+- Codex independently closed `XR1-R1`–`XR1-R13` and `XR1-R7B` without
+  waiver. The non-circular receipt model, per-operation destination
+  preconditions, recovery/side-effect ceilings, four-way scan
+  classification, and synthetic-only C2 secret-detector boundary are
+  authorized as specified.
+- Bounded reviewer clarification: `manifestSha256` is the digest of UTF-8
+  JSON after removing that field and serializing with sorted keys, compact
+  separators, and unescaped Unicode. The spec requires a known-vector and
+  mutation test; working and committed manifest content are independently
+  canonicalized before comparison with the manifest field and receipt.
+- Independent gates: exact six changed paths; nothing staged before role
+  transition; JSON and diff checks PASS; ADR/SPEC/WO are 598/418/359 lines;
+  Golden catalog PASS; 177/177 tests PASS; workspace doctor PASS 25/25;
+  Operations, Shift and CVF-core pins plus the Shift assessment SHA-256 are
+  unchanged.
+- Disposition: `XR1_OPERATIONS_AUTHORIZATION_REVIEW_PASS`. Role transition:
+  `REVIEWER -> COMMIT_STEWARD`. BUILD remains prohibited. The next allowed
+  action is explicit-path staging of the six authorization paths for
+  `XR1-O-C1`, followed by post-commit/pre-push sibling-worktree rehearsal.
