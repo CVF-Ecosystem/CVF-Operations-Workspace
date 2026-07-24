@@ -7,12 +7,9 @@ Status: ACTIVE
 - Project: CVF-Operations-Workspace
 - Current mode: FREEZE
 - Active phase: FREEZE
-- Active role: COMMIT_STEWARD (Codex, after independent F1A BUILD
-  `REVIEW_PASS`; C2 only).
-- Next allowed move: C2
-  `9e59cfdcf3d1da2644540088e748123cd41f14e9` is pushed. Explicitly stage the
-  C3 independent receipt and three continuity paths, commit, rehearse and
-  push after PASS; then synchronize the successful push in C4 and park F1A.
+- Active role: ORCHESTRATOR
+- Next allowed move: F1A is CLOSED/FROZEN/PARKED. Start any next tranche
+  through a separate governed INTAKE; no F1B work is opened by this closure.
 - Parked operator checkpoint (superseded by "G2 Final Claim Boundary" and the
   OW-RM1 entry further down; kept for history): F0 REVIEW_PASS and FREEZE are
   complete. C1 `8c193984c5fc158ca65ea554dd8d4934d12c28f4` and C2
@@ -1636,3 +1633,20 @@ frontend or deployment. No live AI-provider call was required or made.
 - C3 contains only this receipt and the three continuity paths. F1A becomes
   CLOSED/FROZEN only after C3 passes rehearsal and is pushed, followed by
   the continuity-only C4 synchronization.
+
+## F1A Final Closure and Park — 2026-07-24
+
+- C1 authorization:
+  `d731762a9e135b075261831ed7eb0df4badc98dd`.
+- C2 BUILD: `9e59cfdcf3d1da2644540088e748123cd41f14e9`.
+- C3 independent review/FREEZE:
+  `4cdd7f06e040fee43ab733d3dc608aa4d425452b`.
+- All three commits passed post-commit/pre-push sibling-worktree rehearsal
+  and were pushed to `origin/main`.
+- F1A status: CLOSED, FROZEN and PARKED. F1A-AC-01 through F1A-AC-31 PASS;
+  F1A-BR1 closed without waiver.
+- Frozen boundary: six versioned closed JSON schemas, exact validator lock,
+  177 tests and one `CONTRACT_ONLY` Module Registry entry. No F1B+ runtime,
+  provider or governance behavior is claimed.
+- This C4 changes continuity only to record the already-completed C3 push.
+  Next role is ORCHESTRATOR; a new tranche requires a fresh governed INTAKE.

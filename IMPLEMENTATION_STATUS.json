@@ -1,17 +1,16 @@
 ﻿{
     "schemaVersion":  "1.0",
     "projectName":  "CVF-Operations-Workspace",
-    "overallStatus":  "F1A_REVIEW_PASS_FREEZE_PENDING_C3_PUSH",
+    "overallStatus":  "F1A_CLOSED_FROZEN_PARKED",
     "currentPhase":  "FREEZE",
     "completedCapabilities":  [
                                   "Machine-governed documentation Index and source-backed Module Catalog (G1 structural governance)",
                                   "Reproducible, read-only Shift Operations source-intake and compatibility baseline at f98f29e145fa002be070e9d44520d20f0f82dcb3 (F0)",
                                   "Golden Downstream Catalog Kit 1.1 and CVF core-pin reconciliation with closed schemas, single canonical writer, 116 regression tests and workspace doctor PASS 25/25 (G2)",
-                                  "Canonical platform roadmap and full-bundle learning assessment independently REVIEW_PASS with 161/161 candidates accounted and no runtime import (RM1)"
+                                  "Canonical platform roadmap and full-bundle learning assessment independently REVIEW_PASS with 161/161 candidates accounted and no runtime import (RM1)",
+                                  "Versioned closed core contract foundation with six JSON Schema 2020-12 contracts, exact validator lock, 177 tests and CONTRACT_ONLY catalog registration (F1A)"
                               ],
-    "activeWorkOrders":  [
-                             "OW-F1A-WO-001"
-                         ],
+    "activeWorkOrders":  [],
     "knownLimitations":  [
                              "No runtime module has been implemented or imported.",
                              "F0 captured a reproducible read-only baseline of shift-operations-workspace at commit f98f29e145fa002be070e9d44520d20f0f82dcb3; it did not import, adapt or reimplement any asset. Every import-ledger row is REFERENCE_ONLY, pending a dedicated F1+ work order and reviewer disposition. F0 BUILD, independent REVIEW_PASS and FREEZE are complete (commits C1 8c193984c5fc158ca65ea554dd8d4934d12c28f4, C2 39541d5e84b06f8650ce2b0f6341425c7a05d7bf, C3 3064d4bce08d36f553516d59719358fd8788cbcf); this limitation is about F1+ import authorization, not about F0 completion status.",
