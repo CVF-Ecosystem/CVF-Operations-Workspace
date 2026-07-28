@@ -3,10 +3,14 @@ from __future__ import annotations
 import importlib.util
 import copy
 import json
+import os
 import subprocess
 import tempfile
 import unittest
 from pathlib import Path
+from unittest import mock
+
+os.environ["GIT_ALLOW_PROTOCOL"] = "file"
 
 ROOT = Path(__file__).resolve().parents[2]
 MODULE = ROOT / "scripts" / "linked_sources" / "workspace_link.py"
@@ -31,6 +35,14 @@ def _make_git_repo(path: Path, remote_url: str | None = None) -> None:
 
 
 class WorkspaceLinkTests(unittest.TestCase):
+    def setUp(self) -> None:
+        self.git_protocol_guard = mock.patch.dict(
+            os.environ,
+            {"GIT_ALLOW_PROTOCOL": "file"},
+        )
+        self.git_protocol_guard.start()
+        self.addCleanup(self.git_protocol_guard.stop)
+
     def test_tracked_descriptor_is_exact_and_portable(self) -> None:
         data = workspace_link.load_descriptor(ROOT / ".cvf" / "workspace-link.json")
         self.assertEqual(data["workspaceId"], "cvf-operations-workspace")
@@ -340,7 +352,9 @@ class WorkspaceLinkTests(unittest.TestCase):
             (ops / ".cvf").mkdir()
             (peer / ".cvf").mkdir(parents=True)
 
-            _make_git_repo(peer, remote_url="https://github.com/CVF-Ecosystem/shift-operations-workspace.git")
+            peer_remote = str(workspace / "shift-origin.git")
+            ops_remote = str(workspace / "operations-origin.git")
+            _make_git_repo(peer, remote_url=peer_remote)
             commit_a = subprocess.run(
                 ["git", "-C", str(peer), "rev-parse", "HEAD"],
                 capture_output=True, text=True, check=True,
@@ -349,8 +363,8 @@ class WorkspaceLinkTests(unittest.TestCase):
             ops_descriptor = {
                 "schemaVersion": "1.0",
                 "workspaceId": "cvf-operations-workspace",
-                "thisRepo": {"repoId": "cvf-operations-workspace", "role": "PRIMARY_PLATFORM", "remote": "https://github.com/CVF-Ecosystem/CVF-Operations-Workspace.git"},
-                "peerRepo": {"repoId": "shift-operations-workspace", "role": "PROFILE_SOURCE", "remote": "https://github.com/CVF-Ecosystem/shift-operations-workspace.git"},
+                "thisRepo": {"repoId": "cvf-operations-workspace", "role": "PRIMARY_PLATFORM", "remote": ops_remote},
+                "peerRepo": {"repoId": "shift-operations-workspace", "role": "PROFILE_SOURCE", "remote": peer_remote},
                 "relationshipDirection": "SHIFT_TO_OPERATIONS_GOVERNED_INTAKE",
                 "sourcePin": commit_a,
                 "pinUpdatePolicy": "REVIEWED_SCAN_APPLY_CYCLE_ONLY",
@@ -358,8 +372,8 @@ class WorkspaceLinkTests(unittest.TestCase):
             reciprocal_descriptor = {
                 "schemaVersion": "1.0",
                 "workspaceId": "cvf-operations-workspace",
-                "thisRepo": {"repoId": "shift-operations-workspace", "role": "PROFILE_SOURCE", "remote": "https://github.com/CVF-Ecosystem/shift-operations-workspace.git"},
-                "peerRepo": {"repoId": "cvf-operations-workspace", "role": "PRIMARY_PLATFORM", "remote": "https://github.com/CVF-Ecosystem/CVF-Operations-Workspace.git"},
+                "thisRepo": {"repoId": "shift-operations-workspace", "role": "PROFILE_SOURCE", "remote": peer_remote},
+                "peerRepo": {"repoId": "cvf-operations-workspace", "role": "PRIMARY_PLATFORM", "remote": ops_remote},
                 "relationshipDirection": "SHIFT_TO_OPERATIONS_GOVERNED_INTAKE",
             }
             (peer / ".cvf" / "workspace-link.json").write_text(json.dumps(reciprocal_descriptor), encoding="utf-8")

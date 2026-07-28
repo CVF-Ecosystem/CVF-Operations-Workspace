@@ -4,10 +4,13 @@ import copy
 import hashlib
 import importlib.util
 import json
+import os
 import unittest
 from pathlib import Path
 
 import jsonschema
+
+os.environ["GIT_ALLOW_PROTOCOL"] = "file"
 
 ROOT = Path(__file__).resolve().parents[2]
 MODULE = ROOT / "scripts" / "linked_sources" / "apply.py"

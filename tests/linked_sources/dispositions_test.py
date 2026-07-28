@@ -2,10 +2,14 @@ from __future__ import annotations
 
 import importlib.util
 import json
+import os
 import subprocess
 import tempfile
 import unittest
 from pathlib import Path
+from unittest import mock
+
+os.environ["GIT_ALLOW_PROTOCOL"] = "file"
 
 ROOT = Path(__file__).resolve().parents[2]
 MODULE = ROOT / "scripts" / "linked_sources" / "dispositions.py"
@@ -17,6 +21,14 @@ SPEC.loader.exec_module(dispositions)
 
 
 class DispositionTests(unittest.TestCase):
+    def setUp(self) -> None:
+        self.git_protocol_guard = mock.patch.dict(
+            os.environ,
+            {"GIT_ALLOW_PROTOCOL": "file"},
+        )
+        self.git_protocol_guard.start()
+        self.addCleanup(self.git_protocol_guard.stop)
+
     def classify(self, path: str, **values):
         record = {"path": path, "changeType": "modified", **values}
         content = values.get("content")

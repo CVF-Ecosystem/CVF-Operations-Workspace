@@ -7,13 +7,12 @@ Status: ACTIVE
 - Project: CVF-Operations-Workspace
 - Current mode: REVIEW
 - Active phase: REVIEW
-- Active role: REPAIR_WORKER (Claude assigned by operator; not started because
-  no Claude worker is callable in this environment).
-- Next allowed move: repair the residual re-review findings (`R1A`, `R4A`,
-  `R5A`, `R7A`, and blocker `R8`) inside the bounded repair ceiling, then
-  stop for another independent re-review. Real Shift scan/apply, runtime
-  asset import, provider calls, stage/commit/push, self-review and FREEZE
-  remain prohibited.
+- Active role: REVIEWER.
+- Next allowed move: independent review of the operator-authorized XR1-R11
+  live-remote isolation repair and guarded recovery readiness. Repair remains
+  unstaged and uncommitted. Real Shift scan/apply, runtime asset import,
+  provider calls, recovery push and FREEZE remain prohibited until independent
+  review and the amendment's gates PASS.
 - Parked operator checkpoint (superseded by "G2 Final Claim Boundary" and the
   OW-RM1 entry further down; kept for history): F0 REVIEW_PASS and FREEZE are
   complete. C1 `8c193984c5fc158ca65ea554dd8d4934d12c28f4` and C2
@@ -2235,3 +2234,278 @@ frontend or deployment. No live AI-provider call was required or made.
   `REVIEWER -> COMMIT_STEWARD`. Next move is explicit-path staging of
   XR1-O-C2, commit, sibling-worktree rehearsal, and push only after PASS.
   No real Shift scan/apply, provider call, runtime import, or `FREEZE`.
+
+## XR1-O-C2 Post-commit Rehearsal Incident — BLOCKED — 2026-07-28
+
+- Local C2 was created from exactly 17 explicitly staged paths:
+  `d47340fd20df88a168e270f45dd7998808a0a11b`.
+- A detached direct-sibling rehearsal on that commit passed: focused 69
+  tests (68 PASS, one conditional Windows symlink skip), baseline 177/177,
+  Golden catalog PASS and workspace doctor PASS 25/25. The rehearsal
+  worktree was removed after verification.
+- The subsequent normal push was rejected non-fast-forward. Read-only fetch
+  proved Operations `origin/main` had been force-updated from governed commit
+  `3ed0fc83cc542f9c2af2c17ee9cbed60b891e74a` to unrelated fixture commit
+  `214bc58721a54cec9014d672a48038aee97d274c`, with no common ancestor.
+- `XR1-O-C2-R11 LIVE_REMOTE_MUTATION_BY_TEST` (BLOCKER):
+  `tests/linked_sources/apply_test.py` contains a helper that initially pushes
+  to a temporary bare origin, then changes that temporary repository's
+  `origin` URL to the real Operations GitHub remote. Later calls in the same
+  test execute `git push -f origin HEAD:main`, force-updating the live remote
+  with fixture commits authored `T <t@t.com>` and message `x`.
+- The earlier `REVIEW_PASS` is invalidated. C2 is not pushed and no commit or
+  FREEZE authority remains. Role transition:
+  `COMMIT_STEWARD -> ORCHESTRATOR`.
+- No force-push, pull, rebase, merge, reset or remote recovery was attempted.
+  Recovery would be destructive, conflicts with the current work-order
+  prohibition, and requires explicit operator authorization. Next move:
+  repair R11 so every test remote remains local-only, independently prove no
+  network/live-remote command is reachable, and separately authorize a
+  governed restoration of Operations `main`.
+
+## XR1-R11 Operator Authorization and Amendment — 2026-07-28
+
+- The operator explicitly instructed Codex to handle the incident.
+- Role transition: `ORCHESTRATOR -> WORK_ORDER_AUTHOR`.
+- Authorized amendment:
+  `docs/work_orders/XR1_R11_LIVE_REMOTE_RECOVERY_AMENDMENT.md`.
+- The amendment permits only the bounded test-isolation repair and a single
+  guarded `--force-with-lease` restoration locked to incident tip
+  `214bc58721a54cec9014d672a48038aee97d274c`, after independent repair gates
+  and sibling-worktree rehearsal PASS.
+- Plain force-push, lease drift, production-source expansion, Shift/core
+  mutation, rebase, reset and premature `FREEZE` remain prohibited.
+
+## XR1-R11 Repair Acknowledgment — 2026-07-28
+
+- Role transition: `WORK_ORDER_AUTHOR -> REPAIR_WORKER`.
+- The operator's emergency instruction authorizes Codex to perform this
+  bounded repair. Independent review remains a separate role after BUILD.
+- No focused linked-source test will run until unsafe remote-retargeting and
+  force-push commands are removed and the new static isolation guard passes.
+
+## XR1-R11 Repair Self-report — 2026-07-28
+
+- Removed every test command that retargeted a temporary Git origin to either
+  live CVF-Ecosystem repository and removed the repeated helper's force-push.
+- Apply integration tests inject the temporary peer resolver. Scan integration
+  tests inject a local-only descriptor while retaining the tracked canonical
+  descriptor fixture. The R10 reachability fixture now uses local remotes.
+- Added `tests/linked_sources/network_isolation_test.py`, an AST-based guard
+  rejecting live-remote Git subprocess commands, helper-configured network
+  remotes and all force-push variants.
+- The isolation guard and a separate source audit passed before the first
+  focused rerun.
+- CPython 3.13 evidence: `pip check` PASS; focused 70 tests (69 PASS, one
+  conditional Windows symlink skip); baseline 177/177 PASS; JSON/schema,
+  `git diff --check`, Golden catalog and doctor 25/25 PASS.
+- Live immutability proof: Operations remote stayed exactly
+  `214bc58721a54cec9014d672a48038aee97d274c` and Shift remote stayed exactly
+  `4241b19d8a7d7031841850d75e95a3e3773b1553` across both suites.
+- Role route for independent separation:
+  `REPAIR_WORKER -> REVIEWER`. Repair remains unstaged and uncommitted.
+
+## XR1-R11 Continuity Header Synchronization — 2026-07-28
+
+- The first independent-review attempt correctly stopped at
+  `BLOCKED_CONTINUITY_DRIFT` because this handoff's top-level Current State
+  header still described the superseded round-2 repair while active state and
+  implementation truth pointed to XR1-R11 independent review.
+- SESSION_SYNC_STEWARD synchronized only that header to REVIEW/REVIEWER and
+  the XR1-R11 next move. No repair source/test was changed by this sync; no
+  test, stage, commit, push or recovery action occurred during the blocked
+  attempt.
+
+## XR1-R11 Independent Review — REVIEW_CHANGES_REQUIRED — 2026-07-28
+
+- All runtime/gate evidence was green, but independent adversarial analysis
+  found `XR1-R11-R12 STATIC_GUARD_VARIABLE_INDIRECTION_BYPASS` (BLOCKER).
+- The first AST guard inspected only string literals within each `ast.Call`.
+  A URL, command list, or force flag assigned to a variable could bypass it.
+- Role transition: `REVIEWER -> REPAIR_WORKER`.
+- Repair round 2 adds variable/list resolution and adversarial bypass fixtures,
+  plus runtime `GIT_ALLOW_PROTOCOL=file` enforcement in every linked-source
+  test module that executes Git commands. No commit, push or recovery is
+  authorized before another independent review.
+
+## XR1-R11 R12 Repair Self-report — 2026-07-28
+
+- The static analyzer now resolves simple variable, list/tuple/set, starred,
+  concatenated-string and f-string indirection before evaluating Git calls.
+- Dedicated adversarial fixtures prove rejection of a variable-held live URL,
+  a variable-held command list, and a variable-held force flag.
+- Apply, scan and workspace-link Git test modules enforce
+  `GIT_ALLOW_PROTOCOL=file` at runtime, so an overlooked HTTP(S)/SSH Git
+  operation fails before network transport.
+- Guard tests 3/3 PASS before focused rerun. Focused suite: 72 tests
+  (71 PASS, one conditional Windows symlink skip). Baseline: 177/177 PASS.
+  JSON/schema, diff, catalog and doctor 25/25 PASS.
+- Operations and Shift remote refs remained byte-identical before/after.
+- Role transition: `REPAIR_WORKER -> REVIEWER`. No stage, commit, push or
+  recovery has occurred.
+
+## XR1-R11 R12 Independent Re-review — REVIEW_CHANGES_REQUIRED — 2026-07-28
+
+- Exact variable-URL/command/force bypasses are closed, but independent probe
+  found `XR1-R11-R12A LIST_CONCAT_STATIC_GUARD_BYPASS` (BLOCKER).
+- `_values()` treated every `BinOp(Add)` as string concatenation and lost the
+  individual tokens of a list-concatenated Git command.
+- Role transition: `REVIEWER -> REPAIR_WORKER`. Repair retains both operand
+  token sets as well as concatenated string candidates and adds the exact
+  adversarial list-concat fixture. No commit, push or recovery is authorized.
+
+## XR1-R11 R12A Repair Self-report — 2026-07-28
+
+- `BinOp(Add)` resolution now retains left tokens, right tokens and possible
+  concatenated-string values, covering both list and string concatenation.
+- The exact independent list-concat probe now returns a violation; all guard
+  tests PASS.
+- Focused 72 tests (71 PASS, one conditional Windows symlink skip) and
+  baseline 177/177 PASS. Operations and Shift remote refs remained unchanged.
+- Role transition: `REPAIR_WORKER -> REVIEWER`. Repair remains unstaged and
+  uncommitted pending independent re-review.
+
+## XR1-R11 R12A Independent Re-review — REVIEW_CHANGES_REQUIRED — 2026-07-28
+
+- List-concat bypass is closed, but independent adjacent probes found
+  `XR1-R11-R12B MUTATING_LIST_AND_CALL_ALIAS_BYPASS` (BLOCKER): `+=`,
+  `.append()` and `runner = subprocess.run` aliases were unresolved.
+- The runtime-enforcement assertion also named only three current files rather
+  than deriving coverage for every Git-executing linked-source test.
+- Role transition: `REVIEWER -> REPAIR_WORKER`. Repair adds mutation/alias
+  data flow, fail-closed unresolved process calls, derived runtime-guard
+  coverage and the exact three adversarial probes.
+
+## XR1-R11 R12B Repair Self-report — 2026-07-28
+
+- Added `AugAssign` and `.append()`/`.extend()`/`.insert()` command data flow,
+  subprocess-call alias resolution and fail-closed unresolved process calls.
+- Runtime `GIT_ALLOW_PROTOCOL=file` coverage is now derived from analyzer
+  Git-call discovery for every `*_test.py`, not a fixed filename list.
+  `dispositions_test.py` was brought under that runtime guard and amendment
+  ceiling because it invokes Git for ignore verification.
+- Exact independent `+=`, `.append()` and `runner = subprocess.run` probes
+  now return violations. Guard suite PASS; focused 72 tests (71 PASS, one
+  conditional Windows symlink skip); baseline 177/177 PASS; Operations and
+  Shift remote refs remained unchanged.
+- Role transition: `REPAIR_WORKER -> REVIEWER`. No stage, commit, push or
+  recovery occurred.
+
+## XR1-R11 Consolidated Independent Re-review — REVIEW_PASS — 2026-07-28
+
+- R11 and R12 through R12G are closed without waiver.
+- Independent adversarial matrix: 17/17 unsafe process/indirection/shell
+  probes blocked. Isolation preflight: 3/3 PASS.
+- CPython 3.13.12 `pip check` PASS; focused 72 tests (71 PASS, one
+  conditional Windows symlink skip); baseline 177/177 PASS; JSON/schema,
+  diff, catalog and doctor 25/25 PASS.
+- Exact 10-path amendment ceiling and zero staged paths verified. Operations
+  and Shift refs were byte-identical before/after review; Shift/core clean.
+- Disposition: `REVIEW_PASS`. Role transition:
+  `REVIEWER -> COMMIT_STEWARD`. Explicit-path repair commit and detached
+  sibling rehearsal are required before rechecking the exact incident lease
+  and performing the one-time guarded recovery.
+
+## XR1-R11 R12F Independent Re-review — REVIEW_CHANGES_REQUIRED — 2026-07-28
+
+- Consolidated R12-R12F probes are closed, but literal shell-form commands
+  embedded the URL after `git push`, exposing
+  `XR1-R11-R12G EMBEDDED_SHELL_URL_NOT_DETECTED` (BLOCKER).
+- Role transition: `REVIEWER -> REPAIR_WORKER`. Repair detects network
+  schemes anywhere in a resolved shell value and adds exact system/getoutput/
+  asyncio-shell literal fixtures.
+
+## XR1-R11 R12G Repair Self-report — 2026-07-28
+
+- Network schemes are now detected anywhere in a resolved command/shell
+  value, closing literal embedded URLs.
+- Exact `os.system`, `subprocess.getoutput` and asyncio shell-literal probes
+  violate. Guard PASS; focused 72 tests (71 PASS, one conditional Windows
+  symlink skip); baseline 177/177 PASS; Operations and Shift refs unchanged.
+- Role transition: `REPAIR_WORKER -> REVIEWER`. No stage, commit, push or
+  recovery occurred.
+
+## XR1-R11 R12E Independent Re-review — REVIEW_CHANGES_REQUIRED — 2026-07-28
+
+- The reasonable standard-library process surface is closed except
+  `os.posix_spawn`/`os.posix_spawnp`, recorded as
+  `XR1-R11-R12F POSIX_SPAWN_PROCESS_API_GAP` (BLOCKER).
+- Role transition: `REVIEWER -> REPAIR_WORKER`. Repair adds both APIs,
+  ImportFrom alias coverage and exact fixtures.
+
+## XR1-R11 R12F Repair Self-report — 2026-07-28
+
+- Added `os.posix_spawn` and `os.posix_spawnp`, including ImportFrom aliases,
+  to the closed process-launch set and adversarial fixtures.
+- Guard PASS; focused 72 tests (71 PASS, one conditional Windows symlink
+  skip); baseline 177/177 PASS; Operations and Shift refs unchanged.
+- Role transition: `REPAIR_WORKER -> REVIEWER`. No stage, commit, push or
+  recovery occurred.
+
+## XR1-R11 R12D Independent Re-review — REVIEW_CHANGES_REQUIRED — 2026-07-28
+
+- Exact R12D probes and `os.popen` are closed, but independent review found
+  `XR1-R11-R12E ASYNC_AND_SHELL_HELPER_PROCESS_API_GAP` (BLOCKER):
+  subprocess output helpers and asyncio subprocess helpers were absent.
+- Role transition: `REVIEWER -> REPAIR_WORKER`. Repair extends the closed set
+  to subprocess output helpers, asyncio subprocess APIs and the `os.exec*`
+  family, with exact adversarial probes.
+
+## XR1-R11 R12E Repair Self-report — 2026-07-28
+
+- Added subprocess output helpers, asyncio subprocess exec/shell helpers and
+  the `os.exec*` family to the closed process-launch API set, including import
+  aliases.
+- Exact R12E probes now violate. Guard PASS; focused 72 tests (71 PASS, one
+  conditional Windows symlink skip); baseline 177/177 PASS; Operations and
+  Shift refs unchanged.
+- Role transition: `REPAIR_WORKER -> REVIEWER`. No stage, commit, push or
+  recovery occurred.
+
+## XR1-R11 R12C Independent Re-review — REVIEW_CHANGES_REQUIRED — 2026-07-28
+
+- R12C probes and adjacent alias-chain checks are closed, but independent
+  review found `XR1-R11-R12D UNRECOGNIZED_PROCESS_API_AND_IMPORT_ALIAS_ESCAPE`
+  (BLOCKER): `subprocess.call`, `from subprocess import run as ...`, and
+  `os.system` were outside the analyzer's process-launch set.
+- Role transition: `REVIEWER -> REPAIR_WORKER`. Repair uses a closed
+  process-launch API set, import-alias handling and shell-command detection.
+  Runtime file-protocol enforcement becomes mandatory in every linked-source
+  test file, independent of analyzer-derived Git-call coverage.
+
+## XR1-R11 R12D Repair Self-report — 2026-07-28
+
+- Added closed handling for subprocess `run`/`Popen`/`call`/check APIs and
+  common `os.system`/spawn APIs, including `ImportFrom` aliases.
+- Shell-form Git commands are recognized, and any Git process command
+  combined with a network literal is rejected.
+- Every current and future linked-source `*_test.py` must contain module-level
+  `GIT_ALLOW_PROTOCOL=file`; preflight guard scans all such files before the
+  focused suite. `apply_manifest_test.py` was added to the amendment ceiling.
+- Exact import-alias, `subprocess.call` and `os.system` probes now violate.
+  Guard PASS; focused 72 tests (71 PASS, one conditional Windows symlink
+  skip); baseline 177/177 PASS; Operations and Shift refs unchanged.
+- Role transition: `REPAIR_WORKER -> REVIEWER`. No stage, commit, push or
+  recovery occurred.
+
+## XR1-R11 R12B Independent Re-review — REVIEW_CHANGES_REQUIRED — 2026-07-28
+
+- Exact R12B probes are closed, but independent review found
+  `XR1-R11-R12C HELPER_WRAPPER_AND_SLICE_MUTATION_BYPASS` (BLOCKER).
+- Slice/subscript command mutation was not tracked. A generic subprocess
+  wrapper's unresolved command parameter was also masked by an unrelated
+  resolved keyword such as `cwd="."`.
+- Role transition: `REVIEWER -> REPAIR_WORKER`. Repair makes the process
+  command argument independently mandatory/resolvable, tracks subscript
+  mutation and adds both exact probes.
+
+## XR1-R11 R12C Repair Self-report — 2026-07-28
+
+- Subscript/slice assignment now updates the command token set.
+- Process wrappers now fail closed when their command argument itself cannot
+  be resolved; unrelated keywords such as `cwd` cannot mask that condition.
+- Exact slice-mutation and generic-wrapper probes now violate the guard.
+  Guard suite PASS; focused 72 tests (71 PASS, one conditional Windows
+  symlink skip); baseline 177/177 PASS; Operations and Shift refs unchanged.
+- Role transition: `REPAIR_WORKER -> REVIEWER`. No stage, commit, push or
+  recovery occurred.

@@ -8,6 +8,9 @@ import subprocess
 import tempfile
 import unittest
 from pathlib import Path
+from unittest import mock
+
+os.environ["GIT_ALLOW_PROTOCOL"] = "file"
 
 ROOT = Path(__file__).resolve().parents[2]
 MODULE = ROOT / "scripts" / "linked_sources" / "apply.py"
@@ -21,6 +24,21 @@ class ApplySafetyTests(unittest.TestCase):
     def setUp(self) -> None:
         self.temp = tempfile.TemporaryDirectory()
         self.root = Path(self.temp.name)
+        self.git_protocol_guard = mock.patch.dict(
+            os.environ,
+            {"GIT_ALLOW_PROTOCOL": "file"},
+        )
+        self.git_protocol_guard.start()
+        self.addCleanup(self.git_protocol_guard.stop)
+        self.peer_resolver = mock.patch.object(
+            apply.workspace_link,
+            "resolve_peer",
+            side_effect=lambda operations_root, descriptor, **kwargs: (
+                Path(operations_root).resolve().parent / "shift-operations-workspace"
+            ),
+        )
+        self.peer_resolver.start()
+        self.addCleanup(self.peer_resolver.stop)
 
     def tearDown(self) -> None:
         self.temp.cleanup()
@@ -203,7 +221,6 @@ class ApplySafetyTests(unittest.TestCase):
         subprocess.run(["git", "-C", str(repo), "branch", "-M", "main"], check=True)
         subprocess.run(["git", "-C", str(repo), "push", "-q", "-u", "origin", "main"], check=True)
         subprocess.run(["git", "-C", str(repo), "update-ref", "refs/remotes/origin/main", "HEAD"], check=True)
-        subprocess.run(["git", "-C", str(repo), "remote", "set-url", "origin", "https://github.com/CVF-Ecosystem/CVF-Operations-Workspace.git"], check=True)
         commit = subprocess.run(["git", "-C", str(repo), "rev-parse", "HEAD"], check=True, capture_output=True, text=True).stdout.strip()
         apply.verify_authorization(repo, manifest_path, commit, receipt_path)
         # Receipt blob modified: must fail
@@ -242,9 +259,8 @@ class ApplySafetyTests(unittest.TestCase):
             receipt_path.write_text(json.dumps(receipt_data) + "\n", encoding="utf-8")
             subprocess.run(["git", "-C", str(repo), "add", "-A"], check=True)
             subprocess.run(["git", "-C", str(repo), "commit", "-q", "--allow-empty", "-m", "x"], check=True)
-            subprocess.run(["git", "-C", str(repo), "push", "-q", "-f", "origin", "HEAD:main"], check=True)
+            subprocess.run(["git", "-C", str(repo), "push", "-q", "origin", "HEAD:main"], check=True)
             subprocess.run(["git", "-C", str(repo), "update-ref", "refs/remotes/origin/main", "HEAD"], check=True)
-            subprocess.run(["git", "-C", str(repo), "remote", "set-url", "origin", "https://github.com/CVF-Ecosystem/CVF-Operations-Workspace.git"], check=True)
             return subprocess.run(["git", "-C", str(repo), "rev-parse", "HEAD"], capture_output=True, text=True, check=True).stdout.strip()
 
         base_receipt = {
@@ -325,7 +341,6 @@ class ApplySafetyTests(unittest.TestCase):
         subprocess.run(["git", "-C", str(repo), "commit", "-q", "-m", "x"], check=True)
         subprocess.run(["git", "-C", str(repo), "push", "-q", "-u", "origin", "HEAD:main"], check=True)
         subprocess.run(["git", "-C", str(repo), "update-ref", "refs/remotes/origin/main", "HEAD"], check=True)
-        subprocess.run(["git", "-C", str(repo), "remote", "set-url", "origin", "https://github.com/CVF-Ecosystem/CVF-Operations-Workspace.git"], check=True)
         commit_hash = subprocess.run(["git", "-C", str(repo), "rev-parse", "HEAD"], capture_output=True, text=True, check=True).stdout.strip()
         with self.assertRaises(apply.AuthorizationError):
             apply.verify_authorization(repo, manifest_path, commit_hash, wrong_receipt_path)
@@ -433,8 +448,6 @@ class ApplySafetyTests(unittest.TestCase):
         subprocess.run(["git", "-C", str(ops), "branch", "-M", "main"], check=True)
         subprocess.run(["git", "-C", str(ops), "push", "-q", "-u", "origin", "main"], check=True)
         subprocess.run(["git", "-C", str(ops), "update-ref", "refs/remotes/origin/main", "HEAD"], check=True)
-        subprocess.run(["git", "-C", str(ops), "remote", "set-url", "origin", "https://github.com/CVF-Ecosystem/CVF-Operations-Workspace.git"], check=True)
-        subprocess.run(["git", "-C", str(peer), "remote", "set-url", "origin", "https://github.com/CVF-Ecosystem/shift-operations-workspace.git"], check=True)
         commit_id = subprocess.run(["git", "-C", str(ops), "rev-parse", "HEAD"], check=True, capture_output=True, text=True).stdout.strip()
         return ops, manifest_path, receipt_path, commit_id, candidate, manifest["manifestSha256"]
 
@@ -520,7 +533,6 @@ class ApplySafetyTests(unittest.TestCase):
         subprocess.run(["git", "-C", str(peer), "commit", "-q", "-m", "candidate with executable"], check=True)
         candidate = subprocess.run(["git", "-C", str(peer), "rev-parse", "HEAD"], check=True, capture_output=True, text=True).stdout.strip()
         subprocess.run(["git", "-C", str(peer), "push", "-q", "-u", "origin", "HEAD:main"], check=True)
-        subprocess.run(["git", "-C", str(peer), "remote", "set-url", "origin", "https://github.com/CVF-Ecosystem/shift-operations-workspace.git"], check=True)
 
         subprocess.run(["git", "init", "--bare", "-q", str(ops_origin)], check=True)
         subprocess.run(["git", "init", "-q", str(ops)], check=True)
@@ -582,7 +594,6 @@ class ApplySafetyTests(unittest.TestCase):
         subprocess.run(["git", "-C", str(ops), "branch", "-M", "main"], check=True)
         subprocess.run(["git", "-C", str(ops), "push", "-q", "-u", "origin", "main"], check=True)
         subprocess.run(["git", "-C", str(ops), "update-ref", "refs/remotes/origin/main", "HEAD"], check=True)
-        subprocess.run(["git", "-C", str(ops), "remote", "set-url", "origin", "https://github.com/CVF-Ecosystem/CVF-Operations-Workspace.git"], check=True)
         commit_id = subprocess.run(["git", "-C", str(ops), "rev-parse", "HEAD"], check=True, capture_output=True, text=True).stdout.strip()
 
         with self.assertRaises(apply.ApplyRefusal) as cm:

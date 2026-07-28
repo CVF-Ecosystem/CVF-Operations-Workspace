@@ -3,10 +3,14 @@ from __future__ import annotations
 import hashlib
 import importlib.util
 import json
+import os
 import subprocess
 import tempfile
 import unittest
 from pathlib import Path
+from unittest import mock
+
+os.environ["GIT_ALLOW_PROTOCOL"] = "file"
 
 ROOT = Path(__file__).resolve().parents[2]
 MODULE = ROOT / "scripts" / "linked_sources" / "scan.py"
@@ -31,6 +35,12 @@ class ScanTests(unittest.TestCase):
     def setUp(self) -> None:
         self.temp = tempfile.TemporaryDirectory()
         self.root = Path(self.temp.name)
+        self.git_protocol_guard = mock.patch.dict(
+            os.environ,
+            {"GIT_ALLOW_PROTOCOL": "file"},
+        )
+        self.git_protocol_guard.start()
+        self.addCleanup(self.git_protocol_guard.stop)
         self.peer = self.root / "shift-operations-workspace"
         self.ops = self.root / "CVF-Operations-Workspace"
         self.peer.mkdir()
@@ -53,7 +63,6 @@ class ScanTests(unittest.TestCase):
         (self.peer / "synthetic-secret.txt").write_text("AKIAABCDEFGHIJKLMNOP\n", encoding="utf-8")
         self.candidate = commit(self.peer, "candidate")
 
-        git(self.peer, "remote", "set-url", "origin", "https://github.com/CVF-Ecosystem/shift-operations-workspace.git")
         (self.ops / ".cvf").mkdir()
         descriptor = {
             "schemaVersion": "1.0",
@@ -65,6 +74,15 @@ class ScanTests(unittest.TestCase):
             "pinUpdatePolicy": "REVIEWED_SCAN_APPLY_CYCLE_ONLY",
         }
         (self.ops / ".cvf" / "workspace-link.json").write_text(json.dumps(descriptor), encoding="utf-8")
+        test_descriptor = json.loads(json.dumps(descriptor))
+        test_descriptor["peerRepo"]["remote"] = self.remote
+        self.descriptor_loader = mock.patch.object(
+            scan.workspace_link,
+            "load_descriptor",
+            return_value=test_descriptor,
+        )
+        self.descriptor_loader.start()
+        self.addCleanup(self.descriptor_loader.stop)
 
     def tearDown(self) -> None:
         self.temp.cleanup()
