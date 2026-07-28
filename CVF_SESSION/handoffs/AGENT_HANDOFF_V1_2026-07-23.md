@@ -7,12 +7,13 @@ Status: ACTIVE
 - Project: CVF-Operations-Workspace
 - Current mode: REVIEW
 - Active phase: REVIEW
-- Active role: REVIEWER.
-- Next allowed move: independent review of the operator-authorized XR1-R11
-  live-remote isolation repair and guarded recovery readiness. Repair remains
-  unstaged and uncommitted. Real Shift scan/apply, runtime asset import,
-  provider calls, recovery push and FREEZE remain prohibited until independent
-  review and the amendment's gates PASS.
+- Active role: COMMIT_STEWARD.
+- Next allowed move: create XR1-O-C3 from the independent review/recovery
+  receipt plus the three continuity paths, rehearse the committed tip in a
+  detached direct-sibling worktree, then push by ordinary fast-forward only.
+  Real Shift scan/apply, runtime asset import and provider calls remain outside
+  this tranche. FREEZE remains prohibited until C3 and its post-push closure
+  synchronization are complete.
 - Parked operator checkpoint (superseded by "G2 Final Claim Boundary" and the
   OW-RM1 entry further down; kept for history): F0 REVIEW_PASS and FREEZE are
   complete. C1 `8c193984c5fc158ca65ea554dd8d4934d12c28f4` and C2
@@ -2509,3 +2510,28 @@ frontend or deployment. No live AI-provider call was required or made.
   symlink skip); baseline 177/177 PASS; Operations and Shift refs unchanged.
 - Role transition: `REPAIR_WORKER -> REVIEWER`. No stage, commit, push or
   recovery occurred.
+
+## XR1-O-C2 Final Independent Review and Recovery — 2026-07-28
+
+- Independent consolidated disposition: `REVIEW_PASS`; R1-R11 and R12-R12G
+  are closed without waiver. Final evidence includes 17/17 adversarial probes
+  blocked, isolation preflight 3/3 PASS, focused 72 tests (71 PASS and one
+  conditional Windows symlink skip), baseline 177/177 PASS, catalog PASS and
+  doctor 25/25 PASS.
+- Repair commit
+  `f55f4275018d8bff098b12ca7c247f77a21703f4` passed its detached
+  direct-sibling rehearsal.
+- Immediately before recovery, the advertised incident tip still equaled the
+  amendment's exact lease
+  `214bc58721a54cec9014d672a48038aee97d274c`.
+- The one operator-authorized guarded
+  `--force-with-lease=main:214bc58721a54cec9014d672a48038aee97d274c`
+  restoration succeeded. Local `HEAD`, `origin/main` and the advertised
+  Operations `refs/heads/main` now all equal
+  `f55f4275018d8bff098b12ca7c247f77a21703f4`. The one-time recovery
+  authority is consumed.
+- Role transitions:
+  `REVIEWER -> COMMIT_STEWARD -> SESSION_SYNC_STEWARD -> COMMIT_STEWARD`.
+  The exact next move is XR1-O-C3: explicit four-path stage, commit, detached
+  sibling rehearsal and ordinary fast-forward push. No real Shift scan/apply,
+  runtime import or provider call occurred; FREEZE is not yet granted.
