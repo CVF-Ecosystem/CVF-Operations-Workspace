@@ -5,15 +5,13 @@ Status: ACTIVE
 ## Current State
 
 - Project: CVF-Operations-Workspace
-- Current mode: REVIEW
-- Active phase: REVIEW
-- Active role: COMMIT_STEWARD.
-- Next allowed move: create XR1-O-C3 from the independent review/recovery
-  receipt plus the three continuity paths, rehearse the committed tip in a
-  detached direct-sibling worktree, then push by ordinary fast-forward only.
-  Real Shift scan/apply, runtime asset import and provider calls remain outside
-  this tranche. FREEZE remains prohibited until C3 and its post-push closure
-  synchronization are complete.
+- Current mode: FREEZE
+- Active phase: FREEZE
+- Active role: ORCHESTRATOR.
+- Next allowed move: return delivery priority to
+  `shift-operations-workspace` and authorize its next bounded tranche under
+  Shift's own governance. Operations XR1 is closed, frozen and parked. A real
+  Shift scan/apply or runtime import requires a new explicit work order.
 - Parked operator checkpoint (superseded by "G2 Final Claim Boundary" and the
   OW-RM1 entry further down; kept for history): F0 REVIEW_PASS and FREEZE are
   complete. C1 `8c193984c5fc158ca65ea554dd8d4934d12c28f4` and C2
@@ -2535,3 +2533,24 @@ frontend or deployment. No live AI-provider call was required or made.
   The exact next move is XR1-O-C3: explicit four-path stage, commit, detached
   sibling rehearsal and ordinary fast-forward push. No real Shift scan/apply,
   runtime import or provider call occurred; FREEZE is not yet granted.
+
+## XR1-O-C3 and Post-push Closure — 2026-07-28
+
+- XR1-O-C3 independent review/recovery receipt commit:
+  `8b0a777f70b9d351c8ab3432de3179cede58fcfc`.
+- Its detached direct-sibling rehearsal passed CPython 3.13.12 `pip check`,
+  isolation preflight 3/3, focused 72 tests (71 PASS and one conditional
+  Windows symlink skip), baseline 177/177, JSON/diff/catalog checks and
+  workspace doctor 25/25. Operations and Shift remote refs were unchanged.
+- C3 was pushed by ordinary fast-forward. Local `HEAD`, `origin/main` and the
+  advertised Operations `refs/heads/main` were independently verified equal
+  to `8b0a777f70b9d351c8ab3432de3179cede58fcfc`.
+- Role transitions:
+  `COMMIT_STEWARD -> CLOSER -> SESSION_SYNC_STEWARD -> ORCHESTRATOR`.
+- Final disposition: XR1 is `CLOSED`, `REVIEW_PASS`, `FROZEN` and parked.
+  The frozen result is the reciprocal repository descriptor plus deterministic
+  local-isolated scan/apply tooling foundation. No real Shift scan/apply,
+  runtime asset import or provider call occurred.
+- Next governed move: prioritize `shift-operations-workspace` and authorize
+  its next bounded delivery tranche under Shift's own governance. A real
+  cross-repository scan/apply is not implicitly authorized by this closure.
