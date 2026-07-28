@@ -1,0 +1,17 @@
+{
+  "schemaVersion": "1.0",
+  "workspaceId": "cvf-operations-workspace",
+  "thisRepo": {
+    "repoId": "cvf-operations-workspace",
+    "role": "PRIMARY_PLATFORM",
+    "remote": "https://github.com/CVF-Ecosystem/CVF-Operations-Workspace.git"
+  },
+  "peerRepo": {
+    "repoId": "shift-operations-workspace",
+    "role": "PROFILE_SOURCE",
+    "remote": "https://github.com/CVF-Ecosystem/shift-operations-workspace.git"
+  },
+  "relationshipDirection": "SHIFT_TO_OPERATIONS_GOVERNED_INTAKE",
+  "sourcePin": "f98f29e145fa002be070e9d44520d20f0f82dcb3",
+  "pinUpdatePolicy": "REVIEWED_SCAN_APPLY_CYCLE_ONLY"
+}

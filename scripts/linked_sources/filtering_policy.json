@@ -1,0 +1,64 @@
+{
+  "schemaVersion": "1.0",
+  "precedence": [
+    "HARD_EXCLUDE",
+    "PROTECTED_SOURCE_ONLY",
+    "QUARANTINE_REVIEW",
+    "ELIGIBLE_CANDIDATE"
+  ],
+  "oversizedBytes": 1048576,
+  "hardExcludePathPatterns": [
+    ".git",
+    ".git/**",
+    "**/__pycache__/**",
+    "**/*.pyc",
+    ".env",
+    ".env.*",
+    "**/*.pem",
+    "**/*.p12",
+    "**/*.pfx",
+    "**/*.key"
+  ],
+  "hardExcludeNameTokens": [
+    "credential",
+    "credentials",
+    "secret-key",
+    "private-key"
+  ],
+  "secretContentRuleIds": [
+    "PRIVATE_KEY_HEADER",
+    "AWS_ACCESS_KEY",
+    "GENERIC_API_KEY"
+  ],
+  "protectedSourcePatterns": [
+    "session/**",
+    "cvf_session/**",
+    "cvf_session_memory.md",
+    "docs/decisions/**",
+    "**/evidence_*",
+    "**/*_receipt*"
+  ],
+  "quarantinePatterns": [
+    "database/**",
+    "**/migrations/**",
+    "**/api/**",
+    "**/*router*",
+    "**/*auth*",
+    "**/*security*",
+    "**/*permission*"
+  ],
+  "licenseAmbiguityPatterns": [
+    "NOTICE",
+    "COPYING",
+    "AUTHORS",
+    "UNLICENSED",
+    "LICENSE-UNKNOWN",
+    "LICENSE-UNKNOWN.*",
+    "UNKNOWN-LICENSE",
+    "UNKNOWN-LICENSE.*",
+    "LICENSE.*",
+    "*.license",
+    "**/*.license"
+  ],
+  "claimBoundary": "Classifies linked-source change records only. It does not authorize porting, application, runtime compatibility, or production readiness."
+}

@@ -1,4 +1,6 @@
 .cvf/local-binding.json
+.cvf/local-workspace-link.json
+.cvf/local-linked-source-recovery/
 __pycache__/
 *.py[cod]
 .pytest_cache/
