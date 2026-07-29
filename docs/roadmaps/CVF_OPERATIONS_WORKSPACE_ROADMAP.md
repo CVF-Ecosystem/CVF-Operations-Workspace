@@ -21,12 +21,12 @@ INTAKE -> DESIGN -> SPEC -> WORK_ORDER -> BUILD -> REVIEW -> FREEZE
 
 - Target `CVF-Operations-Workspace` has two valid historical checkpoints,
   both on `main`/`origin/main`, in sequence:
-  - **RM1 input-verification baseline** — `34519a3b17b416b11f64bae1da602c8fb9a7eb1a`
+  - **RM1 input-verification baseline** — `24671a067d07fb4cdfc42bab83fba3afdc054298`
     — the commit against which this roadmap's input truth (target/core/Shift
     pins, doctor, tests, full-bundle manifest, delta accounting) was
     independently verified before the RM1 authorization package was
     authored.
-  - **RM1 authorization/BUILD baseline (C1)** — `ed0d1cd7ea70a51ed8e350afed8cc3b38647ca45`
+  - **RM1 authorization/BUILD baseline (C1)** — `ef1c489e87dd33b2143fc31fb0702c8bebf825c2`
     — the subsequent commit, containing the reviewed and pushed RM1
     authorization package (`ADR-OW-004`, `OW-RM1-SPEC-001`, `OW-RM1-WO-001`),
     from which this documentation BUILD began. HEAD = `origin/main` = this

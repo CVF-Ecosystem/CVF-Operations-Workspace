@@ -17,7 +17,7 @@ does not itself edit the roadmap.
 
 ## Inputs this spec binds to
 
-- Verified baselines (this round): target HEAD/origin `34519a3b17b416b11f64bae1da602c8fb9a7eb1a`;
+- Verified baselines (this round): target HEAD/origin `24671a067d07fb4cdfc42bab83fba3afdc054298`;
   CVF core HEAD/origin `27137db4d9aa2aea931ddd2507185d5c24943080`; shift source
   HEAD `f98f29e145fa002be070e9d44520d20f0f82dcb3`; 116/116 tests; doctor 25/25.
 - `operations-workspace-all-phases/MIGRATION_MANIFEST.json` SHA-256

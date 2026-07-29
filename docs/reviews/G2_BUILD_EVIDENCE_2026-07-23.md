@@ -4,7 +4,7 @@
 - Spec: `OW-G2-SPEC-001`
 - Decision: `ADR-OW-003`
 - Role: IMPLEMENTATION_WORKER (Claude, provider-neutral role contract)
-- Authorization commit (C1): `3d1c316c343f9893b2e72672ef19c1ba68aa46f1`
+- Authorization commit (C1): `5f7637f1793bbe7d82d7e47d2bfd4ec318c209ca`
 - CVF core pin target: `27137db4d9aa2aea931ddd2507185d5c24943080`
 - Date: 2026-07-23
 - Status: BUILD complete, self-reported by IMPLEMENTATION_WORKER. **Not**
@@ -266,9 +266,9 @@ No other deletion occurred. Only one canonical catalog writer
 before and after this BUILD. `docs/roadmaps/`, `apps/`, `packages/`,
 `database/`, and `.github/` are likewise untouched (empty diff). F0's
 completion status (BUILD/REVIEW_PASS/FREEZE, commits C1
-`8c193984c5fc158ca65ea554dd8d4934d12c28f4`, C2
-`39541d5e84b06f8650ce2b0f6341425c7a05d7bf`, C3
-`3064d4bce08d36f553516d59719358fd8788cbcf`) is unchanged by this tranche.
+`dfc08a8be1c57c65826e58586c9f179b82be2bc3`, C2
+`1374be083fecf9b36b7b240e5c767a911fb3f8c2`, C3
+`ea916032359436fff5083f6bac9f7e3d2e508c9d`) is unchanged by this tranche.
 
 ## Exact changed set (this BUILD)
 

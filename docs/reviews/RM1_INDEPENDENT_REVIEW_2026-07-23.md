@@ -3,8 +3,8 @@
 - Tranche: `OW-RM1-WO-001`
 - Date: 2026-07-23
 - Reviewer: Codex (`REVIEWER`, independent from `IMPLEMENTATION_WORKER`)
-- Authorization C1: `ed0d1cd7ea70a51ed8e350afed8cc3b38647ca45`
-- BUILD C2: `701c9e07b20b4f6362398e753669dd543cd0599c`
+- Authorization C1: `ef1c489e87dd33b2143fc31fb0702c8bebf825c2`
+- BUILD C2: `2352fc1df01851689e0d15fc5a229e40a05c772a`
 - Disposition: `REVIEW_PASS`
 
 ## Scope reviewed
@@ -65,7 +65,7 @@ F1A is the next candidate, not an active work order. It requires a new
 
 C1, C2, and C3 passed post-commit/pre-push sibling-worktree rehearsals and
 were pushed. C3 is
-`0f0fecd8e1a3bd462f375e97de5ea3555cbdde5d`; RM1 FREEZE is effective.
+`d5af46a836537dbbd1e6984c8cbe85d2f2b9ff41`; RM1 FREEZE is effective.
 
 Post-push continuity finding `RM1-CR1` recorded on 2026-07-24: C3 succeeded
 but canonical continuity still described C3 as pending. The Codex-owned

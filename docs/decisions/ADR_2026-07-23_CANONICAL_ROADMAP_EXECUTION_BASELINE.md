@@ -19,7 +19,7 @@ still records the retired G0 core pin, lists G1's now-deleted
 BUILD/REVIEW_PASS/FREEZE are complete, is silent on G2, and its claim boundary
 says "Only G0 is complete" — all four contradict the independently verified
 state confirmed live during this round: target HEAD = origin/main =
-`34519a3b17b416b11f64bae1da602c8fb9a7eb1a`, CVF core HEAD = origin/main =
+`24671a067d07fb4cdfc42bab83fba3afdc054298`, CVF core HEAD = origin/main =
 `27137db4d9aa2aea931ddd2507185d5c24943080`, workspace doctor PASS 25/25, 116/116
 tests, Module Registry empty.
 
@@ -45,7 +45,7 @@ Independently reproduced live during this authorization round, not carried
 forward from a prior self-report:
 
 - Target `CVF-Operations-Workspace`: HEAD = `origin/main` =
-  `34519a3b17b416b11f64bae1da602c8fb9a7eb1a`, worktree clean.
+  `24671a067d07fb4cdfc42bab83fba3afdc054298`, worktree clean.
 - CVF core: HEAD = `origin/main` = `27137db4d9aa2aea931ddd2507185d5c24943080`,
   worktree clean.
 - `shift-operations-workspace` source: HEAD =

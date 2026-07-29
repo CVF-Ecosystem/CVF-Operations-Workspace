@@ -12,16 +12,16 @@ Recovery amendment:
 ## Reviewed commits
 
 - Operations authorization C1:
-  `74170650bd7f2732bc2eec985e5b891df6d45897`
+  `f99b3bf916985572e633275311a11aef4bd3aabf`
 - Operations post-push authorization synchronization:
-  `3ed0fc83cc542f9c2af2c17ee9cbed60b891e74a`
+  `a944b72e84b22abed184a9b678c9b0b0ab3e65c3`
 - Shift prerequisite XR1-S-C3:
   `58918c638ab34aa3fb2f7bf7de3a1ac44337b26a`, reachable from the clean
   Shift tip `4241b19d8a7d7031841850d75e95a3e3773b1553`
 - Original Operations C2 BUILD:
-  `d47340fd20df88a168e270f45dd7998808a0a11b`
+  `3a5097fe85d8a5ece8d92baeff2debc5ad07483d`
 - Independently reviewed isolation repair and recovered Operations tip:
-  `f55f4275018d8bff098b12ca7c247f77a21703f4`
+  `694c54d9b6caa4fb6010aca4112c0c68c357d808`
 
 ## Review disposition
 
@@ -52,11 +52,11 @@ Independent final evidence:
 During the original C2 post-commit/pre-push rehearsal, a test fixture
 retargeted a temporary repository's `origin` to the live Operations remote.
 A later helper then ran a force push and replaced the governed remote tip
-`3ed0fc83cc542f9c2af2c17ee9cbed60b891e74a` with unrelated fixture commit
+`a944b72e84b22abed184a9b678c9b0b0ab3e65c3` with unrelated fixture commit
 `214bc58721a54cec9014d672a48038aee97d274c`.
 
 After the independent repair review returned `REVIEW_PASS`, Codex created
-repair commit `f55f4275018d8bff098b12ca7c247f77a21703f4` from the amendment's
+repair commit `694c54d9b6caa4fb6010aca4112c0c68c357d808` from the amendment's
 exact 10-path ceiling. A detached direct-sibling worktree rehearsal passed
 the isolation preflight, focused suite, 177-test baseline, catalog check and
 doctor 25/25.
@@ -67,17 +67,17 @@ one-time recovery then used the mandatory exact lease:
 
 ```text
 git push --force-with-lease=main:214bc58721a54cec9014d672a48038aee97d274c \
-  origin f55f4275018d8bff098b12ca7c247f77a21703f4:main
+  origin 694c54d9b6caa4fb6010aca4112c0c68c357d808:main
 ```
 
 The guarded recovery succeeded. Post-recovery verification established:
 
 - local `HEAD` =
-  `f55f4275018d8bff098b12ca7c247f77a21703f4`;
+  `694c54d9b6caa4fb6010aca4112c0c68c357d808`;
 - local `origin/main` =
-  `f55f4275018d8bff098b12ca7c247f77a21703f4`;
+  `694c54d9b6caa4fb6010aca4112c0c68c357d808`;
 - advertised `refs/heads/main` =
-  `f55f4275018d8bff098b12ca7c247f77a21703f4`.
+  `694c54d9b6caa4fb6010aca4112c0c68c357d808`.
 
 The one-time force-with-lease authority is consumed. No further force
 operation is authorized or required.

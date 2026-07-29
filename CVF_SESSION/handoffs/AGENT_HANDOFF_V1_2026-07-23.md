@@ -14,10 +14,10 @@ Status: ACTIVE
   Shift scan/apply or runtime import requires a new explicit work order.
 - Parked operator checkpoint (superseded by "G2 Final Claim Boundary" and the
   OW-RM1 entry further down; kept for history): F0 REVIEW_PASS and FREEZE are
-  complete. C1 `8c193984c5fc158ca65ea554dd8d4934d12c28f4` and C2
-  `39541d5e84b06f8650ce2b0f6341425c7a05d7bf` passed their sibling-worktree
+  complete. C1 `dfc08a8be1c57c65826e58586c9f179b82be2bc3` and C2
+  `1374be083fecf9b36b7b240e5c767a911fb3f8c2` passed their sibling-worktree
   rehearsals; C3 is
-  `3064d4bce08d36f553516d59719358fd8788cbcf`. Full-stack rehearsal and push
+  `ea916032359436fff5083f6bac9f7e3d2e508c9d`. Full-stack rehearsal and push
   are execution receipts, not new BUILD authority. G2 (authorization,
   BUILD, and independent re-review/FREEZE authorization) is also complete —
   see "G2 Final Claim Boundary" below, which this header previously failed
@@ -48,13 +48,13 @@ independent reviewer.
 - Planning-author checks passed: JSON parsing, `git diff --check`, file-size
   ceiling, forbidden BUILD-path scan and workspace doctor 24/24.
 - Planning artifacts were committed separately as
-  `d47127852e59868fc03680fa962192e70b08d762`; continuity is a distinct commit.
+  `defa399c0cf23d5bec1db09e88b86ca5e6738b3d`; continuity is a distinct commit.
 - Claude's repositioning assessment was reconciled as reviewed input; rename
   instructions were superseded and no bundle/source content was imported.
 
 ## G1 Closure Evidence
 
-- `OW-G1-WO-001` authorization was committed as `417f11f81b74c9c451f1ca9902a896b87339876e`.
+- `OW-G1-WO-001` authorization was committed as `b5f4e89b3747f462aaecd9dc78cd5704fb4e2a50`.
 - Operator request acknowledged before G1 BUILD; changed-set ceiling and stop
   conditions accepted by IMPLEMENTATION_WORKER.
 - G1 BUILD produced schema-backed artifact/module registries, deterministic
@@ -71,7 +71,7 @@ independent reviewer.
   workspace doctor 24/24 pass. `jsonschema` is not installed, so no
   library-level validation claim is made beyond parseable schemas and the
   repository's executable stdlib checks.
-- BUILD commit `ddee5e45cc82906873e7fcc0635d94851e8475f7` passed rollback
+- BUILD commit `65c9e08de5fa1b7ffe38619af245048745d69e6a` passed rollback
   rehearsal in a sibling temporary worktree: checker, 11 tests and doctor
   24/24; the temporary worktree was removed.
 
@@ -133,10 +133,10 @@ independent reviewer.
   diff check and doctor 24/24 PASS; source status/worktree list unchanged.
 - AC-01 through AC-19: REVIEW_PASS. Receipt:
   `docs/reviews/F0_INDEPENDENT_REVIEW_2026-07-23.md`.
-- C1 `8c193984c5fc158ca65ea554dd8d4934d12c28f4` and C2
-  `39541d5e84b06f8650ce2b0f6341425c7a05d7bf` passed rollback rehearsal in
+- C1 `dfc08a8be1c57c65826e58586c9f179b82be2bc3` and C2
+  `1374be083fecf9b36b7b240e5c767a911fb3f8c2` passed rollback rehearsal in
   temporary sibling worktrees. C3 review/continuity commit is
-  `3064d4bce08d36f553516d59719358fd8788cbcf`.
+  `ea916032359436fff5083f6bac9f7e3d2e508c9d`.
 
 ## Open Work
 
@@ -173,7 +173,7 @@ independent reviewer.
   import runtime source.
 - Codex retains independent REVIEWER and COMMIT_STEWARD authority. This
   worker will not stage, commit, push, amend or self-approve REVIEW_PASS.
-- Pre-BUILD verification: HEAD `55f84d9776eec2569ecc1ac35ed5c5c598c68990`
+- Pre-BUILD verification: HEAD `28becec90e745a00a0981fa11c5e4aaf27e84ac4`
   matches authorization baseline; branch `main`; worktree clean; synced with
   `origin/main`. Per-project enforcement doctor
   (`check_cvf_workspace_agent_enforcement.ps1 -ProjectPath
@@ -201,7 +201,7 @@ independent reviewer.
   `docs/catalog/schemas/ARTIFACT_REGISTRY.schema.json`, and
   `docs/catalog/schemas/MODULE_REGISTRY.schema.json` are absent.
 - Pre-authoring baseline verified: branch `main`, HEAD
-  `b1d1cf8684a7da9903f682456da8ee8770f2217f`, matches `origin/main`, worktree
+  `3d66057c12c12b0239afbfce286cdbe38d849d5f`, matches `origin/main`, worktree
   clean. CVF core HEAD `571cb21b7026f0cd925279ba698bf30a291a4644` matches its
   `origin/main` exactly, worktree clean. No drift found.
 - Authored three artifacts: `ADR-OW-003`
@@ -258,7 +258,7 @@ independent reviewer.
     `27137db4d9aa2aea931ddd2507185d5c24943080`, worktree clean, remote
     `https://github.com/Blackbird081/Controlled-Vibe-Framework-CVF.git`
     unchanged. Target project HEAD/origin/main
-    (`b1d1cf8684a7da9903f682456da8ee8770f2217f`) and its 8 changed paths were
+    (`3d66057c12c12b0239afbfce286cdbe38d849d5f`) and its 8 changed paths were
     re-verified unchanged by the reconciler — it touches only the hidden core
     and workspace-root artifacts, never target project files.
     `ADR-OW-003`, `OW-G2-SPEC-001`, and `OW-G2-WO-001` are re-pinned to
@@ -278,9 +278,9 @@ independent reviewer.
     repair and not downgraded: **F0 BUILD is complete**, **independent
     REVIEW_PASS is recorded** (`docs/reviews/F0_INDEPENDENT_REVIEW_2026-07-23.md`),
     **FREEZE is complete**, and commits C1
-    `8c193984c5fc158ca65ea554dd8d4934d12c28f4`, C2
-    `39541d5e84b06f8650ce2b0f6341425c7a05d7bf`, C3
-    `3064d4bce08d36f553516d59719358fd8788cbcf` are committed. Module Registry
+    `dfc08a8be1c57c65826e58586c9f179b82be2bc3`, C2
+    `1374be083fecf9b36b7b240e5c767a911fb3f8c2`, C3
+    `ea916032359436fff5083f6bac9f7e3d2e508c9d` are committed. Module Registry
     remains empty and no runtime has been imported into the target — those
     two parts of the prior claim were accurate and are preserved.
   - **G2-R4 — INCOMPLETE_ROLE_ROUTE (repaired).** `OW-G2-WO-001`'s role route
@@ -357,7 +357,7 @@ independent reviewer.
   order are internally consistent and preserve the no-runtime/no-roadmap
   claim boundary.
 - Independent evidence: exact eight-path changed set; target
-  HEAD/origin/main `b1d1cf8684a7da9903f682456da8ee8770f2217f`; public core
+  HEAD/origin/main `3d66057c12c12b0239afbfce286cdbe38d849d5f`; public core
   HEAD/origin/main `27137db4d9aa2aea931ddd2507185d5c24943080`, clean; existing
   catalog check PASS; 104/104 tests PASS; JSON parse and `git diff --check`
   PASS; Module Registry and Module Catalog byte-identical to HEAD.
@@ -379,7 +379,7 @@ independent reviewer.
 - Read and accepted in full: `ADR-OW-003`, `OW-G2-SPEC-001`, and
   `OW-G2-WO-001` (repaired through round 2, independently REVIEW_PASS'd).
 - Authorization commit verified: target HEAD = origin/main =
-  `3d1c316c343f9893b2e72672ef19c1ba68aa46f1`, worktree clean, branch `main`.
+  `5f7637f1793bbe7d82d7e47d2bfd4ec318c209ca`, worktree clean, branch `main`.
   CVF core HEAD = origin/main = `27137db4d9aa2aea931ddd2507185d5c24943080`,
   worktree clean, remote
   `https://github.com/Blackbird081/Controlled-Vibe-Framework-CVF.git`. Both
@@ -565,7 +565,7 @@ only until Codex's independent REVIEWER re-review confirms it.
   `27137db4d9aa2aea931ddd2507185d5c24943080`; workspace doctor PASS 25/25;
   exact 20-path BUILD set; protected/excluded diffs empty; Module Registry
   remains empty.
-- C2 `4cea16eaf7997adec7e3e821db894b577f871834` was explicitly staged,
+- C2 `844fbdcb5b212e223a49c7d0e6196ea3d6224d74` was explicitly staged,
   committed, rehearsed successfully in a temporary sibling worktree, pushed
   to `origin/main`, and the temporary worktree removed.
 - Independent receipt:
@@ -614,7 +614,7 @@ repair, not an executable governance conflict.
   `../WORKSPACE_RULES.md`.
 - **All baselines independently re-verified live, not carried forward from a
   prior self-report:** target HEAD = `origin/main` =
-  `34519a3b17b416b11f64bae1da602c8fb9a7eb1a`, worktree clean; CVF core HEAD =
+  `24671a067d07fb4cdfc42bab83fba3afdc054298`, worktree clean; CVF core HEAD =
   `origin/main` = `27137db4d9aa2aea931ddd2507185d5c24943080`, worktree clean;
   Shift source HEAD = `f98f29e145fa002be070e9d44520d20f0f82dcb3`, worktree
   clean except the pre-existing untracked
@@ -867,7 +867,7 @@ discretion to reclassify either as non-blocking.
   `OW-RM1-WO-001` (repaired through repair round 2, `RM1-R1`/`RM1-R2`/`RM1-R3`
   closed, independently REVIEW_PASS'd).
 - Authorization commit verified live, not assumed: target HEAD = `origin/main`
-  = `ed0d1cd7ea70a51ed8e350afed8cc3b38647ca45`, worktree clean, branch `main`;
+  = `ef1c489e87dd33b2143fc31fb0702c8bebf825c2`, worktree clean, branch `main`;
   `git show --stat` confirms exactly the six authorized C1 paths changed. CVF
   core HEAD = `origin/main` = `27137db4d9aa2aea931ddd2507185d5c24943080`,
   worktree clean. Both match the authorized targets exactly; no drift.
@@ -1008,10 +1008,10 @@ discretion to reclassify either as non-blocking.
     current-truth section named the target repository only by
     `HEAD = origin/main`, without the actual commit. **Repair:** states both
     the **RM1 input-verification baseline**
-    (`34519a3b17b416b11f64bae1da602c8fb9a7eb1a`, the commit against which
+    (`24671a067d07fb4cdfc42bab83fba3afdc054298`, the commit against which
     this roadmap's input truth was independently verified before
     authorization was authored) and the **RM1 authorization/BUILD baseline
-    C1** (`ed0d1cd7ea70a51ed8e350afed8cc3b38647ca45`, the reviewed and pushed
+    C1** (`ef1c489e87dd33b2143fc31fb0702c8bebf825c2`, the reviewed and pushed
     authorization commit this BUILD started from), with an explicit
     explanation that both are real, sequential commits — the second
     supersedes the first as the live baseline, not a competing claim. Also
@@ -1087,7 +1087,7 @@ G0/G1/F0/G2 remain complete, independently REVIEW_PASS'd, and FREEZE'd;
 Module Registry remains empty; no runtime has been imported. RM1 authorization
 (`ADR-OW-004`, `OW-RM1-SPEC-001`, `OW-RM1-WO-001`) is REVIEW_PASS'd with
 `RM1-R1`/`RM1-R2`/`RM1-R3` closed and committed as C1
-`ed0d1cd7ea70a51ed8e350afed8cc3b38647ca45`. The RM1 documentation BUILD
+`ef1c489e87dd33b2143fc31fb0702c8bebf825c2`. The RM1 documentation BUILD
 (roadmap rewrite, learning assessment, BUILD evidence) is **self-reported
 complete, not yet independently reviewed**; BUILD repair round 1 closed
 `RM1-BR1` (continuity-only), and BUILD repair round 2 closed `RM1-BR2`
@@ -1108,7 +1108,7 @@ runtime/provider/governance claim exists as a result of this BUILD.
 - Repository gates: Golden catalog PASS; 116/116 tests PASS; workspace doctor
   PASS 25/25; `git diff --check` clean; exact six-path BUILD ceiling;
   protected catalog/Index/Module Registry and authorization diffs empty.
-- C2 `701c9e07b20b4f6362398e753669dd543cd0599c` was explicitly staged,
+- C2 `2352fc1df01851689e0d15fc5a229e40a05c772a` was explicitly staged,
   committed, rehearsed post-commit/pre-push in a sibling worktree, pushed to
   `origin/main`, and the temporary worktree removed.
 - Independent receipt:
@@ -1116,7 +1116,7 @@ runtime/provider/governance claim exists as a result of this BUILD.
 - FREEZE claim boundary: RM1 freezes documentation/planning truth only. No
   runtime source was imported, Module Registry remains empty, no provider or
   governance behavior is claimed, and F1A is not authorized.
-- C3 `0f0fecd8e1a3bd462f375e97de5ea3555cbdde5d` passed its own
+- C3 `d5af46a836537dbbd1e6984c8cbe85d2f2b9ff41` passed its own
   post-commit/pre-push sibling-worktree rehearsal and was pushed to
   `origin/main`; RM1 FREEZE is effective and the tranche is CLOSED.
 
@@ -1126,7 +1126,7 @@ runtime/provider/governance claim exists as a result of this BUILD.
   canonical `nextAllowedMove` still instructed the next agent to perform C3.
 - Repair: synchronized the active state, this handoff, implementation truth,
   and the independent receipt to the already-verified repository fact:
-  `HEAD = origin/main = 0f0fecd8e1a3bd462f375e97de5ea3555cbdde5d`.
+  `HEAD = origin/main = d5af46a836537dbbd1e6984c8cbe85d2f2b9ff41`.
 - This is closure synchronization only. It changes no roadmap, learning
   assessment, BUILD evidence, catalog, Module Registry, or runtime surface.
 - Next governed candidate remains F1A; no F1A work order or BUILD is opened by
@@ -1158,7 +1158,7 @@ runtime/provider/governance claim exists as a result of this BUILD.
   `git fetch` rather than trusting the instruction's stated hash — no file
   was authored against an unverified pin.
 - **All baselines independently re-verified live:** target HEAD =
-  `origin/main` = `a9c2505c0ff21df8600e5944383f6c04293eb2f4`, worktree clean;
+  `origin/main` = `e76d9d13479aa912f509b3fcde1859b4b43e42c7`, worktree clean;
   CVF core HEAD = `origin/main` = `27137db4d9aa2aea931ddd2507185d5c24943080`,
   worktree clean, matching `.cvf/manifest.json`; `docs/catalog/MODULE_REGISTRY.json`
   `modules: []` confirmed empty; 116/116 tests pass
@@ -1485,7 +1485,7 @@ worker discretion to reclassify it as non-blocking.
   `OW-F1A-WO-001` (repaired through round 2, `F1A-R1`–`F1A-R6` closed,
   independently REVIEW_PASS'd twice).
 - Authorization commit verified live, not assumed: target HEAD =
-  `origin/main` = `d731762a9e135b075261831ed7eb0df4badc98dd`, worktree
+  `origin/main` = `a008075f1a1ab9890c0c9a0e969a241bf1c3486f`, worktree
   clean, branch `main`. CVF core HEAD = `27137db4d9aa2aea931ddd2507185d5c24943080`,
   matching `.cvf/manifest.json`. Both read-only inputs
   (`shift-operations-workspace`, `operations-workspace-all-phases`)
@@ -1617,9 +1617,9 @@ worker discretion to reclassify it as non-blocking.
 ## F1A BUILD Claim Boundary (current)
 
 G0/G1/F0/G2/RM1 remain complete and FROZEN. F1A authorization C1
-`d731762a9e135b075261831ed7eb0df4badc98dd` is pushed. The F1A BUILD is
+`a008075f1a1ab9890c0c9a0e969a241bf1c3486f` is pushed. The F1A BUILD is
 independently REVIEW_PASS'd for contract/schema behavior only and is
-committed as C2 `9e59cfdcf3d1da2644540088e748123cd41f14e9`, rehearsed and
+committed as C2 `9937f91d3b62998a16a048f4b14e98c599acbe93`, rehearsed and
 pushed. It implements no runtime state machine, command execution,
 governance enforcement, provider behavior, F1B+ capability, database, API,
 frontend or deployment. No live AI-provider call was required or made.
@@ -1639,10 +1639,10 @@ frontend or deployment. No live AI-provider call was required or made.
 ## F1A Final Closure and Park — 2026-07-24
 
 - C1 authorization:
-  `d731762a9e135b075261831ed7eb0df4badc98dd`.
-- C2 BUILD: `9e59cfdcf3d1da2644540088e748123cd41f14e9`.
+  `a008075f1a1ab9890c0c9a0e969a241bf1c3486f`.
+- C2 BUILD: `9937f91d3b62998a16a048f4b14e98c599acbe93`.
 - C3 independent review/FREEZE:
-  `4cdd7f06e040fee43ab733d3dc608aa4d425452b`.
+  `2fd15e5c467538c55bd62c0bc1b146615c903451`.
 - All three commits passed post-commit/pre-push sibling-worktree rehearsal
   and were pushed to `origin/main`.
 - F1A status: CLOSED, FROZEN and PARKED. F1A-AC-01 through F1A-AC-31 PASS;
@@ -1656,7 +1656,7 @@ frontend or deployment. No live AI-provider call was required or made.
 ## XR1 Operations Authorization Authored — 2026-07-24
 
 - Baseline: clean post-F1A C4
-  `0efa7f23bfb2ea5677b680ed35ca0ae3f057e715`.
+  `ef90ee5203ab283753b7754c522cf0a847868a98`.
 - Authoring route: `ORCHESTRATOR -> SPEC_AUTHOR -> WORK_ORDER_AUTHOR`
   (Claude, provider-neutral role contract).
 - Artifacts: ADR-OW-006, OW-XR1-SPEC-001 and OW-XR1-WO-001.
@@ -1679,12 +1679,12 @@ frontend or deployment. No live AI-provider call was required or made.
   - **XR1-R1 — STALE_POST_F1A_BASELINE (repaired).** All three
     authorization artifacts still stated the pre-F1A-BUILD baseline and
     called F1A BUILD uncommitted/awaiting review. **Repair:** corrected
-    throughout to Operations HEAD/origin `0efa7f23bfb2ea5677b680ed35ca0ae3f057e715`;
+    throughout to Operations HEAD/origin `ef90ee5203ab283753b7754c522cf0a847868a98`;
     F1A recorded as CLOSED, FROZEN, and PARKED with all four commits (C1
-    `d731762a9e135b075261831ed7eb0df4badc98dd`, C2
-    `9e59cfdcf3d1da2644540088e748123cd41f14e9`, C3
-    `4cdd7f06e040fee43ab733d3dc608aa4d425452b`, C4
-    `0efa7f23bfb2ea5677b680ed35ca0ae3f057e715`); regression baseline
+    `a008075f1a1ab9890c0c9a0e969a241bf1c3486f`, C2
+    `9937f91d3b62998a16a048f4b14e98c599acbe93`, C3
+    `2fd15e5c467538c55bd62c0bc1b146615c903451`, C4
+    `ef90ee5203ab283753b7754c522cf0a847868a98`); regression baseline
     corrected to **177** tests. F1A itself was not reopened or modified.
     `XR1-O-C1`'s description was also corrected to name exactly the six
     authorization paths, removing a redundant "plus authorization
@@ -1761,7 +1761,7 @@ frontend or deployment. No live AI-provider call was required or made.
   ~309 — exact counts in this round's report); `git diff --check` clean;
   Golden catalog check PASS; the full 177-test suite passes; project-scoped
   workspace doctor PASS 25/25; Operations HEAD/origin
-  (`0efa7f23bfb2ea5677b680ed35ca0ae3f057e715`), Shift HEAD/origin
+  (`ef90ee5203ab283753b7754c522cf0a847868a98`), Shift HEAD/origin
   (`f98f29e145fa002be070e9d44520d20f0f82dcb3`) and its assessment file's
   SHA-256, and the CVF core pin are all unchanged; nothing staged.
 - XR1 authorization package status after round 1: **repaired (`XR1-R1`
@@ -1834,7 +1834,7 @@ frontend or deployment. No live AI-provider call was required or made.
   `OW-XR1-WO-001` 325); `git diff --check` clean; Golden catalog check
   PASS; the full 177-test suite passes; project-scoped workspace doctor
   PASS 25/25; Operations HEAD/origin
-  (`0efa7f23bfb2ea5677b680ed35ca0ae3f057e715`), Shift HEAD/origin
+  (`ef90ee5203ab283753b7754c522cf0a847868a98`), Shift HEAD/origin
   (`f98f29e145fa002be070e9d44520d20f0f82dcb3`) and its assessment file's
   SHA-256, and the CVF core pin are all unchanged; nothing staged.
 - XR1 authorization package status after this round: **repaired twice
@@ -1932,7 +1932,7 @@ frontend or deployment. No live AI-provider call was required or made.
   `OW-XR1-WO-001` 359); `git diff --check` clean; Golden catalog check
   PASS; the full 177-test suite passes; project-scoped workspace doctor
   PASS 25/25; Operations HEAD/origin
-  (`0efa7f23bfb2ea5677b680ed35ca0ae3f057e715`), Shift HEAD/origin
+  (`ef90ee5203ab283753b7754c522cf0a847868a98`), Shift HEAD/origin
   (`f98f29e145fa002be070e9d44520d20f0f82dcb3`) and its assessment file's
   SHA-256, and the CVF core pin are all unchanged.
 - XR1 authorization package status after this round: **repaired three
@@ -1973,7 +1973,7 @@ frontend or deployment. No live AI-provider call was required or made.
 ## XR1-O-C1 Commit, Rehearsal and Push — 2026-07-24
 
 - Exact six-path authorization commit:
-  `74170650bd7f2732bc2eec985e5b891df6d45897`.
+  `f99b3bf916985572e633275311a11aef4bd3aabf`.
 - The first rehearsal location under the system temp directory correctly
   failed only the three sibling-relative topology checks (core path,
   workspace rules, required workspace-rules document); it was removed and
@@ -1982,7 +1982,7 @@ frontend or deployment. No live AI-provider call was required or made.
   and PASSed: 177/177 tests, Golden catalog, workspace doctor 25/25,
   `git diff --check`, exact commit hash and clean rehearsal worktree.
 - C1 was pushed afterward; local `HEAD` and Operations `origin/main` both
-  equal `74170650bd7f2732bc2eec985e5b891df6d45897`.
+  equal `f99b3bf916985572e633275311a11aef4bd3aabf`.
 - Role transition: `COMMIT_STEWARD -> ORCHESTRATOR`. XR1 Operations BUILD
   remains prohibited. Next dependency is the separately governed Shift
   sequence `XR1-S-C1 -> XR1-S-C2 -> XR1-S-C3`; Operations `XR1-O-C2`
@@ -1997,8 +1997,8 @@ frontend or deployment. No live AI-provider call was required or made.
 - Reconciled the stale header above against the later, canonical XR1-O-C1
   receipt and Git truth; no historical entry was erased.
 - Operations `HEAD == origin/main ==
-  3ed0fc83cc542f9c2af2c17ee9cbed60b891e74a`; XR1-O-C1
-  `74170650bd7f2732bc2eec985e5b891df6d45897` is reachable from
+  a944b72e84b22abed184a9b678c9b0b0ab3e65c3`; XR1-O-C1
+  `f99b3bf916985572e633275311a11aef4bd3aabf` is reachable from
   Operations `origin/main`.
 - Shift `HEAD == origin/main ==
   4241b19d8a7d7031841850d75e95a3e3773b1553`; exact XR1-S-C3 closure
@@ -2237,14 +2237,14 @@ frontend or deployment. No live AI-provider call was required or made.
 ## XR1-O-C2 Post-commit Rehearsal Incident — BLOCKED — 2026-07-28
 
 - Local C2 was created from exactly 17 explicitly staged paths:
-  `d47340fd20df88a168e270f45dd7998808a0a11b`.
+  `3a5097fe85d8a5ece8d92baeff2debc5ad07483d`.
 - A detached direct-sibling rehearsal on that commit passed: focused 69
   tests (68 PASS, one conditional Windows symlink skip), baseline 177/177,
   Golden catalog PASS and workspace doctor PASS 25/25. The rehearsal
   worktree was removed after verification.
 - The subsequent normal push was rejected non-fast-forward. Read-only fetch
   proved Operations `origin/main` had been force-updated from governed commit
-  `3ed0fc83cc542f9c2af2c17ee9cbed60b891e74a` to unrelated fixture commit
+  `a944b72e84b22abed184a9b678c9b0b0ab3e65c3` to unrelated fixture commit
   `214bc58721a54cec9014d672a48038aee97d274c`, with no common ancestor.
 - `XR1-O-C2-R11 LIVE_REMOTE_MUTATION_BY_TEST` (BLOCKER):
   `tests/linked_sources/apply_test.py` contains a helper that initially pushes
@@ -2517,7 +2517,7 @@ frontend or deployment. No live AI-provider call was required or made.
   conditional Windows symlink skip), baseline 177/177 PASS, catalog PASS and
   doctor 25/25 PASS.
 - Repair commit
-  `f55f4275018d8bff098b12ca7c247f77a21703f4` passed its detached
+  `694c54d9b6caa4fb6010aca4112c0c68c357d808` passed its detached
   direct-sibling rehearsal.
 - Immediately before recovery, the advertised incident tip still equaled the
   amendment's exact lease
@@ -2526,7 +2526,7 @@ frontend or deployment. No live AI-provider call was required or made.
   `--force-with-lease=main:214bc58721a54cec9014d672a48038aee97d274c`
   restoration succeeded. Local `HEAD`, `origin/main` and the advertised
   Operations `refs/heads/main` now all equal
-  `f55f4275018d8bff098b12ca7c247f77a21703f4`. The one-time recovery
+  `694c54d9b6caa4fb6010aca4112c0c68c357d808`. The one-time recovery
   authority is consumed.
 - Role transitions:
   `REVIEWER -> COMMIT_STEWARD -> SESSION_SYNC_STEWARD -> COMMIT_STEWARD`.
@@ -2537,14 +2537,14 @@ frontend or deployment. No live AI-provider call was required or made.
 ## XR1-O-C3 and Post-push Closure — 2026-07-28
 
 - XR1-O-C3 independent review/recovery receipt commit:
-  `8b0a777f70b9d351c8ab3432de3179cede58fcfc`.
+  `f21ec1d0f4f477563da5bf6db7ff62b3250ad7be`.
 - Its detached direct-sibling rehearsal passed CPython 3.13.12 `pip check`,
   isolation preflight 3/3, focused 72 tests (71 PASS and one conditional
   Windows symlink skip), baseline 177/177, JSON/diff/catalog checks and
   workspace doctor 25/25. Operations and Shift remote refs were unchanged.
 - C3 was pushed by ordinary fast-forward. Local `HEAD`, `origin/main` and the
   advertised Operations `refs/heads/main` were independently verified equal
-  to `8b0a777f70b9d351c8ab3432de3179cede58fcfc`.
+  to `f21ec1d0f4f477563da5bf6db7ff62b3250ad7be`.
 - Role transitions:
   `COMMIT_STEWARD -> CLOSER -> SESSION_SYNC_STEWARD -> ORCHESTRATOR`.
 - Final disposition: XR1 is `CLOSED`, `REVIEW_PASS`, `FROZEN` and parked.

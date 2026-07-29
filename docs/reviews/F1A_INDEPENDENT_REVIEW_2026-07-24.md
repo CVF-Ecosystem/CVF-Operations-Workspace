@@ -2,8 +2,8 @@
 
 - Review ID: `F1A-INDEPENDENT-REVIEW-2026-07-24`
 - Work order: `OW-F1A-WO-001`
-- Authorization C1: `d731762a9e135b075261831ed7eb0df4badc98dd`
-- BUILD C2: `9e59cfdcf3d1da2644540088e748123cd41f14e9`
+- Authorization C1: `a008075f1a1ab9890c0c9a0e969a241bf1c3486f`
+- BUILD C2: `9937f91d3b62998a16a048f4b14e98c599acbe93`
 - Reviewer: Codex, independent from the Claude IMPLEMENTATION_WORKER
 - Risk: R2
 - Result: `REVIEW_PASS`

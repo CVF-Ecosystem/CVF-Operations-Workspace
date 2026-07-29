@@ -4,7 +4,7 @@
   `RM1-R1`/`RM1-R2`/`RM1-R3` closed)
 - Spec: `OW-RM1-SPEC-001`
 - Decision: `ADR-OW-004`
-- Authorization commit: C1 `ed0d1cd7ea70a51ed8e350afed8cc3b38647ca45`
+- Authorization commit: C1 `ef1c489e87dd33b2143fc31fb0702c8bebf825c2`
 - Role: IMPLEMENTATION_WORKER (Claude)
 - BUILD status: self-reported complete 2026-07-23; **BUILD repair round 1**
   closed `RM1-BR1` (continuity-only `BLOCKED_CONTINUITY_DRIFT`); **BUILD
@@ -86,7 +86,7 @@ with the fresh re-derivation in Section 2 above.
 
 | AC | Requirement | Evidence |
 |---|---|---|
-| AC-01 | Roadmap states target/core baseline, doctor, clean-worktree exactly as verified | Roadmap "Current execution truth" section states both historical checkpoints by exact commit: RM1 input-verification baseline `34519a3b17b416b11f64bae1da602c8fb9a7eb1a` and RM1 authorization/BUILD baseline C1 `ed0d1cd7ea70a51ed8e350afed8cc3b38647ca45`, plus CVF core `27137db4d9aa2aea931ddd2507185d5c24943080` and Shift source `f98f29e145fa002be070e9d44520d20f0f82dcb3`, with an explanation of why two checkpoints are valid (`RM1-BR2`, repaired); Section 5 below reproduces the live doctor/test commands |
+| AC-01 | Roadmap states target/core baseline, doctor, clean-worktree exactly as verified | Roadmap "Current execution truth" section states both historical checkpoints by exact commit: RM1 input-verification baseline `24671a067d07fb4cdfc42bab83fba3afdc054298` and RM1 authorization/BUILD baseline C1 `ef1c489e87dd33b2143fc31fb0702c8bebf825c2`, plus CVF core `27137db4d9aa2aea931ddd2507185d5c24943080` and Shift source `f98f29e145fa002be070e9d44520d20f0f82dcb3`, with an explanation of why two checkpoints are valid (`RM1-BR2`, repaired); Section 5 below reproduces the live doctor/test commands |
 | AC-02 | Full-bundle manifest SHA-256 and read-only location recorded accurately | Roadmap "Current execution truth"; matches Section 2 above exactly |
 | AC-03 | Delta accounting states corrected 26/21/5/156/161 figures; 21 unchanged not re-reviewed | Learning assessment "Input accounting" section; only 5 changed + 156 new receive a disposition |
 | AC-04 | 194/191 counts and 12/10/2 `.pyc` breakdown stated without euphemism | Roadmap references the learning assessment's "Input accounting (Codex-accepted, RM1-R3)" section, which states all four numbers plus the manifest self-listing fact |
@@ -224,8 +224,8 @@ originally re-derived.
   - `RM1-BR2` `MISSING_TARGET_COMMIT_PIN` — the roadmap's current-truth
     section named the target repository only by `origin/main`, without the
     actual commit. Repaired: both the RM1 input-verification baseline
-    (`34519a3b17b416b11f64bae1da602c8fb9a7eb1a`) and the RM1
-    authorization/BUILD baseline C1 (`ed0d1cd7ea70a51ed8e350afed8cc3b38647ca45`)
+    (`24671a067d07fb4cdfc42bab83fba3afdc054298`) and the RM1
+    authorization/BUILD baseline C1 (`ef1c489e87dd33b2143fc31fb0702c8bebf825c2`)
     are now stated explicitly, with the reason two checkpoints are both
     valid.
   - `RM1-BR3` `F2_SUBTRANCHE_FIELDS_MISSING` — F2 was a single tranche with

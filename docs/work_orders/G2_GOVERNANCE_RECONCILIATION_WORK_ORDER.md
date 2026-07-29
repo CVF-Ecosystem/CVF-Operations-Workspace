@@ -43,9 +43,9 @@ of each is recorded here for the work order's own scope:
   "F0 is authorized but not yet built" in its closing claim boundary, which
   contradicts F0's actual, already-recorded status: F0 BUILD complete,
   independent REVIEW_PASS recorded, FREEZE complete, commits C1
-  `8c193984c5fc158ca65ea554dd8d4934d12c28f4`, C2
-  `39541d5e84b06f8650ce2b0f6341425c7a05d7bf`, C3
-  `3064d4bce08d36f553516d59719358fd8788cbcf` committed. Module Registry
+  `dfc08a8be1c57c65826e58586c9f179b82be2bc3`, C2
+  `1374be083fecf9b36b7b240e5c767a911fb3f8c2`, C3
+  `ea916032359436fff5083f6bac9f7e3d2e508c9d` committed. Module Registry
   remains empty and no runtime has been imported into the target — that part
   of the original claim was accurate and is preserved. Corrected in the
   active handoff.

@@ -9,9 +9,9 @@
 ## Repair notes (rounds 1–3, 2026-07-24 — full finding-by-finding detail in the active handoff)
 
 **Round 1 — `XR1-R1`–`XR1-R7`, closed without waiver:** baseline corrected
-to Operations HEAD `0efa7f23bfb2ea5677b680ed35ca0ae3f057e715` (F1A
+to Operations HEAD `ef90ee5203ab283753b7754c522cf0a847868a98` (F1A
 **CLOSED, FROZEN, PARKED**, C1–C4 through
-`0efa7f23bfb2ea5677b680ed35ca0ae3f057e715`, 177-test baseline; `XR1-R1`);
+`ef90ee5203ab283753b7754c522cf0a847868a98`, 177-test baseline; `XR1-R1`);
 one accounting universe/exact equation/single-record rename rule, section B
 (`XR1-R2`); manifest schema and commit/receipt verification, section G —
 **superseded by round 3's non-circular model, `XR1-R11`** (`XR1-R3`);
@@ -72,7 +72,7 @@ No BUILD occurs. `shift-operations-workspace` is not modified.
 
 ## Verified input truth (this round, post-F1A-closure baseline — `XR1-R1`)
 
-- Operations: HEAD = `origin/main` = `0efa7f23bfb2ea5677b680ed35ca0ae3f057e715`.
+- Operations: HEAD = `origin/main` = `ef90ee5203ab283753b7754c522cf0a847868a98`.
 - Shift (read-only): HEAD = `origin/main` = `f98f29e145fa002be070e9d44520d20f0f82dcb3`,
   worktree clean except the pre-existing untracked
   `docs/decisions/ASSESSMENT_2026-07-23_OPERATIONS_WORKSPACE_REPOSITIONING.md`
@@ -83,8 +83,8 @@ No BUILD occurs. `shift-operations-workspace` is not modified.
   matching `.cvf/manifest.json`.
 - F1A (`ADR-OW-005`, `OW-F1A-SPEC-001`, `OW-F1A-WO-001`) is **CLOSED,
   FROZEN, and PARKED** — independently `REVIEW_PASS`'d and FREEZE'd, C1
-  `d731762a9e135b075261831ed7eb0df4badc98dd` through C4
-  `0efa7f23bfb2ea5677b680ed35ca0ae3f057e715` (this repository's current
+  `a008075f1a1ab9890c0c9a0e969a241bf1c3486f` through C4
+  `ef90ee5203ab283753b7754c522cf0a847868a98` (this repository's current
   HEAD), all on `origin/main`. The **current regression baseline is 177
   tests** (116 pre-F1A + 61 F1A), not 116. F1A is not reopened, not
   modified, and not touched by this tranche — PARKED means

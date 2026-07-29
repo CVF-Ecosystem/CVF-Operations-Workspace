@@ -9,7 +9,7 @@
 ## Pre-BUILD verification (reproduced live this round)
 
 - Target `CVF-Operations-Workspace`: HEAD = `origin/main` =
-  `d731762a9e135b075261831ed7eb0df4badc98dd`, worktree clean before BUILD.
+  `a008075f1a1ab9890c0c9a0e969a241bf1c3486f`, worktree clean before BUILD.
   This is `OW-F1A-WO-001`'s independently REVIEW_PASS'd, committed,
   rehearsed and pushed C1.
 - CVF core: HEAD = `27137db4d9aa2aea931ddd2507185d5c24943080`, matching
@@ -202,7 +202,7 @@ RESULT: PASS (25/25 checks passed)
 ```
 
 Post-BUILD pin re-verification: target HEAD = `origin/main` =
-`d731762a9e135b075261831ed7eb0df4badc98dd` (unchanged — nothing has been
+`a008075f1a1ab9890c0c9a0e969a241bf1c3486f` (unchanged — nothing has been
 staged, committed, or pushed by this BUILD); CVF core HEAD =
 `27137db4d9aa2aea931ddd2507185d5c24943080` (unchanged); both read-only
 inputs unchanged.

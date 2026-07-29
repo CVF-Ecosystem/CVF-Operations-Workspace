@@ -14,11 +14,11 @@ temporary repository's `origin` to the real Operations GitHub remote and a
 later helper invocation executed `git push -f origin HEAD:main`.
 
 The governed remote tip
-`3ed0fc83cc542f9c2af2c17ee9cbed60b891e74a` was replaced by unrelated
+`a944b72e84b22abed184a9b678c9b0b0ab3e65c3` was replaced by unrelated
 fixture history ending at
 `214bc58721a54cec9014d672a48038aee97d274c`. The local governed history and
 reviewed C2 commit remain intact at
-`d47340fd20df88a168e270f45dd7998808a0a11b`.
+`3a5097fe85d8a5ece8d92baeff2debc5ad07483d`.
 
 ## Operator authorization
 

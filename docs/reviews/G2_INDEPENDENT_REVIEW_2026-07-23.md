@@ -6,9 +6,9 @@
 - Reviewer: Codex (`REVIEWER`, independent from `IMPLEMENTATION_WORKER`)
 - Date: 2026-07-23
 - Authorization commit C1:
-  `3d1c316c343f9893b2e72672ef19c1ba68aa46f1`
+  `5f7637f1793bbe7d82d7e47d2bfd4ec318c209ca`
 - BUILD commit C2:
-  `4cea16eaf7997adec7e3e821db894b577f871834`
+  `844fbdcb5b212e223a49c7d0e6196ea3d6224d74`
 - Disposition: `REVIEW_PASS`
 
 ## Review scope
@@ -94,7 +94,7 @@ exit 0
 The four downstream Golden payload SHA-256 values match the pinned core
 copies. Protected and excluded path diffs are empty. C2 was independently
 rehearsed at
-`4cea16eaf7997adec7e3e821db894b577f871834` in a temporary sibling worktree;
+`844fbdcb5b212e223a49c7d0e6196ea3d6224d74` in a temporary sibling worktree;
 catalog check, 116 tests, doctor 25/25, diff hygiene, and clean-worktree checks
 passed, then the temporary worktree was removed before push.
 

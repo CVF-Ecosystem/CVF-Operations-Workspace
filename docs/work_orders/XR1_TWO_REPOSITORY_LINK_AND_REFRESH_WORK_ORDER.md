@@ -15,10 +15,10 @@ Independent Codex review returned `XR1-R1` through `XR1-R7` (full detail in
 
 - **XR1-R1** — every "F1A uncommitted/awaiting review" statement below is
   corrected: F1A is **CLOSED, FROZEN, PARKED** (C1
-  `d731762a9e135b075261831ed7eb0df4badc98dd`, C2
-  `9e59cfdcf3d1da2644540088e748123cd41f14e9`, C3
-  `4cdd7f06e040fee43ab733d3dc608aa4d425452b`, C4
-  `0efa7f23bfb2ea5677b680ed35ca0ae3f057e715`); the regression baseline is
+  `a008075f1a1ab9890c0c9a0e969a241bf1c3486f`, C2
+  `9937f91d3b62998a16a048f4b14e98c599acbe93`, C3
+  `2fd15e5c467538c55bd62c0bc1b146615c903451`, C4
+  `ef90ee5203ab283753b7754c522cf0a847868a98`); the regression baseline is
   **177** tests; the stale parenthetical about "pre-existing,
   still-uncommitted F1A BUILD content" is removed. F1A is not reopened.
 - **`XR1-O-C1` wording** — the authorization-round and commit-plan

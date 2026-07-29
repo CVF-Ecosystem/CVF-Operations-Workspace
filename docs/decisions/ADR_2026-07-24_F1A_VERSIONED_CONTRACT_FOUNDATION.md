@@ -101,7 +101,7 @@ provider behavior is authorized by this ADR.
 ## Verified input truth (this round)
 
 - Target `CVF-Operations-Workspace`: HEAD = `origin/main` =
-  `a9c2505c0ff21df8600e5944383f6c04293eb2f4`, worktree clean.
+  `e76d9d13479aa912f509b3fcde1859b4b43e42c7`, worktree clean.
 - CVF core: HEAD = `origin/main` = `27137db4d9aa2aea931ddd2507185d5c24943080`,
   worktree clean, matching `.cvf/manifest.json`'s `cvfCoreCommit`.
 - `docs/catalog/MODULE_REGISTRY.json`: `modules: []` — empty, confirmed by
